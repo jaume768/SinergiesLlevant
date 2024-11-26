@@ -1,0 +1,385 @@
+@import '../../../variables.css';
+
+/* Contenedor principal para TripDetail similar al Dashboard */
+.trip-detail-container {
+    min-height: 100vh;
+    background: url('https://wallpapers.com/images/hd/travel-hd-4zjwrepl0mzn70nd.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+}
+
+/* Superposición oscura para mejorar la legibilidad */
+.trip-detail-overlay {
+    background: var(--background-overlay);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Contenedor de contenido con diseño de tarjeta similar al Dashboard */
+.trip-detail-content {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    max-width: 1200px;
+    width: 100%;
+    box-shadow: var(--box-shadow);
+    backdrop-filter: blur(15px);
+    text-align: left;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+/* Título del TripDetail */
+.trip-header h2 {
+    font-size: var(--font-size-title);
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+/* Descripción del viaje */
+.trip-header p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+/* Acciones del viaje */
+.trip-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Botones similares al Dashboard */
+.dashboard-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--button-radius);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--button-shadow);
+}
+
+.dashboard-button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.btn-edit {
+    background-color: #1abc9c;
+}
+
+.btn-edit:hover {
+    background-color: #16a085;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+}
+
+.btn-share {
+    background-color: #f39c12;
+}
+
+.btn-share:hover {
+    background-color: #d35400;
+}
+
+.btn-download {
+    background-color: #3498db;
+}
+
+.btn-download:hover {
+    background-color: #2980b9;
+}
+
+/* Secciones de Itinerario, Reseñas y Comentarios */
+.section-title-intinerari {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    border-bottom: 3px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+}
+
+/* Itinerario */
+.itinerary {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .itinerary {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.itinerary-day {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.itinerary-day:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.day-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.day-header h4 {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.activities {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.activity {
+    display: flex;
+    align-items: flex-start;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.activity:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.activity-time {
+    font-weight: bold;
+    margin-right: 20px;
+    min-width: 70px;
+    font-size: 1rem;
+}
+
+.activity-details {
+    flex: 1;
+}
+
+.activity-name {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.activity-location {
+    margin: 5px 0 0 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.additional-info {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.additional-info p {
+    margin: 5px 0;
+}
+
+/* Texto de carga y mensajes de error */
+.loading-text {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 80px;
+    color: var(--text-color);
+}
+
+.error-message {
+    background-color: var(--error-color);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+    .trip-detail-content {
+        padding: 35px;
+        margin: 25px;
+    }
+
+    .trip-header h2 {
+        font-size: 2.2rem;
+    }
+
+    .trip-header p {
+        font-size: 1rem;
+    }
+
+    .dashboard-button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+
+    .itinerary-day {
+        padding: 20px;
+    }
+
+    .day-header h4 {
+        font-size: 1.4rem;
+    }
+
+    .activity-time {
+        min-width: 60px;
+        font-size: 0.95rem;
+    }
+
+    .activity-name {
+        font-size: 1.1rem;
+    }
+
+    .activity-location,
+    .additional-info {
+        font-size: 0.95rem;
+    }
+
+    .section-title-intinerari {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .trip-detail-content {
+        padding: 25px;
+        margin: 20px;
+    }
+
+    .trip-header h2 {
+        font-size: 2rem;
+    }
+
+    .trip-header p {
+        font-size: 0.95rem;
+    }
+
+    .dashboard-button {
+        padding: 8px 18px;
+        font-size: 0.9rem;
+    }
+
+    .itinerary-day {
+        padding: 18px;
+    }
+
+    .day-header h4 {
+        font-size: 1.3rem;
+    }
+
+    .activity-time {
+        min-width: 55px;
+        font-size: 0.9rem;
+    }
+
+    .activity-name {
+        font-size: 1rem;
+    }
+
+    .activity-location,
+    .additional-info {
+        font-size: 0.9rem;
+    }
+
+    .section-title-intinerari {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .trip-detail-content {
+        padding: 20px;
+        margin: 15px;
+    }
+
+    .trip-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .trip-header p {
+        font-size: 0.9rem;
+    }
+
+    .dashboard-button {
+        padding: 6px 15px;
+        font-size: 0.8rem;
+    }
+
+    .itinerary-day {
+        padding: 15px;
+    }
+
+    .day-header h4 {
+        font-size: 1.2rem;
+    }
+
+    .activity-time {
+        min-width: 50px;
+        font-size: 0.85rem;
+    }
+
+    .activity-name {
+        font-size: 0.95rem;
+    }
+
+    .activity-location,
+    .additional-info {
+        font-size: 0.85rem;
+    }
+
+    .section-title-intinerari {
+        font-size: 1.4rem;
+    }
+
+    
+}
