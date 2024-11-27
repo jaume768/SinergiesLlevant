@@ -40,6 +40,7 @@ const CreateTrip = () => {
     });
 
     const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false); // Estado de carga
 
     const interestOptions = [
         { value: 'aventura', label: 'Aventura' },
@@ -129,11 +130,15 @@ const CreateTrip = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true); // Iniciar el estado de carga
+        setError('');
         try {
             const response = await api.post('/trips/create', formData);
             navigate(`/trips/${response.data._id}`);
         } catch (err) {
             setError(err.response?.data?.msg || 'Error al crear el itinerario');
+        } finally {
+            setLoading(false); // Finalizar el estado de carga
         }
     };
 
@@ -401,13 +406,19 @@ const CreateTrip = () => {
                     ></textarea>
                 </div>
 
-                {/* Botón de Envío */}
-                <button type="submit" className="btn-primary">
-                    Crear Itinerario
+                <button type="submit" className="btn-primary" disabled={loading}>
+                    {loading ? <div className="spinner"></div> : 'Crear Itinerario'}
                 </button>
             </form>
+
+            {loading && (
+                <div className="loading-overlay">
+                    <div className="spinner"></div>
+                </div>
+            )}
         </div>
     );
+
 };
 
 export default CreateTrip;

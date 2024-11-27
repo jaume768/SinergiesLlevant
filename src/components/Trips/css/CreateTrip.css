@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    position: relative;
 }
 
 /* Título del formulario */
@@ -59,6 +60,11 @@
     transition: background-color 0.3s ease;
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #ccc;
+}
+
 /* Estilos al enfocar los campos */
 .form-group input:focus,
 .form-group textarea:focus,
@@ -99,10 +105,21 @@
     transition: background-color 0.3s ease;
     font-size: var(--font-size-button);
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .btn-primary:hover {
     background-color: var(--primary-hover);
+}
+
+/* Botón de envío deshabilitado */
+.btn-primary:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.7;
 }
 
 /* Estilos para react-select */
@@ -148,6 +165,47 @@
     color: #fff;
 }
 
+/* Spinner de carga */
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+/* Animación de rotación */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Opcional: Estilos para el spinner de react-icons */
+.spinner-icon {
+    animation: spin 1s linear infinite;
+}
+
+/* Superposición de carga (opcional) */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
 /* Responsividad */
 @media (max-width: 768px) {
     .create-trip-form {
@@ -182,4 +240,10 @@
         padding: 10px 20px;
         font-size: 0.9rem;
     }
+}
+
+.btn-primary .spinner {
+    width: 16px;
+    height: 16px;
+    border-width: 3px;
 }
