@@ -45,13 +45,13 @@ const TestimonialsSection = () => {
             photo: 'https://static.vecteezy.com/system/resources/thumbnails/026/570/649/small/close-up-profile-view-of-pensive-upset-african-american-man-look-in-distance-thinking-of-personal-problems-thoughtful-sad-biracial-male-feel-depressed-lost-in-thoughts-pondering-having-dilemma-photo.jpg',
         },
         {
-            name: 'Carlos Sánchez',
+            name: 'Carla Sánchez',
             text: 'El mejor servicio de planificación de viajes que he usado. Muy intuitivo y personalizado.',
             rating: 4,
             photo: 'https://img.freepik.com/foto-gratis/retrato-hermoso-mujer-joven-posicion-pared-gris_231208-10760.jpg?semt=ais_hybrid',
         },
         {
-            name: 'Laura Martínez',
+            name: 'Tomas Martínez',
             text: 'Mis viajes nunca habían sido tan bien organizados. ¡Gracias, Traveldaring!',
             rating: 5,
             photo: 'https://media.istockphoto.com/id/1171169099/es/foto/hombre-con-brazos-cruzados-aislados-sobre-fondo-gris.jpg?s=612x612&w=0&k=20&c=8qDLKdLMm2i8DHXY6crX6a5omVh2IxqrOxJV2QGzgFg=',
