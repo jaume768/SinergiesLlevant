@@ -1,13 +1,15 @@
-Hacer que en el dashboard, en los intinerarios se vean si es publico o no el intinerario, ordenarlo por fecha de creación, un buscador para filtrar.
-
-Cerrar sesión del navbar, quitarlo y ponerlo en el perfil.
-
 Utilizar tokens para crear intinerarios y no permitir correos generados para verificar cuentas.
 
-Crear apartado de Intinerarios más populares.
+Crear apartado de Intinerarios sugeridos.
 
 Hacer que si ves el intinerario de otro perfil, veas quien lo ha creado y puedas ir a su perfil.
 
 hacer que el perfil pueda tener seguidores.
 
 hacer que el navbar "TravelDaring" si has iniciado sesión te lleve al dashboard.
+
+Pagina de sugerencias con los intinerarios con los paises mas buscados organizado por ciudades o fechas.
+
+Añadir tren + bus preferencias de transporte
+
+Añadir check de las actividades del dia.

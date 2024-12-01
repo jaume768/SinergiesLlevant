@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 import FriendsList from '../components/Profile/FriendsList';
 import FriendRequests from '../components/Profile/FriendRequests';
@@ -9,7 +10,8 @@ import EditProfile from '../components/Profile/EditProfile';
 import './css/ProfilePage.css';
 
 const ProfilePage = () => {
-    const { authState } = useContext(AuthContext);
+    const { authState, logout } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -30,6 +32,11 @@ const ProfilePage = () => {
         fetchProfile();
     }, []);
 
+    const handleLogout = () => {
+        logout();
+        navigate('/login');
+    };
+
     if (loading) return <p className="loading-text">Cargando perfil...</p>;
 
     return (
@@ -45,6 +52,11 @@ const ProfilePage = () => {
                             <CustomLists />
                             <FriendsList />
                             <FriendRequests />
+                            <div className="logout-section">
+                                <button onClick={handleLogout} className="logout-button">
+                                    Cerrar Sesión
+                                </button>
+                            </div>
                         </>
                     )}
                 </div>

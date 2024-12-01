@@ -23,11 +23,6 @@
     font-size: 1rem;
 }
 
-.logout-button {
-    background: none;
-    color: #e0e0e0;
-}
-
 .menu-icon {
     display: none;
     flex-direction: column;

@@ -1,25 +1,22 @@
+// Navbar.jsx
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import './css/Navbar.css';
 
 const Navbar = () => {
-  const { authState, logout } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { authState } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const brandLink = !authState.loading && authState.token ? '/dashboard' : '/';
+
   return (
     <nav className="navbar">
-      <Link to="/" className="navbar-brand">
+      <Link to={brandLink} className="navbar-brand">
         TravelDaring
       </Link>
       <div className="menu-icon" onClick={toggleMenu}>
@@ -30,11 +27,8 @@ const Navbar = () => {
       <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
         {!authState.loading && authState.token ? (
           <>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/">Home</Link>
             <Link to="/profile">Perfil</Link>
-            <button onClick={handleLogout} className="logout-button">
-              Cerrar Sesión
-            </button>
           </>
         ) : (
           <>

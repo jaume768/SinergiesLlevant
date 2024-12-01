@@ -6,13 +6,20 @@ import './css/Dashboard.css';
 
 const Dashboard = () => {
     const [trips, setTrips] = useState([]);
+    const [filteredTrips, setFilteredTrips] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [searchQuery, setSearchQuery] = useState('');
 
     const fetchTrips = async () => {
         try {
             const response = await api.get('/trips/user');
-            setTrips(response.data);
+            // Ordenar por fecha de creación descendente
+            const sortedTrips = response.data.sort(
+                (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+            );
+            setTrips(sortedTrips);
+            setFilteredTrips(sortedTrips);
             setLoading(false);
         } catch (err) {
             setError('Error al cargar los viajes');
@@ -24,6 +31,19 @@ const Dashboard = () => {
         fetchTrips();
     }, []);
 
+    useEffect(() => {
+        if (searchQuery.trim() === '') {
+            setFilteredTrips(trips);
+        } else {
+            const lowerCaseQuery = searchQuery.toLowerCase();
+            const filtered = trips.filter(trip =>
+                trip.title.toLowerCase().includes(lowerCaseQuery) ||
+                trip.description.toLowerCase().includes(lowerCaseQuery)
+            );
+            setFilteredTrips(filtered);
+        }
+    }, [searchQuery, trips]);
+
     return (
         <div className="dashboard-container">
             <div className="dashboard-overlay">
@@ -32,14 +52,23 @@ const Dashboard = () => {
                     <Link to="/trips/create" className="dashboard-button">
                         Crear Nuevo Itinerario
                     </Link>
+                    <div className="search-container">
+                        <input
+                            type="text"
+                            placeholder="Buscar itinerarios..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="search-input"
+                        />
+                    </div>
                     {loading ? (
                         <p className="loading-text">Cargando...</p>
                     ) : error ? (
                         <div className="error-message">{error}</div>
-                    ) : trips.length === 0 ? (
-                        <p className="no-trips-text">No tienes itinerarios creados.</p>
+                    ) : filteredTrips.length === 0 ? (
+                        <p className="no-trips-text">No se encontraron itinerarios.</p>
                     ) : (
-                        <TripList trips={trips} />
+                        <TripList trips={filteredTrips} />
                     )}
                 </div>
             </div>

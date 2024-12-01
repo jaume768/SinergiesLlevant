@@ -9,6 +9,9 @@ const TripList = ({ trips }) => {
                 <div key={trip._id} className="trip-card">
                     <h3>{trip.title}</h3>
                     <p>{trip.description}</p>
+                    <p className={`trip-public ${trip.public ? 'public' : 'private'}`}>
+                        {trip.public ? 'Público' : 'Privado'}
+                    </p>
                     <Link to={`/trips/${trip._id}`} className="btn-secondary">
                         Ver Itinerario
                     </Link>
