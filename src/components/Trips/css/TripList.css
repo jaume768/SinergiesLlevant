@@ -1,5 +1,8 @@
+/* TripList.css */
+
 @import '../../../variables.css';
 
+/* Contenedor de la lista de viajes */
 .trip-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -7,6 +10,7 @@
     margin-top: 20px;
 }
 
+/* Tarjeta individual del viaje */
 .trip-card {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -18,48 +22,61 @@
     color: var(--text-color);
     transition: background-color 0.3s ease;
     position: relative;
+    /* Necesario para posicionamiento absoluto de .trip-public */
 }
 
+/* Efecto hover en la tarjeta */
 .trip-card:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
+/* Título del viaje */
 .trip-card h3 {
     margin-bottom: 10px;
     color: var(--secondary-color);
 }
 
+/* Descripción del viaje */
 .trip-card p {
     flex-grow: 1;
     margin-bottom: 15px;
 }
 
+/* Estilos para la etiqueta público/privado */
 .trip-public {
     font-size: 0.9rem;
-    margin-bottom: 10px;
-    text-align: left;
-    padding: 5px 10px;
-    border-radius: 12px;
-    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+    /* Posición desde abajo */
+    right: 10px;
+    /* Posición desde la derecha */
+    /* Eliminar fondo, padding y border-radius */
+    padding: 0;
+    border-radius: 0;
+    display: block;
+    /* Ajustar color basado en la clase */
+    color: inherit;
+    /* Hereda el color del texto principal */
 }
 
+/* Color para público */
 .trip-public.public {
-    background-color: #4caf50;
+    color: #ffffff;
     /* Verde para público */
-    color: #fff;
 }
 
+/* Color para privado */
 .trip-public.private {
-    background-color: #f44336;
+    color: #ffffff;
     /* Rojo para privado */
-    color: #fff;
 }
 
-/* Asegurarse de que el nuevo elemento no rompa el diseño */
+/* Eliminar margen superior que afectaba la posición */
 .trip-card p.trip-public {
-    margin-top: -10px;
+    margin-top: 0;
 }
 
+/* Botón secundario */
 .btn-secondary {
     color: #fff;
     border: none;
@@ -80,7 +97,6 @@
 @media (max-width: 768px) {
     .trip-public {
         font-size: 0.8rem;
-        padding: 4px 8px;
     }
 
     .btn-secondary {
@@ -92,7 +108,6 @@
 @media (max-width: 480px) {
     .trip-public {
         font-size: 0.7rem;
-        padding: 3px 6px;
     }
 
     .btn-secondary {

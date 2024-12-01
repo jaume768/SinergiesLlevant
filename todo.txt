@@ -1,15 +1,13 @@
-Utilizar tokens para crear intinerarios y no permitir correos generados para verificar cuentas.
+Crear apartado de Intinerarios sugeridos (hacer modelo en node de intinerarios sugeridos, con referencias a intinerarios creados de usuarios y los endpoints en controller).
 
-Crear apartado de Intinerarios sugeridos.
+hacer que en el intinerario se pueda subir una foto representativa.
 
 Hacer que si ves el intinerario de otro perfil, veas quien lo ha creado y puedas ir a su perfil.
 
 hacer que el perfil pueda tener seguidores.
 
-hacer que el navbar "TravelDaring" si has iniciado sesión te lleve al dashboard.
-
-Pagina de sugerencias con los intinerarios con los paises mas buscados organizado por ciudades o fechas.
-
-Añadir tren + bus preferencias de transporte
-
 Añadir check de las actividades del dia.
+
+Utilizar tokens para crear intinerarios personalizados
+
+no permitir correos generados para verificar cuentas y auth2.0.

@@ -67,9 +67,10 @@ const CreateTrip = () => {
 
     const transportOptions = [
         { value: 'avion', label: 'Avión' },
-        { value: 'tren', label: 'Tren' },
         { value: 'coche', label: 'Coche' },
+        { value: 'tren', label: 'Tren' },
         { value: 'autobus', label: 'Autobús' },
+        { value: 'tren y autobus', label: 'Tren y autobús' },
         { value: 'bicicleta', label: 'Bicicleta' },
     ];
 
