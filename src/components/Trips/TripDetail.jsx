@@ -135,10 +135,6 @@ const TripDetail = () => {
                         ))}
                     </div>
 
-                    <h3 className="section-title-intinerari">Reseñas</h3>
-                    <ReviewList tripId={tripId} />
-                    <ReviewForm tripId={tripId} refreshTrip={fetchTrip} />
-
                     <h3 className="section-title-intinerari">Comentarios</h3>
                     <CommentList tripId={tripId} />
                     <CommentForm tripId={tripId} refreshTrip={fetchTrip} />
