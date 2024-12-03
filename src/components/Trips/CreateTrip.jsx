@@ -16,7 +16,7 @@ const CreateTrip = () => {
         },
         destinationPreferences: {
             country: '',
-            type: '', // Añadido
+            type: '',
         },
         budget: {
             total: 0,
@@ -40,7 +40,7 @@ const CreateTrip = () => {
     });
 
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState(false); // Estado de carga
+    const [loading, setLoading] = useState(false);
 
     const interestOptions = [
         { value: 'aventura', label: 'Aventura' },
@@ -131,7 +131,7 @@ const CreateTrip = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); // Iniciar el estado de carga
+        setLoading(true);
         setError('');
         try {
             const response = await api.post('/trips/create', formData);
@@ -139,7 +139,7 @@ const CreateTrip = () => {
         } catch (err) {
             setError(err.response?.data?.msg || 'Error al crear el itinerario');
         } finally {
-            setLoading(false); // Finalizar el estado de carga
+            setLoading(false);
         }
     };
 
@@ -186,92 +186,103 @@ const CreateTrip = () => {
                     </label>
                 </div>
 
-                {/* Fecha de Inicio */}
-                <div className="form-group">
-                    <label>Fecha de Inicio</label>
-                    <input
-                        type="date"
-                        name="travelDates.startDate"
-                        value={formData.travelDates.startDate}
-                        onChange={onChange}
-                        required
-                    />
+                {/* Fecha de Inicio y Fecha de Fin */}
+                <div className="form-row">
+                    {/* Fecha de Inicio */}
+                    <div className="form-group">
+                        <label>Fecha de Inicio</label>
+                        <input
+                            type="date"
+                            name="travelDates.startDate"
+                            value={formData.travelDates.startDate}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
+
+                    {/* Fecha de Fin */}
+                    <div className="form-group">
+                        <label>Fecha de Fin</label>
+                        <input
+                            type="date"
+                            name="travelDates.endDate"
+                            value={formData.travelDates.endDate}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
                 </div>
 
-                {/* Fecha de Fin */}
-                <div className="form-group">
-                    <label>Fecha de Fin</label>
-                    <input
-                        type="date"
-                        name="travelDates.endDate"
-                        value={formData.travelDates.endDate}
-                        onChange={onChange}
-                        required
-                    />
+                {/* País de Destino y Tipo de Destino */}
+                <div className="form-row">
+                    {/* País de Destino */}
+                    <div className="form-group">
+                        <label>País de Destino</label>
+                        <input
+                            type="text"
+                            name="destinationPreferences.country"
+                            value={formData.destinationPreferences.country}
+                            onChange={onChange}
+                            required
+                            placeholder="Ingrese el país de destino"
+                        />
+                    </div>
+
+                    {/* Tipo de Destino */}
+                    <div className="form-group">
+                        <label>Tipo de Destino</label>
+                        <Select
+                            name="destinationPreferences.type"
+                            options={destinationTypeOptions}
+                            isClearable
+                            value={destinationTypeOptions.find(
+                                option => option.value === formData.destinationPreferences.type
+                            )}
+                            onChange={(selectedOption) => {
+                                setFormData({
+                                    ...formData,
+                                    destinationPreferences: {
+                                        ...formData.destinationPreferences,
+                                        type: selectedOption ? selectedOption.value : '',
+                                    },
+                                });
+                            }}
+                            className="react-select-container"
+                            classNamePrefix="react-select"
+                            placeholder="Seleccione un tipo de destino"
+                        />
+                    </div>
                 </div>
 
-                {/* País de Destino */}
-                <div className="form-group">
-                    <label>País de Destino</label>
-                    <input
-                        type="text"
-                        name="destinationPreferences.country"
-                        value={formData.destinationPreferences.country}
-                        onChange={onChange}
-                        required
-                        placeholder="Ingrese el país de destino"
-                    />
-                </div>
+                {/* Presupuesto Total y Número de Ciudades */}
+                <div className="form-row">
+                    {/* Presupuesto Total */}
+                    <div className="form-group">
+                        <label>Presupuesto Total (USD)</label>
+                        <input
+                            type="number"
+                            name="budget.total"
+                            value={formData.budget.total}
+                            onChange={onChange}
+                            required
+                            min="0"
+                            placeholder="Ingrese el presupuesto total"
+                        />
+                    </div>
 
-                {/* Tipo de Destino (Añadido) */}
-                <div className="form-group">
-                    <label>Tipo de Destino</label>
-                    <Select
-                        name="destinationPreferences.type"
-                        options={destinationTypeOptions}
-                        isClearable
-                        value={destinationTypeOptions.find(option => option.value === formData.destinationPreferences.type)}
-                        onChange={(selectedOption) => {
-                            setFormData({
-                                ...formData,
-                                destinationPreferences: {
-                                    ...formData.destinationPreferences,
-                                    type: selectedOption ? selectedOption.value : '',
-                                },
-                            });
-                        }}
-                        className="react-select-container"
-                        classNamePrefix="react-select"
-                        placeholder="Seleccione un tipo de destino"
-                    />
-                </div>
-
-                {/* Presupuesto Total */}
-                <div className="form-group">
-                    <label>Presupuesto Total (USD)</label>
-                    <input
-                        type="number"
-                        name="budget.total"
-                        value={formData.budget.total}
-                        onChange={onChange}
-                        required
-                        min="0"
-                        placeholder="Ingrese el presupuesto total"
-                    />
-                </div>
-
-                {/* Número de Ciudades */}
-                <div className="form-group">
-                    <label>Número de Ciudades</label>
-                    <input
-                        type="number"
-                        name="numberOfCities"
-                        value={formData.numberOfCities}
-                        onChange={onChange}
-                        required
-                        min="1"
-                        placeholder="Ingrese el número de ciudades"
-                    />
+                    {/* Número de Ciudades */}
+                    <div className="form-group">
+                        <label>Número de Ciudades</label>
+                        <input
+                            type="number"
+                            name="numberOfCities"
+                            value={formData.numberOfCities}
+                            onChange={onChange}
+                            required
+                            min="1"
+                            placeholder="Ingrese el número de ciudades"
+                        />
+                    </div>
                 </div>
 
                 {/* Intereses */}
@@ -281,7 +292,9 @@ const CreateTrip = () => {
                         name="interests"
                         options={interestOptions}
                         isMulti
-                        value={interestOptions.filter(option => formData.interests.includes(option.value))}
+                        value={interestOptions.filter(option =>
+                            formData.interests.includes(option.value)
+                        )}
                         onChange={handleSelectChange}
                         className="react-select-container"
                         classNamePrefix="react-select"
@@ -296,7 +309,9 @@ const CreateTrip = () => {
                         name="foodPreferences"
                         options={foodOptions}
                         isMulti
-                        value={foodOptions.filter(option => formData.foodPreferences.includes(option.value))}
+                        value={foodOptions.filter(option =>
+                            formData.foodPreferences.includes(option.value)
+                        )}
                         onChange={handleSelectChange}
                         className="react-select-container"
                         classNamePrefix="react-select"
@@ -311,7 +326,9 @@ const CreateTrip = () => {
                         name="accommodationPreferences.type"
                         options={accommodationOptions}
                         isClearable
-                        value={accommodationOptions.find(option => option.value === formData.accommodationPreferences.type)}
+                        value={accommodationOptions.find(
+                            option => option.value === formData.accommodationPreferences.type
+                        )}
                         onChange={(selectedOption) => {
                             setFormData({
                                 ...formData,
@@ -334,7 +351,9 @@ const CreateTrip = () => {
                         name="transportPreferences.preferredMode"
                         options={transportOptions}
                         isClearable
-                        value={transportOptions.find(option => option.value === formData.transportPreferences.preferredMode)}
+                        value={transportOptions.find(
+                            option => option.value === formData.transportPreferences.preferredMode
+                        )}
                         onChange={(selectedOption) => {
                             setFormData({
                                 ...formData,
@@ -357,7 +376,9 @@ const CreateTrip = () => {
                         name="travelCompanion.type"
                         options={travelCompanionOptions}
                         isClearable
-                        value={travelCompanionOptions.find(option => option.value === formData.travelCompanion.type)}
+                        value={travelCompanionOptions.find(
+                            option => option.value === formData.travelCompanion.type
+                        )}
                         onChange={(selectedOption) => {
                             setFormData({
                                 ...formData,
@@ -380,7 +401,9 @@ const CreateTrip = () => {
                         name="activityLevel.pace"
                         options={activityLevelOptions}
                         isClearable
-                        value={activityLevelOptions.find(option => option.value === formData.activityLevel.pace)}
+                        value={activityLevelOptions.find(
+                            option => option.value === formData.activityLevel.pace
+                        )}
                         onChange={(selectedOption) => {
                             setFormData({
                                 ...formData,
@@ -419,7 +442,6 @@ const CreateTrip = () => {
             )}
         </div>
     );
-
 };
 
 export default CreateTrip;

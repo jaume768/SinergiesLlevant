@@ -33,12 +33,10 @@ button {
 }
 
 .btn-primary {
-  background-color: #bb86fc;
   color: #000;
 }
 
 .btn-primary:hover {
-  background-color: #9a6bf8;
 }
 
 .btn-secondary {
