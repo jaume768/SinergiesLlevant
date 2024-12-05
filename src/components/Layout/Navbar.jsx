@@ -1,4 +1,3 @@
-// Navbar.jsx
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
@@ -25,6 +24,7 @@ const Navbar = () => {
         <span></span>
       </div>
       <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
+        <Link to="/suggested">Sugeridos</Link>
         {!authState.loading && authState.token ? (
           <>
             <Link to="/">Home</Link>
