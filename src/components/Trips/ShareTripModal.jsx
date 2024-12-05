@@ -30,14 +30,15 @@ const ShareTripModal = ({ tripId, onClose, onShare }) => {
     };
 
     return (
-        <div className="modal-overlay active">
+        <div className="modal-overlay modal-top active">
             <div className="modal-content">
                 <h3>Compartir Itinerario</h3>
                 <form onSubmit={handleSubmit}>
-                    <label>
+                    <label htmlFor="collaborator">
                         Nombre de Usuario del Colaborador:
                         <input
                             type="text"
+                            id="collaborator"
                             value={collaborator}
                             onChange={(e) => setCollaborator(e.target.value)}
                             required

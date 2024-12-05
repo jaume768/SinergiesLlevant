@@ -190,7 +190,7 @@ const EditTrip = ({ trip, onClose, onUpdate }) => {
     };
 
     return (
-        <div className="modal-overlay active">
+        <div className="modal-overlay modal-top active">
             <div className="modal-content">
                 <h3>Editar Itinerario</h3>
                 <form onSubmit={handleSubmit}>

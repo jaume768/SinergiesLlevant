@@ -1,9 +1,10 @@
 import React from 'react';
+import './css/Modal.css';
 import './css/ConfirmDeleteModal.css';
 
 const ConfirmDeleteModal = ({ onClose, onConfirm }) => {
     return (
-        <div className="modal-overlay active">
+        <div className="modal-overlay modal-top active">
             <div className="modal-content">
                 <h3>Confirmar Eliminación</h3>
                 <p>¿Estás seguro de que deseas eliminar este itinerario? Esta acción no se puede deshacer.</p>
