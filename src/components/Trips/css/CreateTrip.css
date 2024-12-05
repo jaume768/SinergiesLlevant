@@ -23,6 +23,24 @@
     font-size: 2.5rem;
 }
 
+.react-select-container {
+    margin-bottom: 15px;
+}
+
+.react-select__control {
+    border-color: #ced4da;
+    min-height: 38px;
+}
+
+.react-select__control--is-focused {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.react-select__menu {
+    z-index: 1000;
+}
+
 /* Mensaje de error */
 .error-message {
     background-color: var(--error-color);

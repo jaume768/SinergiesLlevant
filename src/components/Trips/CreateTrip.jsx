@@ -3,6 +3,11 @@ import api from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import './css/CreateTrip.css';
+import countries from 'i18n-iso-countries';
+import esLocale from 'i18n-iso-countries/langs/es.json';
+
+// Registra el idioma español para obtener los nombres de los países en español
+countries.registerLocale(esLocale);
 
 const CreateTrip = () => {
     const navigate = useNavigate();
@@ -15,7 +20,7 @@ const CreateTrip = () => {
             endDate: '',
         },
         destinationPreferences: {
-            country: '',
+            country: '', // Inicialmente vacío
             type: '',
         },
         budget: {
@@ -42,6 +47,7 @@ const CreateTrip = () => {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
+    // Definición de opciones para otros campos (sin cambios)
     const interestOptions = [
         { value: 'aventura', label: 'Aventura' },
         { value: 'cultura', label: 'Cultura' },
@@ -70,7 +76,7 @@ const CreateTrip = () => {
         { value: 'coche', label: 'Coche' },
         { value: 'tren', label: 'Tren' },
         { value: 'autobus', label: 'Autobús' },
-        { value: 'tren y autobus', label: 'Tren y autobús' },
+        { value: 'tren y autobus', label: 'Tren y Autobús' },
         { value: 'bicicleta', label: 'Bicicleta' },
     ];
 
@@ -94,6 +100,12 @@ const CreateTrip = () => {
         { value: 'Ciudad', label: 'Ciudad' },
         { value: 'Campo', label: 'Campo' },
     ];
+
+    // Genera dinámicamente las opciones de países con etiquetas en español y valores en códigos de país
+    const countryOptions = Object.entries(countries.getNames('es')).map(([code, name]) => ({
+        value: code, // Código de país (ISO 3166-1 alpha-2)
+        label: name, // Nombre en español
+    })).sort((a, b) => a.label.localeCompare(b.label)); // Ordenar alfabéticamente
 
     const handleSelectChange = (selectedOptions, actionMeta) => {
         const { name } = actionMeta;
@@ -134,6 +146,13 @@ const CreateTrip = () => {
         setLoading(true);
         setError('');
         try {
+            // Verifica que el país esté seleccionado
+            if (!formData.destinationPreferences.country) {
+                setError('El campo "País de Destino" es requerido.');
+                setLoading(false);
+                return;
+            }
+
             const response = await api.post('/trips/create', formData);
             navigate(`/trips/${response.data._id}`);
         } catch (err) {
@@ -218,13 +237,25 @@ const CreateTrip = () => {
                     {/* País de Destino */}
                     <div className="form-group">
                         <label>País de Destino</label>
-                        <input
-                            type="text"
+                        <Select
                             name="destinationPreferences.country"
-                            value={formData.destinationPreferences.country}
-                            onChange={onChange}
-                            required
-                            placeholder="Ingrese el país de destino"
+                            options={countryOptions}
+                            isClearable
+                            value={countryOptions.find(
+                                option => option.value === formData.destinationPreferences.country
+                            ) || null}
+                            onChange={(selectedOption) => {
+                                setFormData({
+                                    ...formData,
+                                    destinationPreferences: {
+                                        ...formData.destinationPreferences,
+                                        country: selectedOption ? selectedOption.value : '',
+                                    },
+                                });
+                            }}
+                            className="react-select-container"
+                            classNamePrefix="react-select"
+                            placeholder="Seleccione un país de destino"
                         />
                     </div>
 
@@ -237,7 +268,7 @@ const CreateTrip = () => {
                             isClearable
                             value={destinationTypeOptions.find(
                                 option => option.value === formData.destinationPreferences.type
-                            )}
+                            ) || null}
                             onChange={(selectedOption) => {
                                 setFormData({
                                     ...formData,
@@ -295,7 +326,13 @@ const CreateTrip = () => {
                         value={interestOptions.filter(option =>
                             formData.interests.includes(option.value)
                         )}
-                        onChange={handleSelectChange}
+                        onChange={(selectedOptions) => {
+                            const values = selectedOptions ? selectedOptions.map(option => option.value) : [];
+                            setFormData({
+                                ...formData,
+                                interests: values,
+                            });
+                        }}
                         className="react-select-container"
                         classNamePrefix="react-select"
                         placeholder="Seleccione sus intereses"
@@ -312,7 +349,13 @@ const CreateTrip = () => {
                         value={foodOptions.filter(option =>
                             formData.foodPreferences.includes(option.value)
                         )}
-                        onChange={handleSelectChange}
+                        onChange={(selectedOptions) => {
+                            const values = selectedOptions ? selectedOptions.map(option => option.value) : [];
+                            setFormData({
+                                ...formData,
+                                foodPreferences: values,
+                            });
+                        }}
                         className="react-select-container"
                         classNamePrefix="react-select"
                         placeholder="Seleccione sus preferencias de comida"
@@ -328,7 +371,7 @@ const CreateTrip = () => {
                         isClearable
                         value={accommodationOptions.find(
                             option => option.value === formData.accommodationPreferences.type
-                        )}
+                        ) || null}
                         onChange={(selectedOption) => {
                             setFormData({
                                 ...formData,
@@ -353,7 +396,7 @@ const CreateTrip = () => {
                         isClearable
                         value={transportOptions.find(
                             option => option.value === formData.transportPreferences.preferredMode
-                        )}
+                        ) || null}
                         onChange={(selectedOption) => {
                             setFormData({
                                 ...formData,
@@ -378,7 +421,7 @@ const CreateTrip = () => {
                         isClearable
                         value={travelCompanionOptions.find(
                             option => option.value === formData.travelCompanion.type
-                        )}
+                        ) || null}
                         onChange={(selectedOption) => {
                             setFormData({
                                 ...formData,
@@ -403,7 +446,7 @@ const CreateTrip = () => {
                         isClearable
                         value={activityLevelOptions.find(
                             option => option.value === formData.activityLevel.pace
-                        )}
+                        ) || null}
                         onChange={(selectedOption) => {
                             setFormData({
                                 ...formData,
