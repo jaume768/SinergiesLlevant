@@ -41,14 +41,7 @@ const App = () => {
                 </PrivateRoute>
               }
             />
-            <Route
-              path="/trips/:tripId"
-              element={
-                <PrivateRoute>
-                  <TripDetail />
-                </PrivateRoute>
-              }
-            />
+            <Route path="/trips/:tripId" element={<TripDetail />} />
             <Route
               path="/profile"
               element={

@@ -1,8 +1,5 @@
-/* TripList.css */
-
 @import '../../../variables.css';
 
-/* Contenedor de la lista de viajes */
 .trip-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -10,7 +7,6 @@
     margin-top: 20px;
 }
 
-/* Tarjeta individual del viaje */
 .trip-card {
     background-color: rgba(255, 255, 255, 0.1);
     padding: 20px;
@@ -18,65 +14,53 @@
     box-shadow: var(--box-shadow);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     color: var(--text-color);
     transition: background-color 0.3s ease;
     position: relative;
-    /* Necesario para posicionamiento absoluto de .trip-public */
 }
 
-/* Efecto hover en la tarjeta */
 .trip-card:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Título del viaje */
 .trip-card h3 {
     margin-bottom: 10px;
     color: var(--secondary-color);
 }
 
-/* Descripción del viaje */
-.trip-card p {
-    flex-grow: 1;
-    margin-bottom: 15px;
+/* Estilos para la imagen */
+.trip-image {
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+    border-radius: var(--border-radius);
+    object-fit: cover;
 }
 
-/* Estilos para la etiqueta público/privado */
+.trip-card p {
+    margin-bottom: 10px;
+}
+
 .trip-public {
     font-size: 0.9rem;
     position: absolute;
     bottom: 10px;
-    /* Posición desde abajo */
     right: 10px;
-    /* Posición desde la derecha */
-    /* Eliminar fondo, padding y border-radius */
     padding: 0;
     border-radius: 0;
     display: block;
-    /* Ajustar color basado en la clase */
     color: inherit;
-    /* Hereda el color del texto principal */
 }
 
-/* Color para público */
 .trip-public.public {
     color: #ffffff;
-    /* Verde para público */
 }
 
-/* Color para privado */
 .trip-public.private {
     color: #ffffff;
-    /* Rojo para privado */
 }
 
-/* Eliminar margen superior que afectaba la posición */
-.trip-card p.trip-public {
-    margin-top: 0;
-}
-
-/* Botón secundario */
 .btn-secondary {
     color: #fff;
     border: none;
@@ -86,14 +70,14 @@
     transition: background-color 0.3s ease;
     font-size: var(--font-size-button);
     text-decoration: none;
-    align-self: center;
+    align-self: flex-start;
+    background: var(--secondary-color);
 }
 
 .btn-secondary:hover {
     background-color: #419e8a;
 }
 
-/* Responsividad */
 @media (max-width: 768px) {
     .trip-public {
         font-size: 0.8rem;
