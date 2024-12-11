@@ -25,6 +25,7 @@
 
 /* Contenedor de contenido con diseño de tarjeta similar al Dashboard */
 .trip-detail-content {
+    position: relative; /* Añadir esta línea */
     background: rgba(255, 255, 255, 0.1);
     padding: 40px;
     border-radius: var(--border-radius);
@@ -39,6 +40,18 @@
     gap: 30px;
     overflow-y: auto;
 }
+
+/* Estilo para la info del creador */
+.creator-info {
+    position: absolute;
+    top: 20px;     /* Ajusta según necesites */
+    right: 20px;   /* Ajusta según necesites */
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
 
 /* Título del TripDetail */
 .trip-header h2 {

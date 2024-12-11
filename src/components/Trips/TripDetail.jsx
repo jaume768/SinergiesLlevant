@@ -98,6 +98,9 @@ const TripDetail = () => {
         <div className="trip-detail-container">
             <div className="trip-detail-overlay">
                 <div className="trip-detail-content">
+                    <div className="creator-info">
+                        Hecho por {trip.createdBy.username}
+                    </div>
                     <div className="trip-header">
                         <h2 className="dashboard-title">{trip.title}</h2>
                         <p>{trip.description}</p>
