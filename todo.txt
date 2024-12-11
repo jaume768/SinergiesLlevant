@@ -1,5 +1,3 @@
-Hacer que si ves el intinerario de otro perfil, veas quien lo ha creado y puedas ir a su perfil.
-
 hacer que el perfil pueda tener seguidores.
 
 Añadir check de las actividades del dia.

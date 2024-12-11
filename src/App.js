@@ -51,6 +51,14 @@ const App = () => {
               }
             />
             <Route
+              path="/users/:userId/profile"
+              element={
+                <PrivateRoute>
+                  <ProfilePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
               path="/users/:friendId/trips"
               element={
                 <PrivateRoute>

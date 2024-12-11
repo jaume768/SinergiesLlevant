@@ -48,8 +48,13 @@
     right: 20px;   /* Ajusta según necesites */
     font-size: 1rem;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--secondary-color);
+    text-decoration: underline;
     opacity: 0.9;
+}
+
+.creator-info a:hover {
+    text-decoration: none;
 }
 
 

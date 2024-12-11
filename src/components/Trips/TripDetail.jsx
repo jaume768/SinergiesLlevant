@@ -3,9 +3,8 @@ import api from '../../utils/api';
 import { useParams, useNavigate } from 'react-router-dom';
 import CommentList from '../Comments/CommentList';
 import CommentForm from '../Comments/CommentForm';
-import ReviewList from '../Reviews/ReviewList';
-import ReviewForm from '../Reviews/ReviewForm';
 import EditTrip from './EditTrip';
+import { Link } from 'react-router-dom';
 import ShareTripModal from './ShareTripModal';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 import { AuthContext } from '../../context/AuthContext';
@@ -99,7 +98,7 @@ const TripDetail = () => {
             <div className="trip-detail-overlay">
                 <div className="trip-detail-content">
                     <div className="creator-info">
-                        Hecho por {trip.createdBy.username}
+                        Hecho por <Link to={`/users/${trip.createdBy._id}/profile`}>{trip.createdBy.username}</Link>
                     </div>
                     <div className="trip-header">
                         <h2 className="dashboard-title">{trip.title}</h2>
