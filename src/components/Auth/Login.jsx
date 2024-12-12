@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import './css/Auth.css';
 
 const Login = () => {
@@ -64,8 +66,12 @@ const Login = () => {
                             <button type="submit" className="auth-button">
                                 Iniciar Sesión
                             </button>
-                            <button onClick={() => window.location.href = 'http://localhost:5000/api/auth/google'}>
-                                Iniciar sesión con Google
+                            <button
+                                type="button"
+                                onClick={() => window.location.href = 'http://localhost:5000/api/auth/google'}
+                                className="google-button"
+                            >
+                                <FontAwesomeIcon icon={faGoogle} />
                             </button>
 
                         </form>

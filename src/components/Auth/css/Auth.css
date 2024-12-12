@@ -10,6 +10,35 @@
     justify-content: center;
 }
 
+.google-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    color: #4285F4; /* Color característico de Google */
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.google-button:hover {
+    background-color: #f5f5f5;
+    transform: scale(1.05);
+}
+
+.google-button:active {
+    background-color: #e0e0e0;
+    transform: scale(0.95);
+}
+
 /* Superposición oscura para mejorar la legibilidad del formulario */
 .auth-overlay {
     background: rgba(33, 37, 41, 0.85);
@@ -19,16 +48,6 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-}
-
-.success-message {
-    background-color: #2ecc71;
-    color: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: 600;
 }
 
 /* Contenedor del formulario */
@@ -125,6 +144,11 @@
         padding: 10px 0;
         font-size: 0.9rem;
     }
+    .google-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -139,5 +163,11 @@
     .auth-button {
         padding: 8px 0;
         font-size: 0.8rem;
+    }
+
+    .google-button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
     }
 }
