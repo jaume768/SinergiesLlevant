@@ -1,4 +1,4 @@
-falta auth2.0 y enviar los correos por traveldaring.
+falta mailtrap verificar traveldaring
 
 mejorar Perfil cuando no es el propio.
 

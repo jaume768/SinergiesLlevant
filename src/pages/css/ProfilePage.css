@@ -46,42 +46,93 @@
     overflow-y: auto;
 }
 
-/* Título del Perfil */
+/* Encabezado del Perfil */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--secondary-color);
+}
+
+.profile-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .profile-title {
-    text-align: center;
-    font-size: var(--font-size-title);
+    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 10px;
     color: var(--secondary-color);
+    margin-bottom: 10px;
 }
 
-/* Mensajes de error y éxito */
-.error-message,
-.success-message {
-    padding: 12px 20px;
-    border-radius: 8px;
-    text-align: center;
+/* Botones de Acción */
+.profile-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.add-friend-button,
+.request-sent-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
     font-weight: 500;
+    transition: background-color 0.3s ease;
 }
 
-.error-message {
-    background-color: var(--error-color);
+.add-friend-button {
+    background-color: #4285F4;
+    /* Azul característico de Google */
     color: #fff;
 }
 
-.success-message {
-    background-color: var(--success-color);
-    color: #fff;
+.add-friend-button:hover {
+    background-color: #357ae8;
 }
 
-/* Texto de carga */
-.loading-text {
-    font-size: 1.5rem;
-    text-align: center;
-    color: var(--text-color);
-    margin-top: 20px;
+.request-sent-button {
+    background-color: #f0f0f0;
+    color: #555;
+    cursor: default;
 }
 
+.request-sent-button i {
+    color: #28a745;
+    /* Verde para indicar éxito */
+}
+
+/* Detalles del Perfil Público */
+.public-profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.public-profile-details p {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+/* Sección de Cierre de Sesión */
 .logout-section {
     margin-top: 30px;
     display: flex;
@@ -89,7 +140,8 @@
 }
 
 .logout-button {
-    background-color: var(--logout-button-color, #f44336); /* Rojo por defecto */
+    background-color: var(--logout-button-color, #f44336);
+    /* Rojo por defecto */
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -99,8 +151,43 @@
     font-size: 1rem;
 }
 
+/* Botón para Cancelar Solicitud de Amistad */
+.cancel-friend-request-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: #f44336; /* Rojo para cancelar */
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-friend-request-button:hover {
+    background-color: #d32f2f;
+}
+
+.cancel-friend-request-button i {
+    font-size: 1.2rem;
+}
+
+
 .logout-button:hover {
-    background-color: #d32f2f; /* Rojo oscuro al pasar el mouse */
+    background-color: #d32f2f;
+    /* Rojo oscuro al pasar el mouse */
+}
+
+/* Botón de Agregar Amigo */
+.add-friend-button i {
+    font-size: 1.2rem;
+}
+
+.request-sent-button i {
+    font-size: 1.2rem;
 }
 
 /* Responsividad */
@@ -117,6 +204,11 @@
         padding: 8px 16px;
         font-size: 0.9rem;
     }
+
+    .profile-picture {
+        width: 130px;
+        height: 130px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -126,6 +218,17 @@
 
     .profile-title {
         font-size: 2rem;
+    }
+
+    .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+
+    .add-friend-button,
+    .request-sent-button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
     }
 }
 
@@ -140,6 +243,17 @@
 
     .logout-button {
         padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .profile-picture {
+        width: 100px;
+        height: 100px;
+    }
+
+    .add-friend-button,
+    .request-sent-button {
+        padding: 6px 10px;
         font-size: 0.8rem;
     }
 }

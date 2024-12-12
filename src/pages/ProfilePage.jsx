@@ -16,6 +16,8 @@ const ProfilePage = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [isFriend, setIsFriend] = useState(false);
+    const [friendRequestSent, setFriendRequestSent] = useState(false);
 
     const isOwnProfile = !userId || userId === authState.user._id;
 
@@ -27,11 +29,14 @@ const ProfilePage = () => {
                 setProfile(response.data.profile);
             } else {
                 const response = await api.get(`/users/${userId}/public-profile`);
-                setProfile(response.data.profile);
+                const { profile, isFriend, hasSentRequest } = response.data;
+                setProfile(profile);
+                setIsFriend(isFriend);
+                setFriendRequestSent(hasSentRequest);
             }
             setLoading(false);
         } catch (err) {
-            console.error('Error al cargar el perfil');
+            console.error('Error al cargar el perfil', err);
             setError('Error al cargar el perfil');
             setLoading(false);
         }
@@ -46,6 +51,28 @@ const ProfilePage = () => {
         navigate('/login');
     };
 
+    const sendFriendRequest = async () => {
+        try {
+            await api.post('/users/add-friend', { friendId: userId });
+            setFriendRequestSent(true);
+            alert('Solicitud de amistad enviada');
+        } catch (err) {
+            console.error(err);
+            alert(err.response?.data?.msg || 'Error al enviar la solicitud de amistad');
+        }
+    };
+
+    const cancelFriendRequest = async () => {
+        try {
+            await api.post('/users/cancel-friend-request', { friendId: userId });
+            setFriendRequestSent(false);
+            alert('Solicitud de amistad cancelada');
+        } catch (err) {
+            console.error(err);
+            alert(err.response?.data?.msg || 'Error al cancelar la solicitud de amistad');
+        }
+    };
+
     if (loading) return <p className="loading-text">Cargando perfil...</p>;
 
     if (error) return <div className="error-message">{error}</div>;
@@ -56,7 +83,46 @@ const ProfilePage = () => {
         <div className="profile-container">
             <div className="profile-overlay">
                 <div className="profile-content">
-                    <h2 className="profile-title">{isOwnProfile ? 'Mi Perfil' : `Perfil de ${profile.username}`}</h2>
+                    <div className="profile-header">
+                        <img 
+                            src={profile.profilePicture || 'https://via.placeholder.com/150'} 
+                            alt={`${profile.username} Avatar`} 
+                            className="profile-picture" 
+                        />
+                        <div className="profile-info">
+                            <h2 className="profile-title">{isOwnProfile ? 'Mi Perfil' : profile.username}</h2>
+                            {!isOwnProfile && (
+                                <div className="profile-actions">
+                                    {!isFriend && !friendRequestSent && (
+                                        <button 
+                                            className="add-friend-button" 
+                                            onClick={sendFriendRequest} 
+                                            aria-label="Agregar Amigo"
+                                        >
+                                            <i className="fas fa-user-plus"></i> Agregar Amigo
+                                        </button>
+                                    )}
+                                    {!isFriend && friendRequestSent && (
+                                        <button 
+                                            className="cancel-friend-request-button" 
+                                            onClick={cancelFriendRequest} 
+                                            aria-label="Cancelar Solicitud de Amistad"
+                                        >
+                                            <i className="fas fa-times"></i> Cancelar Solicitud
+                                        </button>
+                                    )}
+                                    {isFriend && (
+                                        <button 
+                                            className="unfriend-button" 
+                                            aria-label="Eliminar Amigo"
+                                        >
+                                            <i className="fas fa-user-minus"></i> Eliminar Amigo
+                                        </button>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    </div>
                     {isOwnProfile && (
                         <>
                             <EditProfile profile={profile} refreshProfile={fetchProfile} />
@@ -72,10 +138,10 @@ const ProfilePage = () => {
                         </>
                     )}
                     {!isOwnProfile && (
-                        <>
-                            <p><strong>Username:</strong> {profile.username}</p>
+                        <div className="public-profile-details">
                             <p><strong>Email:</strong> {profile.email}</p>
-                        </>
+                            {profile.bio && <p><strong>Biografía:</strong> {profile.bio}</p>}
+                        </div>
                     )}
                 </div>
             </div>
