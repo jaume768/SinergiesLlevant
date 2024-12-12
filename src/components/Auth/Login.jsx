@@ -64,6 +64,10 @@ const Login = () => {
                             <button type="submit" className="auth-button">
                                 Iniciar Sesión
                             </button>
+                            <button onClick={() => window.location.href = 'http://localhost:5000/api/auth/google'}>
+                                Iniciar sesión con Google
+                            </button>
+
                         </form>
                     </div>
                 </div>

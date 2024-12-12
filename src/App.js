@@ -8,6 +8,7 @@ import RegisterPage from './pages/RegisterPage';
 import SuggestedPage from './pages/SuggestedPage';
 import Dashboard from './pages/Dashboard';
 import CreateTrip from './components/Trips/CreateTrip';
+import GoogleCallback from './pages/GoogleCallback';
 import TripDetail from './components/Trips/TripDetail';
 import ProfilePage from './pages/ProfilePage';
 import VerifyEmailPage from './pages/VerifyEmailPage';
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/suggested" element={<SuggestedPage />} />
+            <Route path="/auth/callback" element={<GoogleCallback />} />
             <Route path="/verify" element={<VerifyEmailPage />} />
             <Route
               path="/dashboard"
