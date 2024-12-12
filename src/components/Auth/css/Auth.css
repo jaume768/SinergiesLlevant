@@ -21,6 +21,16 @@
     padding: 20px;
 }
 
+.success-message {
+    background-color: #2ecc71;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+
 /* Contenedor del formulario */
 .auth-form-container {
     background: rgba(255, 255, 255, 0.1);

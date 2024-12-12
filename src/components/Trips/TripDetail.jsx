@@ -39,13 +39,16 @@ const TripDetail = () => {
     if (loading) return <p className="loading-text">Cargando...</p>;
     if (error) return <div className="error-message">{error}</div>;
     if (!trip) return <p className="error-message">Itinerario no encontrado.</p>;
+    
+    const userId = authState.user ? authState.user._id : null;
 
-    const isCreator = trip.createdBy._id === authState.user._id;
-    const isCollaborator = trip.collaborators.some(collab => collab._id === authState.user._id);
+    const isCreator = userId && trip.createdBy && trip.createdBy._id === userId;
+    const isCollaborator = userId && trip.collaborators && trip.collaborators.some(collab => collab._id === userId);
+
     const canEdit = isCreator || isCollaborator;
     const canDelete = isCreator;
     const canShare = isCreator;
-    const canDownload = ['premium', 'pro', 'vip'].includes(authState.user.role);
+    const canDownload = authState.user && ['premium', 'pro', 'vip'].includes(authState.user.role);
 
     const sortedDays = Object.keys(trip.itinerary)
         .sort((a, b) => {
