@@ -33,13 +33,13 @@ const TestimonialsSection = () => {
             photo: 'https://media.istockphoto.com/id/1386479313/es/foto/feliz-mujer-de-negocios-afroamericana-millennial-posando-aislada-en-blanco.jpg?s=612x612&w=0&k=20&c=JP0NBxlxG2-bdpTRPlTXBbX13zkNj0mR5g1KoOdbtO4=',
         },
         {
-            name: 'Juan Pérez',
+            name: 'Ana López',
             text: 'La IA de Traveldaring hizo que planificar mi viaje fuera muy fácil. ¡Definitivamente usaré sus servicios de nuevo!',
             rating: 4.5,
             photo: 'https://media.istockphoto.com/id/682897825/es/foto/confident-businesswoman-over-gray-background.jpg?s=612x612&w=0&k=20&c=WSlpnPQfEqYL77qKRBZ49wbUd4Ey6rd1RB1HCNKOusQ=',
         },
         {
-            name: 'Ana López',
+            name: 'Juan Pérez',
             text: 'Me encantaron las sugerencias de restaurantes y actividades. Cada día fue una nueva aventura.',
             rating: 5,
             photo: 'https://static.vecteezy.com/system/resources/thumbnails/026/570/649/small/close-up-profile-view-of-pensive-upset-african-american-man-look-in-distance-thinking-of-personal-problems-thoughtful-sad-biracial-male-feel-depressed-lost-in-thoughts-pondering-having-dilemma-photo.jpg',
