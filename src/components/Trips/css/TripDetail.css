@@ -62,6 +62,7 @@
 .trip-header h2 {
     font-size: var(--font-size-title);
     font-weight: 700;
+    margin-top: 15px;
     color: var(--secondary-color);
     margin-bottom: 10px;
 }
