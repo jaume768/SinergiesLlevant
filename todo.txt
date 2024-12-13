@@ -1,8 +1,6 @@
 falta mailtrap verificar traveldaring
 
-mejorar Perfil cuando no es el propio.
-
-en la información de los intinerarios, hacer que salgan links recomendados y salgan links de civitatis con las posibles actividades y la web de los hoteles recomendados
+En la información de los intinerarios, hacer que salgan links recomendados la web de los hoteles recomendados
 
 Añadir check de las actividades del dia.
 

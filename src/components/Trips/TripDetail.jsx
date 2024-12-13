@@ -39,7 +39,7 @@ const TripDetail = () => {
     if (loading) return <p className="loading-text">Cargando...</p>;
     if (error) return <div className="error-message">{error}</div>;
     if (!trip) return <p className="error-message">Itinerario no encontrado.</p>;
-    
+
     const userId = authState.user ? authState.user._id : null;
 
     const isCreator = userId && trip.createdBy && trip.createdBy._id === userId;
@@ -113,7 +113,8 @@ const TripDetail = () => {
                             {canDownload && <button className="dashboard-button btn-download" onClick={handleDownload}>Descargar PDF</button>}
                         </div>
                     </div>
-                    
+
+                    {/* Itinerario */}
                     <h3 className="section-title-intinerari">Itinerario</h3>
                     <div className="itinerary">
                         {sortedDays.map((day, index) => (
@@ -140,10 +141,41 @@ const TripDetail = () => {
                         ))}
                     </div>
 
+                    {/* Actividades Recomendadas */}
+                    <h3 className="section-title-intinerari">Actividades Recomendadas</h3>
+                    <div className="recommended-activities">
+                        {trip.activitiesPerCity && Object.keys(trip.activitiesPerCity).length > 0 ? (
+                            Object.entries(trip.activitiesPerCity).map(([city, activities], index) => (
+                                <div key={index} className="city-activities">
+                                    <div className="activities-list">
+                                        {activities.length > 0 ? (
+                                            activities.map((activity, idx) => (
+                                                <div key={idx} className="recommended-activity">
+                                                    <img src={activity.imageUrl} alt={activity.title} className="activity-image" />
+                                                    <div className="activity-info">
+                                                        <h5>{activity.title}</h5>
+                                                        <p>{activity.description}</p>
+                                                        <a href={activity.link} target="_blank" rel="noopener noreferrer" className="activity-link">Ver Detalles</a>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <p>No hay actividades recomendadas para esta ciudad.</p>
+                                        )}
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <p>No hay actividades recomendadas disponibles.</p>
+                        )}
+                    </div>
+
+                    {/* Comentarios */}
                     <h3 className="section-title-intinerari">Comentarios</h3>
                     <CommentList tripId={tripId} />
                     <CommentForm tripId={tripId} refreshTrip={fetchTrip} />
 
+                    {/* Modales */}
                     {showEdit && <EditTrip trip={trip} onClose={() => setShowEdit(false)} onUpdate={handleUpdate} />}
                     {showShare && <ShareTripModal tripId={tripId} onClose={() => setShowShare(false)} onShare={fetchTrip} />}
                     {showDeleteConfirm && <ConfirmDeleteModal onClose={() => setShowDeleteConfirm(false)} onConfirm={handleDelete} />}

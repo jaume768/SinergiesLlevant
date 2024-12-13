@@ -25,7 +25,8 @@
 
 /* Contenedor de contenido con diseño de tarjeta similar al Dashboard */
 .trip-detail-content {
-    position: relative; /* Añadir esta línea */
+    position: relative;
+    /* Añadir esta línea */
     background: rgba(255, 255, 255, 0.1);
     padding: 40px;
     border-radius: var(--border-radius);
@@ -44,8 +45,10 @@
 /* Estilo para la info del creador */
 .creator-info {
     position: absolute;
-    top: 20px;     /* Ajusta según necesites */
-    right: 20px;   /* Ajusta según necesites */
+    top: 20px;
+    /* Ajusta según necesites */
+    right: 20px;
+    /* Ajusta según necesites */
     font-size: 1rem;
     font-weight: 500;
     color: var(--secondary-color);
@@ -263,6 +266,11 @@
 
 /* Responsividad */
 @media (max-width: 1024px) {
+
+    .trip-detail-overlay {
+        padding: 0;
+    }
+
     .trip-detail-content {
         padding: 35px;
         margin: 25px;
@@ -399,5 +407,124 @@
         font-size: 1.4rem;
     }
 
-    
+
+}
+
+.recommended-activities {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.city-activities {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.city-activities:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.city-activities h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+}
+
+.activities-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.recommended-activity {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, background 0.3s ease;
+    width: calc(30% - 10px);
+    /* Ajustar según el diseño */
+}
+
+.recommended-activity:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.activity-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.activity-info {
+    padding: 15px;
+}
+
+.activity-info h5 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.activity-info p {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.activity-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.activity-link:hover {
+    color: var(--primary-hover);
+}
+
+/* Responsividad para Actividades Recomendadas */
+@media (max-width: 1024px) {
+    .recommended-activity {
+        width: 90%;
+        margin: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .activity-image {
+        height: 120px;
+    }
+
+    .activity-info h5 {
+        font-size: 1.1rem;
+    }
+
+    .activity-info p {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .activity-image {
+        height: 100px;
+    }
+
+    .activity-info h5 {
+        font-size: 1rem;
+    }
+
+    .activity-info p {
+        font-size: 0.9rem;
+    }
 }
