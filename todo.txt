@@ -1,6 +1,6 @@
 falta mailtrap verificar traveldaring
 
-En la información de los intinerarios, hacer que salgan links recomendados la web de los hoteles recomendados
+Falta arreglar ses fotos des hotels recomenats
 
 Añadir check de las actividades del dia.
 
