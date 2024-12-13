@@ -1,3 +1,5 @@
+/* src/components/CreateTrip/css/CreateTrip.css */
+
 @import '../../../variables.css';
 
 .create-trip-form {
@@ -188,7 +190,8 @@
     color: #fff; /* Texto seleccionado */
 }
 
-/* Spinner de carga */
+/* Spinner de carga original (comentado para evitar conflictos) */
+/*
 .spinner {
     border: 4px solid rgba(255, 255, 255, 0.3);
     border-top: 4px solid #fff;
@@ -199,7 +202,6 @@
     margin: 0 auto;
 }
 
-/* Animación de rotación */
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -209,15 +211,24 @@
         transform: rotate(360deg);
     }
 }
+*/
 
-/* Superposición de carga (opcional) */
+/* Estilos para el GIF de carga personalizado */
+.spinner-gif {
+    width: 100px; /* Ajusta el tamaño según tu preferencia */
+    height: 100px; /* Ajusta el tamaño según tu preferencia */
+    /* Opcional: Añade margen para centrar el GIF dentro del botón */
+    margin: 0 auto;
+}
+
+/* Superposición de carga */
 .loading-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--background-overlay);
+    background: rgba(0, 0, 0, 0.5); /* Ajusta el color y la opacidad según tu diseño */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -266,8 +277,8 @@
     }
 }
 
-.btn-primary .spinner {
-    width: 16px;
-    height: 16px;
-    border-width: 3px;
+/* Ajustes específicos para el GIF dentro del botón */
+.btn-primary .spinner-gif {
+    width: 24px; /* Tamaño adecuado para el botón */
+    height: 24px;
 }

@@ -474,13 +474,17 @@ const CreateTrip = () => {
                 </div>
 
                 <button type="submit" className="btn-primary" disabled={loading}>
-                    {loading ? <div className="spinner"></div> : 'Crear Itinerario'}
+                    {loading ? (
+                        <img src="/gifs/reload.gif" alt="Cargando..." className="spinner-gif" />
+                    ) : (
+                        'Crear Itinerario'
+                    )}
                 </button>
             </form>
 
             {loading && (
                 <div className="loading-overlay">
-                    <div className="spinner"></div>
+                    <img src="/gifs/reload.gif" alt="Cargando..." className="spinner-gif" />
                 </div>
             )}
         </div>
