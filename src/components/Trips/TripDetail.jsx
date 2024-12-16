@@ -171,37 +171,6 @@ const TripDetail = () => {
                         )}
                     </div>
 
-                    {/* Hoteles Recomendados */}
-                    <h3 className="section-title-intinerari">Hoteles Recomendados</h3>
-                    <div className="recommended-hotels">
-                        {trip.hotelsPerCity && Object.keys(trip.hotelsPerCity).length > 0 ? (
-                            Object.entries(trip.hotelsPerCity).map(([city, hotels], index) => (
-                                <div key={index} className="city-hotels">
-                                    <h4>{city}</h4>
-                                    <div className="hotels-list">
-                                        {hotels.length > 0 ? (
-                                            hotels.map((hotel, idx) => (
-                                                <div key={idx} className="recommended-hotel">
-                                                    <img src={hotel.imageUrl || 'https://via.placeholder.com/150'} alt={hotel.name} className="hotel-image" />
-                                                    <div className="hotel-info">
-                                                        <h5>{hotel.name}</h5>
-                                                        <p><strong>Dirección:</strong> {hotel.address}</p>
-                                                        <p><strong>Rating:</strong> {hotel.rating}</p>
-                                                        <p><strong>Sitio Web:</strong> <a href={hotel.website} target="_blank" rel="noopener noreferrer">{hotel.website}</a></p>
-                                                    </div>
-                                                </div>
-                                            ))
-                                        ) : (
-                                            <p>No hay hoteles recomendados para esta ciudad.</p>
-                                        )}
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No hay hoteles recomendados disponibles.</p>
-                        )}
-                    </div>
-
                     {/* Comentarios */}
                     <h3 className="section-title-intinerari">Comentarios</h3>
                     <CommentList tripId={tripId} />

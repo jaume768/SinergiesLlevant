@@ -24,7 +24,7 @@ const CreateTrip = () => {
             type: '',
         },
         budget: {
-            total: 0,
+            total: '',
         },
         interests: [],
         accommodationPreferences: {
@@ -41,13 +41,14 @@ const CreateTrip = () => {
             pace: '',
         },
         additionalPreferences: '',
-        numberOfCities: 3,
+        numberOfCities: '',
     });
 
-    const [error, setError] = useState('');
+    const [errors, setErrors] = useState({});
+    const [error, setError] = useState(''); // Estado para errores generales
     const [loading, setLoading] = useState(false);
 
-    // Definición de opciones para otros campos (sin cambios)
+    // Definición de opciones para otros campos
     const interestOptions = [
         { value: 'aventura', label: 'Aventura' },
         { value: 'cultura', label: 'Cultura' },
@@ -141,18 +142,106 @@ const CreateTrip = () => {
         }
     };
 
+    const validateForm = () => {
+        const newErrors = {};
+
+        // Validar título
+        if (!formData.title.trim()) {
+            newErrors.title = 'El título es requerido.';
+        }
+
+        // Validar descripción
+        if (!formData.description.trim()) {
+            newErrors.description = 'La descripción es requerida.';
+        }
+
+        // Validar fechas de viaje
+        if (!formData.travelDates.startDate) {
+            newErrors['travelDates.startDate'] = 'La fecha de inicio es requerida.';
+        }
+        if (!formData.travelDates.endDate) {
+            newErrors['travelDates.endDate'] = 'La fecha de fin es requerida.';
+        } else if (formData.travelDates.startDate && formData.travelDates.endDate < formData.travelDates.startDate) {
+            newErrors['travelDates.endDate'] = 'La fecha de fin debe ser posterior a la fecha de inicio.';
+        }
+
+        // Validar país de destino
+        if (!formData.destinationPreferences.country) {
+            newErrors['destinationPreferences.country'] = 'El país de destino es requerido.';
+        }
+
+        // Validar tipo de destino
+        if (!formData.destinationPreferences.type) {
+            newErrors['destinationPreferences.type'] = 'El tipo de destino es requerido.';
+        }
+
+        // Validar presupuesto total
+        if (formData.budget.total === '' || formData.budget.total === null) {
+            newErrors['budget.total'] = 'El presupuesto total es requerido.';
+        } else if (formData.budget.total < 0) {
+            newErrors['budget.total'] = 'El presupuesto total no puede ser negativo.';
+        }
+
+        // Validar número de ciudades
+        if (!formData.numberOfCities) {
+            newErrors.numberOfCities = 'El número de ciudades es requerido.';
+        } else if (formData.numberOfCities < 1) {
+            newErrors.numberOfCities = 'El número de ciudades debe ser al menos 1.';
+        }
+
+        // Validar intereses
+        if (formData.interests.length === 0) {
+            newErrors.interests = 'Al menos un interés es requerido.';
+        }
+
+        // Validar preferencias de comida
+        if (formData.foodPreferences.length === 0) {
+            newErrors.foodPreferences = 'Al menos una preferencia de comida es requerida.';
+        }
+
+        // Validar preferencia de alojamiento
+        if (!formData.accommodationPreferences.type) {
+            newErrors['accommodationPreferences.type'] = 'La preferencia de alojamiento es requerida.';
+        }
+
+        // Validar preferencia de transporte
+        if (!formData.transportPreferences.preferredMode) {
+            newErrors['transportPreferences.preferredMode'] = 'La preferencia de transporte es requerida.';
+        }
+
+        // Validar compañero de viaje
+        if (!formData.travelCompanion.type) {
+            newErrors['travelCompanion.type'] = 'El compañero de viaje es requerido.';
+        }
+
+        // Validar nivel de actividad
+        if (!formData.activityLevel.pace) {
+            newErrors['activityLevel.pace'] = 'El nivel de actividad es requerido.';
+        }
+
+        // Validar preferencias adicionales
+        if (!formData.additionalPreferences.trim()) {
+            newErrors.additionalPreferences = 'Las preferencias adicionales son requeridas.';
+        }
+
+        setErrors(newErrors);
+
+        // Retornar si no hay errores
+        return Object.keys(newErrors).length === 0;
+    };
+
     const onSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
         setError('');
-        try {
-            // Verifica que el país esté seleccionado
-            if (!formData.destinationPreferences.country) {
-                setError('El campo "País de Destino" es requerido.');
-                setLoading(false);
-                return;
-            }
 
+        // Validar el formulario antes de enviar
+        if (!validateForm()) {
+            setLoading(false);
+            return;
+        }
+
+        try {
             const response = await api.post('/trips/create', formData);
             navigate(`/trips/${response.data._id}`);
         } catch (err) {
@@ -177,7 +266,9 @@ const CreateTrip = () => {
                         onChange={onChange}
                         required
                         placeholder="Ingrese el título del itinerario"
+                        className={errors.title ? 'input-error' : ''}
                     />
+                    {errors.title && <span className="error-text">{errors.title}</span>}
                 </div>
 
                 {/* Descripción */}
@@ -189,7 +280,9 @@ const CreateTrip = () => {
                         onChange={onChange}
                         required
                         placeholder="Ingrese una descripción detallada"
+                        className={errors.description ? 'input-error' : ''}
                     ></textarea>
+                    {errors.description && <span className="error-text">{errors.description}</span>}
                 </div>
 
                 {/* Hacer Público */}
@@ -216,7 +309,9 @@ const CreateTrip = () => {
                             value={formData.travelDates.startDate}
                             onChange={onChange}
                             required
+                            className={errors['travelDates.startDate'] ? 'input-error' : ''}
                         />
+                        {errors['travelDates.startDate'] && <span className="error-text">{errors['travelDates.startDate']}</span>}
                     </div>
 
                     {/* Fecha de Fin */}
@@ -228,7 +323,9 @@ const CreateTrip = () => {
                             value={formData.travelDates.endDate}
                             onChange={onChange}
                             required
+                            className={errors['travelDates.endDate'] ? 'input-error' : ''}
                         />
+                        {errors['travelDates.endDate'] && <span className="error-text">{errors['travelDates.endDate']}</span>}
                     </div>
                 </div>
 
@@ -252,11 +349,14 @@ const CreateTrip = () => {
                                         country: selectedOption ? selectedOption.value : '',
                                     },
                                 });
+                                // Limpiar errores relacionados
+                                setErrors(prevErrors => ({ ...prevErrors, 'destinationPreferences.country': '' }));
                             }}
-                            className="react-select-container"
+                            className={`react-select-container ${errors['destinationPreferences.country'] ? 'select-error' : ''}`}
                             classNamePrefix="react-select"
                             placeholder="Seleccione un país de destino"
                         />
+                        {errors['destinationPreferences.country'] && <span className="error-text">{errors['destinationPreferences.country']}</span>}
                     </div>
 
                     {/* Tipo de Destino */}
@@ -277,11 +377,13 @@ const CreateTrip = () => {
                                         type: selectedOption ? selectedOption.value : '',
                                     },
                                 });
+                                setErrors(prevErrors => ({ ...prevErrors, 'destinationPreferences.type': '' }));
                             }}
-                            className="react-select-container"
+                            className={`react-select-container ${errors['destinationPreferences.type'] ? 'select-error' : ''}`}
                             classNamePrefix="react-select"
                             placeholder="Seleccione un tipo de destino"
                         />
+                        {errors['destinationPreferences.type'] && <span className="error-text">{errors['destinationPreferences.type']}</span>}
                     </div>
                 </div>
 
@@ -298,7 +400,9 @@ const CreateTrip = () => {
                             required
                             min="0"
                             placeholder="Ingrese el presupuesto total"
+                            className={errors['budget.total'] ? 'input-error' : ''}
                         />
+                        {errors['budget.total'] && <span className="error-text">{errors['budget.total']}</span>}
                     </div>
 
                     {/* Número de Ciudades */}
@@ -312,7 +416,9 @@ const CreateTrip = () => {
                             required
                             min="1"
                             placeholder="Ingrese el número de ciudades"
+                            className={errors.numberOfCities ? 'input-error' : ''}
                         />
+                        {errors.numberOfCities && <span className="error-text">{errors.numberOfCities}</span>}
                     </div>
                 </div>
 
@@ -332,11 +438,13 @@ const CreateTrip = () => {
                                 ...formData,
                                 interests: values,
                             });
+                            setErrors(prevErrors => ({ ...prevErrors, interests: '' }));
                         }}
-                        className="react-select-container"
+                        className={`react-select-container ${errors.interests ? 'select-error' : ''}`}
                         classNamePrefix="react-select"
                         placeholder="Seleccione sus intereses"
                     />
+                    {errors.interests && <span className="error-text">{errors.interests}</span>}
                 </div>
 
                 {/* Preferencias de Comida */}
@@ -355,11 +463,13 @@ const CreateTrip = () => {
                                 ...formData,
                                 foodPreferences: values,
                             });
+                            setErrors(prevErrors => ({ ...prevErrors, foodPreferences: '' }));
                         }}
-                        className="react-select-container"
+                        className={`react-select-container ${errors.foodPreferences ? 'select-error' : ''}`}
                         classNamePrefix="react-select"
                         placeholder="Seleccione sus preferencias de comida"
                     />
+                    {errors.foodPreferences && <span className="error-text">{errors.foodPreferences}</span>}
                 </div>
 
                 {/* Preferencia de Alojamiento */}
@@ -380,11 +490,13 @@ const CreateTrip = () => {
                                     type: selectedOption ? selectedOption.value : '',
                                 },
                             });
+                            setErrors(prevErrors => ({ ...prevErrors, 'accommodationPreferences.type': '' }));
                         }}
-                        className="react-select-container"
+                        className={`react-select-container ${errors['accommodationPreferences.type'] ? 'select-error' : ''}`}
                         classNamePrefix="react-select"
                         placeholder="Seleccione una opción"
                     />
+                    {errors['accommodationPreferences.type'] && <span className="error-text">{errors['accommodationPreferences.type']}</span>}
                 </div>
 
                 {/* Preferencia de Transporte */}
@@ -405,11 +517,13 @@ const CreateTrip = () => {
                                     preferredMode: selectedOption ? selectedOption.value : '',
                                 },
                             });
+                            setErrors(prevErrors => ({ ...prevErrors, 'transportPreferences.preferredMode': '' }));
                         }}
-                        className="react-select-container"
+                        className={`react-select-container ${errors['transportPreferences.preferredMode'] ? 'select-error' : ''}`}
                         classNamePrefix="react-select"
                         placeholder="Seleccione una opción"
                     />
+                    {errors['transportPreferences.preferredMode'] && <span className="error-text">{errors['transportPreferences.preferredMode']}</span>}
                 </div>
 
                 {/* Compañero de Viaje */}
@@ -430,11 +544,13 @@ const CreateTrip = () => {
                                     type: selectedOption ? selectedOption.value : '',
                                 },
                             });
+                            setErrors(prevErrors => ({ ...prevErrors, 'travelCompanion.type': '' }));
                         }}
-                        className="react-select-container"
+                        className={`react-select-container ${errors['travelCompanion.type'] ? 'select-error' : ''}`}
                         classNamePrefix="react-select"
                         placeholder="Seleccione una opción"
                     />
+                    {errors['travelCompanion.type'] && <span className="error-text">{errors['travelCompanion.type']}</span>}
                 </div>
 
                 {/* Nivel de Actividad */}
@@ -455,11 +571,13 @@ const CreateTrip = () => {
                                     pace: selectedOption ? selectedOption.value : '',
                                 },
                             });
+                            setErrors(prevErrors => ({ ...prevErrors, 'activityLevel.pace': '' }));
                         }}
-                        className="react-select-container"
+                        className={`react-select-container ${errors['activityLevel.pace'] ? 'select-error' : ''}`}
                         classNamePrefix="react-select"
                         placeholder="Seleccione una opción"
                     />
+                    {errors['activityLevel.pace'] && <span className="error-text">{errors['activityLevel.pace']}</span>}
                 </div>
 
                 {/* Preferencias Adicionales */}
@@ -469,8 +587,11 @@ const CreateTrip = () => {
                         name="additionalPreferences"
                         value={formData.additionalPreferences}
                         onChange={onChange}
+                        required
                         placeholder="Escribe cualquier preferencia adicional..."
+                        className={errors.additionalPreferences ? 'input-error' : ''}
                     ></textarea>
+                    {errors.additionalPreferences && <span className="error-text">{errors.additionalPreferences}</span>}
                 </div>
 
                 <button type="submit" className="btn-primary" disabled={loading}>
