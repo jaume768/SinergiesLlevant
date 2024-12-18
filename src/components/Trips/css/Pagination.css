@@ -1,0 +1,36 @@
+.pagination-nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.pagination {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.page-item {
+    padding: 8px 12px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    cursor: pointer;
+    color: var(--secondary-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.page-item:hover {
+    background-color: var(--secondary-color);
+    color: #000000;
+}
+
+.page-item.active {
+    background-color: var(--secondary-color);
+    color: #000000;
+    cursor: default;
+}
+
+.page-item.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}

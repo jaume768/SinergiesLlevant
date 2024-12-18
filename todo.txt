@@ -1,7 +1,7 @@
-falta mailtrap verificar traveldaring
-
-Falta arreglar ses fotos des hotels recomenats
-
 Añadir check de las actividades del dia.
 
-Utilizar tokens para crear intinerarios personalizados
+Crear pagina para comprar o mejorar el plan del usuario y comprar tokens especificos.
+
+Utilizar tokens para crear intinerarios personalizados.
+
+crear footer con las politicas de privacidad, terminos de condiciones...

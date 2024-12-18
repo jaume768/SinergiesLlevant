@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import api from '../utils/api';
 import TripList from '../components/Trips/TripList';
+import Pagination from '../components/Trips/Pagination';
 import { Link } from 'react-router-dom';
 import './css/Dashboard.css';
 
@@ -10,11 +11,12 @@ const Dashboard = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const tripsPerPage = 6;
 
     const fetchTrips = async () => {
         try {
             const response = await api.get('/trips/user');
-            // Ordenar por fecha de creación descendente
             const sortedTrips = response.data.sort(
                 (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
             );
@@ -42,7 +44,15 @@ const Dashboard = () => {
             );
             setFilteredTrips(filtered);
         }
+        setCurrentPage(1);
     }, [searchQuery, trips]);
+
+    const indexOfLastTrip = currentPage * tripsPerPage;
+    const indexOfFirstTrip = indexOfLastTrip - tripsPerPage;
+    const currentTrips = filteredTrips.slice(indexOfFirstTrip, indexOfLastTrip);
+    const totalPages = Math.ceil(filteredTrips.length / tripsPerPage);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
         <div className="dashboard-container">
@@ -68,7 +78,14 @@ const Dashboard = () => {
                     ) : filteredTrips.length === 0 ? (
                         <p className="no-trips-text">No se encontraron itinerarios.</p>
                     ) : (
-                        <TripList trips={filteredTrips} />
+                        <>
+                            <TripList trips={currentTrips} />
+                            <Pagination
+                                currentPage={currentPage}
+                                totalPages={totalPages}
+                                paginate={paginate}
+                            />
+                        </>
                     )}
                 </div>
             </div>
