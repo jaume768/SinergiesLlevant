@@ -14,6 +14,7 @@ import ProfilePage from './pages/ProfilePage';
 import VerifyEmailPage from './pages/VerifyEmailPage';
 import TripPage from './pages/TripPage';
 import PrivateRoute from './components/Auth/PrivateRoute';
+import NotFoundPage from './pages/NotFoundPage';
 import './App.css';
 
 const App = () => {
@@ -70,7 +71,7 @@ const App = () => {
                 </PrivateRoute>
               }
             />
-            <Route path="*" element={<div>404 Not Found</div>} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </Router>
