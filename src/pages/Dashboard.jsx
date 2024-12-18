@@ -50,9 +50,17 @@ const Dashboard = () => {
     const indexOfLastTrip = currentPage * tripsPerPage;
     const indexOfFirstTrip = indexOfLastTrip - tripsPerPage;
     const currentTrips = filteredTrips.slice(indexOfFirstTrip, indexOfLastTrip);
+
     const totalPages = Math.ceil(filteredTrips.length / tripsPerPage);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    }, [currentPage]);
 
     return (
         <div className="dashboard-container">

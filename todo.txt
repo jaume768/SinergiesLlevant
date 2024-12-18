@@ -5,5 +5,3 @@ Crear pagina para comprar o mejorar el plan del usuario y comprar tokens especif
 Utilizar tokens para crear intinerarios personalizados.
 
 crear footer con las politicas de privacidad, terminos de condiciones...
-
-hacer que cuando se cambie de paginación te lleve al top del dashboard.
