@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import './css/Auth.css';
@@ -63,6 +63,12 @@ const Login = () => {
                                     placeholder="Ingresa tu contraseña"
                                 />
                             </div>
+                            <p className="register-prompt">
+                                ¿No tienes una cuenta?{' '}
+                                <Link to="/register" className="register-link">
+                                    Regístrate aquí
+                                </Link>
+                            </p>
                             <button type="submit" className="auth-button">
                                 Iniciar Sesión
                             </button>
