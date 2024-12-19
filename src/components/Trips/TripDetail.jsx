@@ -174,6 +174,25 @@ const TripDetail = () => {
                             )}
                             {canDownload && <button className="dashboard-button btn-download" onClick={handleDownload}>Descargar PDF</button>}
                         </div>
+
+                        {/* Mover la previsualización y los controles de subida aquí */}
+                        {previewImage && (
+                            <div className="image-preview">
+                                <img src={previewImage} alt="Previsualización" className="itinerary-image-preview" />
+                            </div>
+                        )}
+
+                        {canEdit && imageFile && (
+                            <div className="upload-controls">
+                                <button className="dashboard-button btn-upload" onClick={handleUploadImage} disabled={uploading}>
+                                    {uploading ? 'Subiendo...' : 'Subir Imagen'}
+                                </button>
+                                <button className="dashboard-button btn-cancel" onClick={() => { setImageFile(null); setPreviewImage(null); }} disabled={uploading}>
+                                    Cancelar
+                                </button>
+                                {uploadError && <p className="error-message">{uploadError}</p>}
+                            </div>
+                        )}
                     </div>
 
                     <h3 className="section-title-intinerari">Itinerario</h3>
@@ -254,24 +273,6 @@ const TripDetail = () => {
                             style={{ display: 'none' }}
                             onChange={handleImageChange}
                         />
-                    )}
-
-                    {previewImage && (
-                        <div className="image-preview">
-                            <img src={previewImage} alt="Previsualización" className="itinerary-image-preview" />
-                        </div>
-                    )}
-
-                    {canEdit && imageFile && (
-                        <div className="upload-controls">
-                            <button className="dashboard-button btn-upload" onClick={handleUploadImage} disabled={uploading}>
-                                {uploading ? 'Subiendo...' : 'Subir Imagen'}
-                            </button>
-                            <button className="dashboard-button btn-cancel" onClick={() => { setImageFile(null); setPreviewImage(null); }} disabled={uploading}>
-                                Cancelar
-                            </button>
-                            {uploadError && <p className="error-message">{uploadError}</p>}
-                        </div>
                     )}
                 </div>
             </div>

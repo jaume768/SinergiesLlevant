@@ -1,7 +1,5 @@
 Añadir check de las actividades del dia.
 
-arreglar no ir debajo del todo del itinerario para cambiar o subir imagen.
-
 falta buscador de intinerarios y de perfiles.
 
 Crear pagina para comprar o mejorar el plan del usuario y comprar tokens especificos.
