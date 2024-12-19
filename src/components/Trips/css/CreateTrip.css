@@ -2,103 +2,96 @@
 
 @import '../../../variables.css';
 
-.create-trip-form {
+/* Contenedor Principal */
+.create-trip-form-container {
     background-color: #1e1e1e; /* Fondo oscuro */
-    padding: 30px;
+    padding: 40px;
     border-radius: var(--border-radius);
-    max-width: 800px;
-    margin: 40px auto;
+    max-width: 900px;
+    margin: 50px auto;
     box-shadow: var(--box-shadow);
-    color: black;
+    color: var(--text-color);
     font-family: var(--font-family);
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
     position: relative;
 }
 
-.input-error {
-    border: 1px solid red;
-}
-
-.select-error .react-select__control {
-    border: 1px solid red;
-}
-
-.error-text {
-    color: red;
-    font-size: 0.9em;
-}
-
-.error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
 /* Título del formulario */
-.create-trip-form h2 {
+.create-trip-form-container h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: white;
-    font-size: 2.5rem;
+    color: var(--secondary-color);
+    font-size: 3rem;
+    font-weight: bold;
+    position: relative;
 }
 
-.react-select-container {
+.create-trip-form-container h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Sección del Formulario */
+.form-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--secondary-color);
+    font-size: 1.8rem;
     margin-bottom: 15px;
-}
-
-.react-select__control {
-    border-color: #ced4da;
-    min-height: 38px;
-}
-
-.react-select__control--is-focused {
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.react-select__menu {
-    z-index: 1000;
-}
-
-/* Mensaje de error */
-.error-message {
-    background-color: var(--error-color);
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    text-align: center;
-    font-weight: 500;
 }
 
 /* Grupo de formulario */
 .form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
+    position: relative;
 }
 
 /* Etiquetas de los campos */
 .form-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin-bottom: 5px;
     font-weight: 600;
     color: #ccc;
+    font-size: 1.1rem;
+}
+
+/* Icono de los campos */
+.input-icon {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
 }
 
 /* Inputs, textareas y selects */
 .form-group input,
 .form-group textarea,
 .form-group select {
-    padding: 12px 15px;
+    padding: 14px 20px;
     border: none;
     border-radius: 8px;
     font-size: 1rem;
     background-color: #2c2c2c; /* Fondo de input oscuro */
-    color: #fff; /* Asegura que el texto sea blanco */
-    transition: background-color 0.3s ease;
+    color: #fff; /* Texto blanco */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group input::placeholder,
@@ -106,14 +99,30 @@
     color: #aaa;
 }
 
-/* Estilos al enfocar los campos */
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-    outline: 2px solid var(--primary-color);
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 8px rgba(74, 144, 226, 0.5);
 }
 
-/* Grupo de checkbox */
+.input-error {
+    border: 2px solid #FF6B6B;
+}
+
+.select-error .react-select__control {
+    border: 2px solid #FF6B6B;
+}
+
+/* Texto de error */
+.error-text {
+    color: #FF6B6B;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Checkbox Grupo */
 .checkbox-group {
     flex-direction: row;
     align-items: center;
@@ -122,13 +131,10 @@
 .checkbox-group label {
     display: flex;
     align-items: center;
+    gap: 8px;
     font-weight: 500;
     color: #ccc;
-}
-
-.checkbox-group input {
-    margin-right: 10px;
-    width: auto;
+    font-size: 1rem;
 }
 
 /* Botón de envío */
@@ -136,16 +142,16 @@
     background-color: var(--primary-color);
     color: #fff;
     border: none;
-    padding: var(--button-padding);
+    padding: 14px 30px;
     border-radius: var(--button-radius);
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: var(--font-size-button);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 1.2rem;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto;
+    margin: 20px auto 0;
     position: relative;
 }
 
@@ -153,93 +159,16 @@
     background-color: var(--primary-hover);
 }
 
-/* Botón de envío deshabilitado */
 .btn-primary:disabled {
     background-color: #6c757d;
     cursor: not-allowed;
     opacity: 0.7;
 }
 
-/* Estilos para react-select */
-.react-select-container {
-    background-color: #2c2c2c;
-    border-radius: 8px;
-}
-
-.react-select__control {
-    background-color: #2c2c2c;
-    border: none;
-}
-
-.react-select__input-container {
-    color: #fff; /* Establece el color del texto de entrada */
-}
-
-.react-select__placeholder {
-    color: #aaa;
-}
-
-.react-select__multi-value {
-    background-color: var(--primary-color);
-}
-
-.react-select__multi-value__label {
-    color: #fff;
-}
-
-.react-select__multi-value__remove {
-    color: #fff;
-    cursor: pointer;
-}
-
-.react-select__option {
-    background-color: #2c2c2c;
-    color: #fff; /* Opciones en el menú desplegable */
-}
-
-.react-select__option--is-focused {
-    background-color: var(--primary-hover);
-    color: #fff;
-}
-
-.react-select__option--is-selected {
-    background-color: var(--primary-color);
-    color: #fff;
-}
-
-.react-select__single-value {
-    color: #fff; /* Texto seleccionado */
-}
-
-/* Spinner de carga original (comentado para evitar conflictos) */
-/*
-.spinner {
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top: 4px solid #fff;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
-}
-*/
-
-/* Estilos para el GIF de carga personalizado */
+/* Spinner de carga */
 .spinner-gif {
-    width: 100px; /* Ajusta el tamaño según tu preferencia */
-    height: 100px; /* Ajusta el tamaño según tu preferencia */
-    /* Opcional: Añade margen para centrar el GIF dentro del botón */
-    margin: 0 auto;
+    width: 30px; /* Tamaño adecuado */
+    height: 30px;
 }
 
 /* Superposición de carga */
@@ -249,7 +178,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Ajusta el color y la opacidad según tu diseño */
+    background: rgba(0, 0, 0, 0.7); /* Mayor opacidad para énfasis */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -266,15 +195,83 @@
     flex: 1;
 }
 
+/* React Select estilos personalizados */
+.react-select-container {
+    background-color: #2c2c2c;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.react-select__control {
+    background-color: #2c2c2c;
+    border: 1px solid #444;
+    box-shadow: none;
+}
+
+.react-select__control--is-focused {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+.react-select__menu {
+    background-color: #2c2c2c;
+    color: #fff;
+}
+
+.react-select__option {
+    background-color: #2c2c2c;
+    color: #fff;
+}
+
+.react-select__option--is-focused {
+    background-color: var(--primary-hover);
+    color: #fff;
+}
+
+.react-select__option--is-selected {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.react-select__multi-value {
+    background-color: var(--primary-color);
+}
+
+.react-select__multi-value__label {
+    color: #fff;
+}
+
+.react-select__multi-value__remove {
+    color: #fff;
+    cursor: pointer;
+}
+
+.react-select__placeholder {
+    color: #aaa;
+}
+
+.react-select__single-value {
+    color: #fff;
+}
+
 /* Responsividad */
-@media (max-width: 768px) {
-    .create-trip-form {
-        padding: 25px;
-        gap: 15px;
+@media (max-width: 1024px) {
+    .create-trip-form-container {
+        padding: 35px;
     }
 
-    .create-trip-form h2 {
-        font-size: 2rem;
+    .create-trip-form-container h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .create-trip-form-container {
+        padding: 30px;
+    }
+
+    .create-trip-form-container h2 {
+        font-size: 2.2rem;
     }
 
     .form-row {
@@ -283,23 +280,21 @@
 }
 
 @media (max-width: 480px) {
-    .create-trip-form {
-        padding: 20px;
-        gap: 10px;
+    .create-trip-form-container {
+        padding: 25px;
     }
 
-    .create-trip-form h2 {
-        font-size: 1.8rem;
+    .create-trip-form-container h2 {
+        font-size: 2rem;
     }
 
     .btn-primary {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+        padding: 12px 25px;
+        font-size: 1rem;
     }
-}
 
-/* Ajustes específicos para el GIF dentro del botón */
-.btn-primary .spinner-gif {
-    width: 24px; /* Tamaño adecuado para el botón */
-    height: 24px;
+    .spinner-gif {
+        width: 25px;
+        height: 25px;
+    }
 }

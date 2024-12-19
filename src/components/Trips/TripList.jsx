@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './css/TripList.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGlobe, faLock } from '@fortawesome/free-solid-svg-icons'; // Importa los iconos necesarios
 
 const TripList = ({ trips }) => {
     return (
@@ -11,7 +13,11 @@ const TripList = ({ trips }) => {
                     <p>{trip.description}</p>
                     
                     <p className={`trip-public ${trip.public ? 'public' : 'private'}`}>
-                        {trip.public ? 'Público' : 'Privado'}
+                        {trip.public ? (
+                            <FontAwesomeIcon icon={faGlobe} title="Público"/> // Usa el icono importado
+                        ) : (
+                            <FontAwesomeIcon icon={faLock} title="Privado"/> // Usa el icono importado
+                        )}
                     </p>
 
                     {trip.link && (

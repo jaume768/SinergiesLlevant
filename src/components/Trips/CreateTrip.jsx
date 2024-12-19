@@ -5,6 +5,21 @@ import Select from 'react-select';
 import './css/CreateTrip.css';
 import countries from 'i18n-iso-countries';
 import esLocale from 'i18n-iso-countries/langs/es.json';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+    faInfoCircle, 
+    faGlobe, 
+    faCalendarAlt, 
+    faDollarSign, 
+    faCity, 
+    faHeart, 
+    faUtensils, 
+    faHotel, 
+    faCar, 
+    faUserFriends, 
+    faRunning, 
+    faPlusCircle 
+} from '@fortawesome/free-solid-svg-icons';
 
 // Registra el idioma español para obtener los nombres de los países en español
 countries.registerLocale(esLocale);
@@ -252,347 +267,390 @@ const CreateTrip = () => {
     };
 
     return (
-        <div className="create-trip-form">
+        <div className="create-trip-form-container">
             <h2>Crear Nuevo Itinerario</h2>
             {error && <div className="error-message">{error}</div>}
             <form onSubmit={onSubmit}>
-                {/* Título */}
-                <div className="form-group">
-                    <label>Título</label>
-                    <input
-                        type="text"
-                        name="title"
-                        value={formData.title}
-                        onChange={onChange}
-                        required
-                        placeholder="Ingrese el título del itinerario"
-                        className={errors.title ? 'input-error' : ''}
-                    />
-                    {errors.title && <span className="error-text">{errors.title}</span>}
-                </div>
-
-                {/* Descripción */}
-                <div className="form-group">
-                    <label>Descripción</label>
-                    <textarea
-                        name="description"
-                        value={formData.description}
-                        onChange={onChange}
-                        required
-                        placeholder="Ingrese una descripción detallada"
-                        className={errors.description ? 'input-error' : ''}
-                    ></textarea>
-                    {errors.description && <span className="error-text">{errors.description}</span>}
-                </div>
-
-                {/* Hacer Público */}
-                <div className="form-group checkbox-group">
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="public"
-                            checked={formData.public}
-                            onChange={onChange}
-                        />
-                        Hacer público
-                    </label>
-                </div>
-
-                {/* Fecha de Inicio y Fecha de Fin */}
-                <div className="form-row">
-                    {/* Fecha de Inicio */}
+                <section className="form-section">
+                    <h3><FontAwesomeIcon icon={faInfoCircle} /> Información Básica</h3>
                     <div className="form-group">
-                        <label>Fecha de Inicio</label>
+                        <label>
+                            Título
+                        </label>
                         <input
-                            type="date"
-                            name="travelDates.startDate"
-                            value={formData.travelDates.startDate}
+                            type="text"
+                            name="title"
+                            value={formData.title}
                             onChange={onChange}
                             required
-                            className={errors['travelDates.startDate'] ? 'input-error' : ''}
+                            placeholder="Ingrese el título del itinerario"
+                            className={errors.title ? 'input-error' : ''}
                         />
-                        {errors['travelDates.startDate'] && <span className="error-text">{errors['travelDates.startDate']}</span>}
+                        {errors.title && <span className="error-text">{errors.title}</span>}
                     </div>
 
-                    {/* Fecha de Fin */}
                     <div className="form-group">
-                        <label>Fecha de Fin</label>
-                        <input
-                            type="date"
-                            name="travelDates.endDate"
-                            value={formData.travelDates.endDate}
+                        <label>
+                            <FontAwesomeIcon icon={faInfoCircle} className="input-icon" />
+                            Descripción
+                        </label>
+                        <textarea
+                            name="description"
+                            value={formData.description}
                             onChange={onChange}
                             required
-                            className={errors['travelDates.endDate'] ? 'input-error' : ''}
-                        />
-                        {errors['travelDates.endDate'] && <span className="error-text">{errors['travelDates.endDate']}</span>}
+                            placeholder="Ingrese una descripción detallada"
+                            className={errors.description ? 'input-error' : ''}
+                        ></textarea>
+                        {errors.description && <span className="error-text">{errors.description}</span>}
                     </div>
-                </div>
 
-                {/* País de Destino y Tipo de Destino */}
-                <div className="form-row">
-                    {/* País de Destino */}
+                    <div className="form-group checkbox-group">
+                        <label>
+                            <FontAwesomeIcon icon={faGlobe} className="input-icon" />
+                            <input
+                                type="checkbox"
+                                name="public"
+                                checked={formData.public}
+                                onChange={onChange}
+                            />
+                            Hacer público
+                        </label>
+                    </div>
+                </section>
+
+                <section className="form-section">
+                    <h3>Fechas del Viaje</h3>
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label>
+                                <FontAwesomeIcon icon={faCalendarAlt} className="input-icon" />
+                                Fecha de Inicio
+                            </label>
+                            <input
+                                type="date"
+                                name="travelDates.startDate"
+                                value={formData.travelDates.startDate}
+                                onChange={onChange}
+                                required
+                                className={errors['travelDates.startDate'] ? 'input-error' : ''}
+                            />
+                            {errors['travelDates.startDate'] && <span className="error-text">{errors['travelDates.startDate']}</span>}
+                        </div>
+
+                        <div className="form-group">
+                            <label>
+                                <FontAwesomeIcon icon={faCalendarAlt} className="input-icon" />
+                                Fecha de Fin
+                            </label>
+                            <input
+                                type="date"
+                                name="travelDates.endDate"
+                                value={formData.travelDates.endDate}
+                                onChange={onChange}
+                                required
+                                className={errors['travelDates.endDate'] ? 'input-error' : ''}
+                            />
+                            {errors['travelDates.endDate'] && <span className="error-text">{errors['travelDates.endDate']}</span>}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="form-section">
+                    <h3> Destino</h3>
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label>
+                                <FontAwesomeIcon icon={faGlobe} className="input-icon" />
+                                País de Destino
+                            </label>
+                            <Select
+                                name="destinationPreferences.country"
+                                options={countryOptions}
+                                isClearable
+                                value={countryOptions.find(
+                                    option => option.value === formData.destinationPreferences.country
+                                ) || null}
+                                onChange={(selectedOption) => {
+                                    setFormData({
+                                        ...formData,
+                                        destinationPreferences: {
+                                            ...formData.destinationPreferences,
+                                            country: selectedOption ? selectedOption.value : '',
+                                        },
+                                    });
+                                    setErrors(prevErrors => ({ ...prevErrors, 'destinationPreferences.country': '' }));
+                                }}
+                                className={`react-select-container ${errors['destinationPreferences.country'] ? 'select-error' : ''}`}
+                                classNamePrefix="react-select"
+                                placeholder="Seleccione un país de destino"
+                            />
+                            {errors['destinationPreferences.country'] && <span className="error-text">{errors['destinationPreferences.country']}</span>}
+                        </div>
+
+                        <div className="form-group">
+                            <label>
+                                <FontAwesomeIcon icon={faCity} className="input-icon" />
+                                Tipo de Destino
+                            </label>
+                            <Select
+                                name="destinationPreferences.type"
+                                options={destinationTypeOptions}
+                                isClearable
+                                value={destinationTypeOptions.find(
+                                    option => option.value === formData.destinationPreferences.type
+                                ) || null}
+                                onChange={(selectedOption) => {
+                                    setFormData({
+                                        ...formData,
+                                        destinationPreferences: {
+                                            ...formData.destinationPreferences,
+                                            type: selectedOption ? selectedOption.value : '',
+                                        },
+                                    });
+                                    setErrors(prevErrors => ({ ...prevErrors, 'destinationPreferences.type': '' }));
+                                }}
+                                className={`react-select-container ${errors['destinationPreferences.type'] ? 'select-error' : ''}`}
+                                classNamePrefix="react-select"
+                                placeholder="Seleccione un tipo de destino"
+                            />
+                            {errors['destinationPreferences.type'] && <span className="error-text">{errors['destinationPreferences.type']}</span>}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="form-section">
+                    <h3> Presupuesto y Logística</h3>
+                    <div className="form-row">
+                        <div className="form-group">
+                            <label>
+                                <FontAwesomeIcon icon={faDollarSign} className="input-icon" />
+                                Presupuesto Total (USD)
+                            </label>
+                            <input
+                                type="number"
+                                name="budget.total"
+                                value={formData.budget.total}
+                                onChange={onChange}
+                                required
+                                min="0"
+                                placeholder="Ingrese el presupuesto total"
+                                className={errors['budget.total'] ? 'input-error' : ''}
+                            />
+                            {errors['budget.total'] && <span className="error-text">{errors['budget.total']}</span>}
+                        </div>
+
+                        <div className="form-group">
+                            <label>
+                                <FontAwesomeIcon icon={faCity} className="input-icon" />
+                                Número de Ciudades
+                            </label>
+                            <input
+                                type="number"
+                                name="numberOfCities"
+                                value={formData.numberOfCities}
+                                onChange={onChange}
+                                required
+                                min="1"
+                                placeholder="Ingrese el número de ciudades"
+                                className={errors.numberOfCities ? 'input-error' : ''}
+                            />
+                            {errors.numberOfCities && <span className="error-text">{errors.numberOfCities}</span>}
+                        </div>
+                    </div>
+                </section>
+
+                <section className="form-section">
+                    <h3>Preferencias</h3>
                     <div className="form-group">
-                        <label>País de Destino</label>
+                        <label>
+                            <FontAwesomeIcon icon={faHeart} className="input-icon" />
+                            Intereses
+                        </label>
                         <Select
-                            name="destinationPreferences.country"
-                            options={countryOptions}
-                            isClearable
-                            value={countryOptions.find(
-                                option => option.value === formData.destinationPreferences.country
-                            ) || null}
-                            onChange={(selectedOption) => {
+                            name="interests"
+                            options={interestOptions}
+                            isMulti
+                            value={interestOptions.filter(option =>
+                                formData.interests.includes(option.value)
+                            )}
+                            onChange={(selectedOptions) => {
+                                const values = selectedOptions ? selectedOptions.map(option => option.value) : [];
                                 setFormData({
                                     ...formData,
-                                    destinationPreferences: {
-                                        ...formData.destinationPreferences,
-                                        country: selectedOption ? selectedOption.value : '',
-                                    },
+                                    interests: values,
                                 });
-                                // Limpiar errores relacionados
-                                setErrors(prevErrors => ({ ...prevErrors, 'destinationPreferences.country': '' }));
+                                setErrors(prevErrors => ({ ...prevErrors, interests: '' }));
                             }}
-                            className={`react-select-container ${errors['destinationPreferences.country'] ? 'select-error' : ''}`}
+                            className={`react-select-container ${errors.interests ? 'select-error' : ''}`}
                             classNamePrefix="react-select"
-                            placeholder="Seleccione un país de destino"
+                            placeholder="Seleccione sus intereses"
                         />
-                        {errors['destinationPreferences.country'] && <span className="error-text">{errors['destinationPreferences.country']}</span>}
+                        {errors.interests && <span className="error-text">{errors.interests}</span>}
                     </div>
 
-                    {/* Tipo de Destino */}
                     <div className="form-group">
-                        <label>Tipo de Destino</label>
+                        <label>
+                            <FontAwesomeIcon icon={faUtensils} className="input-icon" />
+                            Preferencias de Comida
+                        </label>
                         <Select
-                            name="destinationPreferences.type"
-                            options={destinationTypeOptions}
+                            name="foodPreferences"
+                            options={foodOptions}
+                            isMulti
+                            value={foodOptions.filter(option =>
+                                formData.foodPreferences.includes(option.value)
+                            )}
+                            onChange={(selectedOptions) => {
+                                const values = selectedOptions ? selectedOptions.map(option => option.value) : [];
+                                setFormData({
+                                    ...formData,
+                                    foodPreferences: values,
+                                });
+                                setErrors(prevErrors => ({ ...prevErrors, foodPreferences: '' }));
+                            }}
+                            className={`react-select-container ${errors.foodPreferences ? 'select-error' : ''}`}
+                            classNamePrefix="react-select"
+                            placeholder="Seleccione sus preferencias de comida"
+                        />
+                        {errors.foodPreferences && <span className="error-text">{errors.foodPreferences}</span>}
+                    </div>
+
+                    <div className="form-group">
+                        <label>
+                            <FontAwesomeIcon icon={faHotel} className="input-icon" />
+                            Preferencia de Alojamiento
+                        </label>
+                        <Select
+                            name="accommodationPreferences.type"
+                            options={accommodationOptions}
                             isClearable
-                            value={destinationTypeOptions.find(
-                                option => option.value === formData.destinationPreferences.type
+                            value={accommodationOptions.find(
+                                option => option.value === formData.accommodationPreferences.type
                             ) || null}
                             onChange={(selectedOption) => {
                                 setFormData({
                                     ...formData,
-                                    destinationPreferences: {
-                                        ...formData.destinationPreferences,
+                                    accommodationPreferences: {
+                                        ...formData.accommodationPreferences,
                                         type: selectedOption ? selectedOption.value : '',
                                     },
                                 });
-                                setErrors(prevErrors => ({ ...prevErrors, 'destinationPreferences.type': '' }));
+                                setErrors(prevErrors => ({ ...prevErrors, 'accommodationPreferences.type': '' }));
                             }}
-                            className={`react-select-container ${errors['destinationPreferences.type'] ? 'select-error' : ''}`}
+                            className={`react-select-container ${errors['accommodationPreferences.type'] ? 'select-error' : ''}`}
                             classNamePrefix="react-select"
-                            placeholder="Seleccione un tipo de destino"
+                            placeholder="Seleccione una opción"
                         />
-                        {errors['destinationPreferences.type'] && <span className="error-text">{errors['destinationPreferences.type']}</span>}
+                        {errors['accommodationPreferences.type'] && <span className="error-text">{errors['accommodationPreferences.type']}</span>}
                     </div>
-                </div>
 
-                {/* Presupuesto Total y Número de Ciudades */}
-                <div className="form-row">
-                    {/* Presupuesto Total */}
                     <div className="form-group">
-                        <label>Presupuesto Total (USD)</label>
-                        <input
-                            type="number"
-                            name="budget.total"
-                            value={formData.budget.total}
+                        <label>
+                            <FontAwesomeIcon icon={faCar} className="input-icon" />
+                            Preferencia de Transporte
+                        </label>
+                        <Select
+                            name="transportPreferences.preferredMode"
+                            options={transportOptions}
+                            isClearable
+                            value={transportOptions.find(
+                                option => option.value === formData.transportPreferences.preferredMode
+                            ) || null}
+                            onChange={(selectedOption) => {
+                                setFormData({
+                                    ...formData,
+                                    transportPreferences: {
+                                        ...formData.transportPreferences,
+                                        preferredMode: selectedOption ? selectedOption.value : '',
+                                    },
+                                });
+                                setErrors(prevErrors => ({ ...prevErrors, 'transportPreferences.preferredMode': '' }));
+                            }}
+                            className={`react-select-container ${errors['transportPreferences.preferredMode'] ? 'select-error' : ''}`}
+                            classNamePrefix="react-select"
+                            placeholder="Seleccione una opción"
+                        />
+                        {errors['transportPreferences.preferredMode'] && <span className="error-text">{errors['transportPreferences.preferredMode']}</span>}
+                    </div>
+
+                    <div className="form-group">
+                        <label>
+                            <FontAwesomeIcon icon={faUserFriends} className="input-icon" />
+                            Compañero de Viaje
+                        </label>
+                        <Select
+                            name="travelCompanion.type"
+                            options={travelCompanionOptions}
+                            isClearable
+                            value={travelCompanionOptions.find(
+                                option => option.value === formData.travelCompanion.type
+                            ) || null}
+                            onChange={(selectedOption) => {
+                                setFormData({
+                                    ...formData,
+                                    travelCompanion: {
+                                        ...formData.travelCompanion,
+                                        type: selectedOption ? selectedOption.value : '',
+                                    },
+                                });
+                                setErrors(prevErrors => ({ ...prevErrors, 'travelCompanion.type': '' }));
+                            }}
+                            className={`react-select-container ${errors['travelCompanion.type'] ? 'select-error' : ''}`}
+                            classNamePrefix="react-select"
+                            placeholder="Seleccione una opción"
+                        />
+                        {errors['travelCompanion.type'] && <span className="error-text">{errors['travelCompanion.type']}</span>}
+                    </div>
+
+                    <div className="form-group">
+                        <label>
+                            <FontAwesomeIcon icon={faRunning} className="input-icon" />
+                            Nivel de Actividad
+                        </label>
+                        <Select
+                            name="activityLevel.pace"
+                            options={activityLevelOptions}
+                            isClearable
+                            value={activityLevelOptions.find(
+                                option => option.value === formData.activityLevel.pace
+                            ) || null}
+                            onChange={(selectedOption) => {
+                                setFormData({
+                                    ...formData,
+                                    activityLevel: {
+                                        ...formData.activityLevel,
+                                        pace: selectedOption ? selectedOption.value : '',
+                                    },
+                                });
+                                setErrors(prevErrors => ({ ...prevErrors, 'activityLevel.pace': '' }));
+                            }}
+                            className={`react-select-container ${errors['activityLevel.pace'] ? 'select-error' : ''}`}
+                            classNamePrefix="react-select"
+                            placeholder="Seleccione una opción"
+                        />
+                        {errors['activityLevel.pace'] && <span className="error-text">{errors['activityLevel.pace']}</span>}
+                    </div>
+                </section>
+
+                <section className="form-section">
+                    <h3><FontAwesomeIcon icon={faPlusCircle} /> Preferencias Adicionales</h3>
+                    <div className="form-group">
+                        <label>
+                            <FontAwesomeIcon icon={faInfoCircle} className="input-icon" />
+                            Preferencias Adicionales
+                        </label>
+                        <textarea
+                            name="additionalPreferences"
+                            value={formData.additionalPreferences}
                             onChange={onChange}
                             required
-                            min="0"
-                            placeholder="Ingrese el presupuesto total"
-                            className={errors['budget.total'] ? 'input-error' : ''}
-                        />
-                        {errors['budget.total'] && <span className="error-text">{errors['budget.total']}</span>}
+                            placeholder="Escribe cualquier preferencia adicional..."
+                            className={errors.additionalPreferences ? 'input-error' : ''}
+                        ></textarea>
+                        {errors.additionalPreferences && <span className="error-text">{errors.additionalPreferences}</span>}
                     </div>
-
-                    {/* Número de Ciudades */}
-                    <div className="form-group">
-                        <label>Número de Ciudades</label>
-                        <input
-                            type="number"
-                            name="numberOfCities"
-                            value={formData.numberOfCities}
-                            onChange={onChange}
-                            required
-                            min="1"
-                            placeholder="Ingrese el número de ciudades"
-                            className={errors.numberOfCities ? 'input-error' : ''}
-                        />
-                        {errors.numberOfCities && <span className="error-text">{errors.numberOfCities}</span>}
-                    </div>
-                </div>
-
-                {/* Intereses */}
-                <div className="form-group">
-                    <label>Intereses</label>
-                    <Select
-                        name="interests"
-                        options={interestOptions}
-                        isMulti
-                        value={interestOptions.filter(option =>
-                            formData.interests.includes(option.value)
-                        )}
-                        onChange={(selectedOptions) => {
-                            const values = selectedOptions ? selectedOptions.map(option => option.value) : [];
-                            setFormData({
-                                ...formData,
-                                interests: values,
-                            });
-                            setErrors(prevErrors => ({ ...prevErrors, interests: '' }));
-                        }}
-                        className={`react-select-container ${errors.interests ? 'select-error' : ''}`}
-                        classNamePrefix="react-select"
-                        placeholder="Seleccione sus intereses"
-                    />
-                    {errors.interests && <span className="error-text">{errors.interests}</span>}
-                </div>
-
-                {/* Preferencias de Comida */}
-                <div className="form-group">
-                    <label>Preferencias de Comida</label>
-                    <Select
-                        name="foodPreferences"
-                        options={foodOptions}
-                        isMulti
-                        value={foodOptions.filter(option =>
-                            formData.foodPreferences.includes(option.value)
-                        )}
-                        onChange={(selectedOptions) => {
-                            const values = selectedOptions ? selectedOptions.map(option => option.value) : [];
-                            setFormData({
-                                ...formData,
-                                foodPreferences: values,
-                            });
-                            setErrors(prevErrors => ({ ...prevErrors, foodPreferences: '' }));
-                        }}
-                        className={`react-select-container ${errors.foodPreferences ? 'select-error' : ''}`}
-                        classNamePrefix="react-select"
-                        placeholder="Seleccione sus preferencias de comida"
-                    />
-                    {errors.foodPreferences && <span className="error-text">{errors.foodPreferences}</span>}
-                </div>
-
-                {/* Preferencia de Alojamiento */}
-                <div className="form-group">
-                    <label>Preferencia de Alojamiento</label>
-                    <Select
-                        name="accommodationPreferences.type"
-                        options={accommodationOptions}
-                        isClearable
-                        value={accommodationOptions.find(
-                            option => option.value === formData.accommodationPreferences.type
-                        ) || null}
-                        onChange={(selectedOption) => {
-                            setFormData({
-                                ...formData,
-                                accommodationPreferences: {
-                                    ...formData.accommodationPreferences,
-                                    type: selectedOption ? selectedOption.value : '',
-                                },
-                            });
-                            setErrors(prevErrors => ({ ...prevErrors, 'accommodationPreferences.type': '' }));
-                        }}
-                        className={`react-select-container ${errors['accommodationPreferences.type'] ? 'select-error' : ''}`}
-                        classNamePrefix="react-select"
-                        placeholder="Seleccione una opción"
-                    />
-                    {errors['accommodationPreferences.type'] && <span className="error-text">{errors['accommodationPreferences.type']}</span>}
-                </div>
-
-                {/* Preferencia de Transporte */}
-                <div className="form-group">
-                    <label>Preferencia de Transporte</label>
-                    <Select
-                        name="transportPreferences.preferredMode"
-                        options={transportOptions}
-                        isClearable
-                        value={transportOptions.find(
-                            option => option.value === formData.transportPreferences.preferredMode
-                        ) || null}
-                        onChange={(selectedOption) => {
-                            setFormData({
-                                ...formData,
-                                transportPreferences: {
-                                    ...formData.transportPreferences,
-                                    preferredMode: selectedOption ? selectedOption.value : '',
-                                },
-                            });
-                            setErrors(prevErrors => ({ ...prevErrors, 'transportPreferences.preferredMode': '' }));
-                        }}
-                        className={`react-select-container ${errors['transportPreferences.preferredMode'] ? 'select-error' : ''}`}
-                        classNamePrefix="react-select"
-                        placeholder="Seleccione una opción"
-                    />
-                    {errors['transportPreferences.preferredMode'] && <span className="error-text">{errors['transportPreferences.preferredMode']}</span>}
-                </div>
-
-                {/* Compañero de Viaje */}
-                <div className="form-group">
-                    <label>Compañero de Viaje</label>
-                    <Select
-                        name="travelCompanion.type"
-                        options={travelCompanionOptions}
-                        isClearable
-                        value={travelCompanionOptions.find(
-                            option => option.value === formData.travelCompanion.type
-                        ) || null}
-                        onChange={(selectedOption) => {
-                            setFormData({
-                                ...formData,
-                                travelCompanion: {
-                                    ...formData.travelCompanion,
-                                    type: selectedOption ? selectedOption.value : '',
-                                },
-                            });
-                            setErrors(prevErrors => ({ ...prevErrors, 'travelCompanion.type': '' }));
-                        }}
-                        className={`react-select-container ${errors['travelCompanion.type'] ? 'select-error' : ''}`}
-                        classNamePrefix="react-select"
-                        placeholder="Seleccione una opción"
-                    />
-                    {errors['travelCompanion.type'] && <span className="error-text">{errors['travelCompanion.type']}</span>}
-                </div>
-
-                {/* Nivel de Actividad */}
-                <div className="form-group">
-                    <label>Nivel de Actividad</label>
-                    <Select
-                        name="activityLevel.pace"
-                        options={activityLevelOptions}
-                        isClearable
-                        value={activityLevelOptions.find(
-                            option => option.value === formData.activityLevel.pace
-                        ) || null}
-                        onChange={(selectedOption) => {
-                            setFormData({
-                                ...formData,
-                                activityLevel: {
-                                    ...formData.activityLevel,
-                                    pace: selectedOption ? selectedOption.value : '',
-                                },
-                            });
-                            setErrors(prevErrors => ({ ...prevErrors, 'activityLevel.pace': '' }));
-                        }}
-                        className={`react-select-container ${errors['activityLevel.pace'] ? 'select-error' : ''}`}
-                        classNamePrefix="react-select"
-                        placeholder="Seleccione una opción"
-                    />
-                    {errors['activityLevel.pace'] && <span className="error-text">{errors['activityLevel.pace']}</span>}
-                </div>
-
-                {/* Preferencias Adicionales */}
-                <div className="form-group">
-                    <label>Preferencias Adicionales</label>
-                    <textarea
-                        name="additionalPreferences"
-                        value={formData.additionalPreferences}
-                        onChange={onChange}
-                        required
-                        placeholder="Escribe cualquier preferencia adicional..."
-                        className={errors.additionalPreferences ? 'input-error' : ''}
-                    ></textarea>
-                    {errors.additionalPreferences && <span className="error-text">{errors.additionalPreferences}</span>}
-                </div>
+                </section>
 
                 <button type="submit" className="btn-primary" disabled={loading}>
                     {loading ? (

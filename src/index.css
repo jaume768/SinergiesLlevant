@@ -34,10 +34,6 @@ button {
   transition: background-color 0.3s;
 }
 
-.btn-primary {
-  color: #000;
-}
-
 .btn-primary:hover {
 }
 
