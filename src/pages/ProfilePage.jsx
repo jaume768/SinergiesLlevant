@@ -231,8 +231,6 @@ const ProfilePage = () => {
 
                             {/* Otros componentes del perfil */}
                             <EditProfile profile={profile} refreshProfile={fetchProfile} />
-                            <Favorites />
-                            <CustomLists />
                             <FriendsList />
                             <FriendRequests />
                             <div className="logout-section">

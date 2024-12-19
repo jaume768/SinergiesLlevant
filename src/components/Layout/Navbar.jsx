@@ -27,7 +27,7 @@ const Navbar = () => {
         <Link to="/suggested">Sugeridos</Link>
         {!authState.loading && authState.token ? (
           <>
-            <Link to="/">Home</Link>
+            <Link to="/">Inicio</Link>
             <Link to="/profile">Perfil</Link>
           </>
         ) : (

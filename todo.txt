@@ -1,7 +1,7 @@
 Añadir check de las actividades del dia.
 
+falta buscador de intinerarios y de perfiles.
+
 Crear pagina para comprar o mejorar el plan del usuario y comprar tokens especificos.
 
 Utilizar tokens para crear intinerarios personalizados.
-
-falta arreglar cambiar foto de tripDetails
