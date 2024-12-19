@@ -70,18 +70,6 @@ const EditProfile = ({ profile, refreshProfile }) => {
                     ></textarea>
                 </div>
 
-                <div className="form-group">
-                    <label>Foto de Perfil</label>
-                    <input
-                        type="text"
-                        name="profilePicture"
-                        value={profilePicture}
-                        onChange={onChange}
-                        placeholder="URL de la imagen"
-                    />
-                </div>
-
-
                 <button type="submit" className="btn-primary">
                     Actualizar Perfil
                 </button>

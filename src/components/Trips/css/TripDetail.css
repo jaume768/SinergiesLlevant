@@ -1,3 +1,5 @@
+/* src/components/Trips/css/TripDetail.css */
+
 @import '../../../variables.css';
 
 /* Contenedor principal para TripDetail similar al Dashboard */
@@ -140,6 +142,14 @@
     background-color: #2980b9;
 }
 
+.btn-upload-photo {
+    background-color: #8e44ad;
+}
+
+.btn-upload-photo:hover {
+    background-color: #71368a;
+}
+
 /* Secciones de Itinerario, Reseñas y Comentarios */
 .section-title-intinerari {
     font-size: 2rem;
@@ -246,7 +256,110 @@
     margin: 5px 0;
 }
 
-/* Texto de carga y mensajes de error */
+/* Actividades Recomendadas */
+.recommended-activities {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.city-activities {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.city-activities:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.city-activities h4 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+}
+
+.activities-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.recommended-activity {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, background 0.3s ease;
+    width: calc(30% - 10px);
+    /* Ajustar según el diseño */
+}
+
+.recommended-activity:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.activity-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.activity-info {
+    padding: 15px;
+}
+
+.activity-info h5 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.activity-info p {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.activity-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.activity-link:hover {
+    color: var(--primary-hover);
+}
+
+/* Imagen Representativa */
+.representative-image-section {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.representative-image-section h3 {
+    margin-bottom: 15px;
+}
+
+.representative-image {
+    max-width: 50%;
+    margin: auto;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+/* Comentarios */
 .loading-text {
     font-size: 1.8rem;
     text-align: center;
@@ -262,6 +375,41 @@
     margin-bottom: 25px;
     text-align: center;
     font-weight: 600;
+}
+
+/* Previsualización de la imagen */
+.image-preview {
+    margin-top: 15px;
+}
+
+.itinerary-image-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+
+/* Controles de subida */
+.upload-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-upload {
+    background-color: #27ae60;
+}
+
+.btn-upload:hover {
+    background-color: #1e8449;
+}
+
+.btn-cancel {
+    background-color: #c0392b;
+}
+
+.btn-cancel:hover {
+    background-color: #a93226;
 }
 
 /* Responsividad */
@@ -317,6 +465,11 @@
 }
 
 @media (max-width: 768px) {
+
+    .representative-image {
+        max-width: 100%;
+    }
+
     .trip-detail-content {
         padding: 25px;
         margin: 20px;
@@ -406,8 +559,6 @@
     .section-title-intinerari {
         font-size: 1.4rem;
     }
-
-
 }
 
 .recommended-activities {
@@ -493,162 +644,50 @@
     color: var(--primary-hover);
 }
 
-/* Responsividad para Actividades Recomendadas */
-@media (max-width: 1024px) {
-    .recommended-activity {
-        width: 90%;
-        margin: auto;
-    }
+.representative-image-section {
+    text-align: center;
 }
 
-@media (max-width: 768px) {
-    .activity-image {
-        height: 120px;
-    }
-
-    .activity-info h5 {
-        font-size: 1.1rem;
-    }
-
-    .activity-info p {
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .activity-image {
-        height: 100px;
-    }
-
-    .activity-info h5 {
-        font-size: 1rem;
-    }
-
-    .activity-info p {
-        font-size: 0.9rem;
-    }
-}
-
-/* Hoteles Recomendados */
-.recommended-hotels {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.city-hotels {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.city-hotels:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.city-hotels h4 {
-    font-size: 1.5rem;
+.representative-image-section h3 {
     margin-bottom: 15px;
-    color: var(--secondary-color);
-    border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 5px;
 }
 
-.hotels-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.recommended-hotel {
-    background: rgba(0, 0, 0, 0.05);
+.representative-image {
+    max-width: 100%;
+    height: auto;
     border-radius: 10px;
-    overflow: hidden;
     box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease, background 0.3s ease;
-    width: calc(30% - 10px);
-    /* Ajustar según el diseño */
 }
 
-.recommended-hotel:hover {
-    transform: translateY(-5px);
-    background: rgba(0, 0, 0, 0.1);
+.image-preview {
+    margin-top: 15px;
 }
 
-.hotel-image {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
+.itinerary-image-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
 }
 
-.hotel-info {
-    padding: 15px;
+.upload-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-.hotel-info h5 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
-    color: var(--text-color);
+.btn-upload {
+    background-color: #27ae60;
 }
 
-.hotel-info p {
-    margin: 5px 0;
-    font-size: 1rem;
-    color: var(--text-secondary);
+.btn-upload:hover {
+    background-color: #1e8449;
 }
 
-.hotel-info a {
-    text-decoration: none;
-    color: var(--primary-color);
-    font-weight: bold;
-    transition: color 0.3s ease;
+.btn-cancel {
+    background-color: #c0392b;
 }
 
-.hotel-info a:hover {
-    color: var(--primary-hover);
-}
-
-/* Responsividad para Hoteles Recomendados */
-@media (max-width: 1024px) {
-    .recommended-hotel {
-        width: 45%;
-    }
-}
-
-@media (max-width: 768px) {
-    .hotel-image {
-        height: 120px;
-    }
-
-    .hotel-info h5 {
-        font-size: 1.1rem;
-    }
-
-    .hotel-info p {
-        font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .recommended-hotel {
-        width: 90%;
-        margin: auto;
-    }
-
-    .hotel-image {
-        height: 100px;
-    }
-
-    .hotel-info h5 {
-        font-size: 1rem;
-    }
-
-    .hotel-info p {
-        font-size: 0.9rem;
-    }
+.btn-cancel:hover {
+    background-color: #a93226;
 }

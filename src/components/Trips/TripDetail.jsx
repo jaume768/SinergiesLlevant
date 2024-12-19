@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import api from '../../utils/api';
+import api, { uploadTripImage } from '../../utils/api';
 import { useParams, useNavigate } from 'react-router-dom';
 import CommentList from '../Comments/CommentList';
 import CommentForm from '../Comments/CommentForm';
@@ -20,6 +20,10 @@ const TripDetail = () => {
     const [showEdit, setShowEdit] = useState(false);
     const [showShare, setShowShare] = useState(false);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [imageFile, setImageFile] = useState(null);
+    const [uploading, setUploading] = useState(false);
+    const [uploadError, setUploadError] = useState('');
+    const [previewImage, setPreviewImage] = useState(null);
 
     const fetchTrip = async () => {
         try {
@@ -35,6 +39,59 @@ const TripDetail = () => {
     useEffect(() => {
         fetchTrip();
     }, [tripId]);
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            if (!validTypes.includes(file.type)) {
+                setUploadError('Solo se permiten imágenes JPG, PNG y GIF.');
+                return;
+            }
+
+            const maxSize = 5 * 1024 * 1024;
+            if (file.size > maxSize) {
+                setUploadError('La imagen excede el tamaño máximo de 5MB.');
+                return;
+            }
+
+            setImageFile(file);
+            setUploadError('');
+
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviewImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleUploadImage = async () => {
+        if (!imageFile) {
+            setUploadError('Por favor, selecciona una imagen primero.');
+            return;
+        }
+
+        setUploading(true);
+        setUploadError('');
+
+        try {
+            const token = authState.token;
+            const response = await uploadTripImage(tripId, imageFile, token);
+            setTrip((prevTrip) => ({
+                ...prevTrip,
+                imageUrl: response.data.imageUrl,
+            }));
+            setImageFile(null);
+            setPreviewImage(null);
+            alert('Imagen subida exitosamente');
+        } catch (err) {
+            console.error(err);
+            setUploadError(err.response?.data?.msg || 'Error al subir la imagen');
+        } finally {
+            setUploading(false);
+        }
+    };
 
     if (loading) return <p className="loading-text">Cargando...</p>;
     if (error) return <div className="error-message">{error}</div>;
@@ -80,7 +137,7 @@ const TripDetail = () => {
         try {
             await api.delete(`/trips/${tripId}`);
             alert('Itinerario eliminado exitosamente');
-            navigate('/dashboard'); // Redirigir al dashboard o a otra página
+            navigate('/dashboard');
         } catch (err) {
             console.error(err);
             alert(err.response?.data?.msg || 'Error al eliminar el itinerario');
@@ -110,11 +167,15 @@ const TripDetail = () => {
                             {canEdit && <button className="dashboard-button btn-edit" onClick={() => setShowEdit(true)}>Editar</button>}
                             {canDelete && <button className="dashboard-button btn-delete" onClick={() => setShowDeleteConfirm(true)}>Eliminar</button>}
                             {canShare && <button className="dashboard-button btn-share" onClick={handleShare}>Compartir</button>}
+                            {canShare && (
+                                <button className="dashboard-button btn-upload-photo" onClick={() => document.getElementById('imageInput').click()}>
+                                    {trip.imageUrl ? 'Cambiar Foto' : 'Añadir Foto'}
+                                </button>
+                            )}
                             {canDownload && <button className="dashboard-button btn-download" onClick={handleDownload}>Descargar PDF</button>}
                         </div>
                     </div>
 
-                    {/* Itinerario */}
                     <h3 className="section-title-intinerari">Itinerario</h3>
                     <div className="itinerary">
                         {sortedDays.map((day, index) => (
@@ -141,7 +202,6 @@ const TripDetail = () => {
                         ))}
                     </div>
 
-                    {/* Actividades Recomendadas */}
                     <h3 className="section-title-intinerari">Actividades Recomendadas</h3>
                     <div className="recommended-activities">
                         {trip.activitiesPerCity && Object.keys(trip.activitiesPerCity).length > 0 ? (
@@ -171,15 +231,48 @@ const TripDetail = () => {
                         )}
                     </div>
 
-                    {/* Comentarios */}
+                    {trip.imageUrl && (
+                        <div className="representative-image-section">
+                            <h3 className="section-title-intinerari">Imagen Representativa</h3>
+                            <img src={trip.imageUrl} alt="Itinerario Representativo" className="representative-image" />
+                        </div>
+                    )}
+
                     <h3 className="section-title-intinerari">Comentarios</h3>
                     <CommentList tripId={tripId} />
                     <CommentForm tripId={tripId} refreshTrip={fetchTrip} />
 
-                    {/* Modales */}
                     {showEdit && <EditTrip trip={trip} onClose={() => setShowEdit(false)} onUpdate={handleUpdate} />}
                     {showShare && <ShareTripModal tripId={tripId} onClose={() => setShowShare(false)} onShare={fetchTrip} />}
                     {showDeleteConfirm && <ConfirmDeleteModal onClose={() => setShowDeleteConfirm(false)} onConfirm={handleDelete} />}
+
+                    {canEdit && (
+                        <input
+                            type="file"
+                            id="imageInput"
+                            accept="image/*"
+                            style={{ display: 'none' }}
+                            onChange={handleImageChange}
+                        />
+                    )}
+
+                    {previewImage && (
+                        <div className="image-preview">
+                            <img src={previewImage} alt="Previsualización" className="itinerary-image-preview" />
+                        </div>
+                    )}
+
+                    {canEdit && imageFile && (
+                        <div className="upload-controls">
+                            <button className="dashboard-button btn-upload" onClick={handleUploadImage} disabled={uploading}>
+                                {uploading ? 'Subiendo...' : 'Subir Imagen'}
+                            </button>
+                            <button className="dashboard-button btn-cancel" onClick={() => { setImageFile(null); setPreviewImage(null); }} disabled={uploading}>
+                                Cancelar
+                            </button>
+                            {uploadError && <p className="error-message">{uploadError}</p>}
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
