@@ -344,7 +344,7 @@
 .representative-image-section {
     display: flex;
     flex-direction: column;
-    text-align: center;
+    text-align: left;
 }
 
 .representative-image-section h3 {
