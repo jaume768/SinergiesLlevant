@@ -1,7 +1,5 @@
 Añadir check de las actividades del dia.
 
-Fer que a sa llista de intineraris veguis sa imatge representativa si en hi ha.
-
 falta buscador de intinerarios y de perfiles.
 
 Crear pagina para comprar o mejorar el plan del usuario y comprar tokens especificos.
