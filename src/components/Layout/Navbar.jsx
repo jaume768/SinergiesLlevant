@@ -8,6 +8,7 @@ const Navbar = () => {
   const { authState } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const toggleMenu = () => {
@@ -18,8 +19,12 @@ const Navbar = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    if (searchQuery.trim() !== '') {
-      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+    const trimmedQuery = searchQuery.trim();
+    if (trimmedQuery.length >= 3) {
+      setError('');
+      navigate(`/search?q=${encodeURIComponent(trimmedQuery)}`);
+    } else {
+      setError('Por favor, ingresa al menos 3 caracteres para la búsqueda.');
     }
   };
 
@@ -35,8 +40,11 @@ const Navbar = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <button type="submit"><FaSearch className="search-icon" /></button>
+        <button type="submit" disabled={searchQuery.trim().length < 3}>
+          <FaSearch className="search-icon" />
+        </button>
       </form>
+      {error && <div className="search-error">{error}</div>}
       <div className="menu-icon" onClick={toggleMenu}>
         <span></span>
         <span></span>
