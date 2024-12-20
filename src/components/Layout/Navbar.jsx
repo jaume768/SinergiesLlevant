@@ -1,12 +1,14 @@
 import { FaSearch } from 'react-icons/fa';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import './css/Navbar.css';
 
 const Navbar = () => {
   const { authState } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -14,15 +16,27 @@ const Navbar = () => {
 
   const brandLink = !authState.loading && authState.token ? '/dashboard' : '/';
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim() !== '') {
+      navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
   return (
     <nav className="navbar">
       <Link to={brandLink} className="navbar-brand">
         TravelDaring
       </Link>
-      <div className="navbar-search">
-        <input type="text" placeholder="Buscar..." />
+      <form onSubmit={handleSearch} className="navbar-search">
+        <input
+          type="text"
+          placeholder="Buscar..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
         <button type="submit"><FaSearch className="search-icon" /></button>
-      </div>
+      </form>
       <div className="menu-icon" onClick={toggleMenu}>
         <span></span>
         <span></span>

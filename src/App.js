@@ -15,6 +15,7 @@ import VerifyEmailPage from './pages/VerifyEmailPage';
 import TripPage from './pages/TripPage';
 import PrivateRoute from './components/Auth/PrivateRoute';
 import NotFoundPage from './pages/NotFoundPage';
+import SearchResultsPage from './pages/SearchResultsPage';
 import './App.css';
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
             <Route path="/suggested" element={<SuggestedPage />} />
             <Route path="/auth/callback" element={<GoogleCallback />} />
             <Route path="/verify" element={<VerifyEmailPage />} />
+            <Route path="/search" element={<SearchResultsPage />} />
             <Route
               path="/dashboard"
               element={

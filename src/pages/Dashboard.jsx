@@ -70,13 +70,13 @@ const Dashboard = () => {
                     <Link to="/trips/create" className="dashboard-button">
                         Crear Nuevo Itinerario
                     </Link>
-                    <div className="search-container">
+                    <div className="search-container-dashboard">
                         <input
                             type="text"
                             placeholder="Buscar itinerarios..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="search-input"
+                            className="search-input-dashboard"
                         />
                     </div>
                     {loading ? (

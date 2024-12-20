@@ -100,14 +100,14 @@
 }
 
 /* Contenedor del buscador */
-.search-container {
+.search-container-dashboard {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-.search-input {
+.search-input-dashboard {
     width: 100%;
     max-width: 400px;
     padding: 10px 15px;
@@ -118,7 +118,7 @@
     box-shadow: var(--box-shadow);
 }
 
-.search-input::placeholder {
+.search-input-dashboard::placeholder {
     color: #ccc;
 }
 
@@ -152,7 +152,7 @@
         font-size: 1rem;
     }
 
-    .search-input {
+    .search-input-dashboard {
         padding: 8px 12px;
         font-size: 0.9rem;
     }
@@ -177,7 +177,7 @@
         font-size: 0.9rem;
     }
 
-    .search-input {
+    .search-input-dashboard {
         padding: 6px 10px;
         font-size: 0.8rem;
     }
