@@ -166,7 +166,6 @@ const TripDetail = () => {
                         <div className="trip-actions">
                             {canEdit && <button className="dashboard-button btn-edit" onClick={() => setShowEdit(true)}>Editar</button>}
                             {canDelete && <button className="dashboard-button btn-delete" onClick={() => setShowDeleteConfirm(true)}>Eliminar</button>}
-                            {canShare && <button className="dashboard-button btn-share" onClick={handleShare}>Compartir</button>}
                             {canShare && (
                                 <button className="dashboard-button btn-upload-photo" onClick={() => document.getElementById('imageInput').click()}>
                                     {trip.imageUrl ? 'Cambiar Foto' : 'Añadir Foto'}

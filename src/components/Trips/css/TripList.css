@@ -29,18 +29,36 @@
     color: var(--secondary-color);
 }
 
-/* Estilos para la imagen */
-.trip-image {
-    width: 100%;
-    height: auto;
-    margin: 15px 0;
-    border-radius: var(--border-radius);
-    object-fit: cover;
-}
-
 .trip-card p {
     margin-bottom: 10px;
     min-height: 50px;
+}
+
+/* Contenedor fijo para la imagen o placeholder */
+.trip-image-container {
+    width: 100%;
+    height: 180px; /* Ajusta la altura según convenga */
+    border-radius: var(--border-radius);
+    background: #ccc; /* Fondo por defecto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 0;
+    overflow: hidden; /* Para que la imagen quede bien dentro del contenedor */
+}
+
+.trip-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image-placeholder {
+    color: #333;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 10px;
+    line-height: 1.2;
 }
 
 .trip-public {
