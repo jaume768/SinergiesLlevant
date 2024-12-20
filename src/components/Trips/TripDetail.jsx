@@ -5,7 +5,6 @@ import CommentList from '../Comments/CommentList';
 import CommentForm from '../Comments/CommentForm';
 import EditTrip from './EditTrip';
 import { Link } from 'react-router-dom';
-import ShareTripModal from './ShareTripModal';
 import ConfirmDeleteModal from './ConfirmDeleteModal';
 import { AuthContext } from '../../context/AuthContext';
 import './css/TripDetail.css';
@@ -28,6 +27,7 @@ const TripDetail = () => {
     const fetchTrip = async () => {
         try {
             const response = await api.get(`/trips/${tripId}`);
+            console.log(response.data);
             setTrip(response.data);
             setLoading(false);
         } catch (err) {
@@ -98,9 +98,9 @@ const TripDetail = () => {
     if (!trip) return <p className="error-message">Itinerario no encontrado.</p>;
 
     const userId = authState.user ? authState.user._id : null;
-
-    const isCreator = userId && trip.createdBy && trip.createdBy._id === userId;
-    const isCollaborator = userId && trip.collaborators && trip.collaborators.some(collab => collab._id === userId);
+    // Convertir IDs a cadenas de texto para evitar problemas de comparación
+    const isCreator = userId && trip.createdBy && trip.createdBy._id.toString() === userId;
+    const isCollaborator = userId && trip.collaborators && trip.collaborators.some(collab => collab._id.toString() === userId);
 
     const canEdit = isCreator || isCollaborator;
     const canDelete = isCreator;
@@ -175,7 +175,7 @@ const TripDetail = () => {
                             {canDownload && <button className="dashboard-button btn-download" onClick={handleDownload}>Descargar PDF</button>}
                         </div>
 
-                        {/* Mover la previsualización y los controles de subida aquí */}
+                        {/* Previsualización y controles de subida */}
                         {previewImage && (
                             <div className="image-preview">
                                 <img src={previewImage} alt="Previsualización" className="itinerary-image-preview" />
@@ -262,7 +262,6 @@ const TripDetail = () => {
                     <CommentForm tripId={tripId} refreshTrip={fetchTrip} />
 
                     {showEdit && <EditTrip trip={trip} onClose={() => setShowEdit(false)} onUpdate={handleUpdate} />}
-                    {showShare && <ShareTripModal tripId={tripId} onClose={() => setShowShare(false)} onShare={fetchTrip} />}
                     {showDeleteConfirm && <ConfirmDeleteModal onClose={() => setShowDeleteConfirm(false)} onConfirm={handleDelete} />}
 
                     {canEdit && (
