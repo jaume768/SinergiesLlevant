@@ -50,10 +50,23 @@ const SearchResultsPage = () => {
                                 <ul className="search-results-list">
                                     {results.map((trip) => (
                                         <li key={trip._id} className="search-result-item">
-                                            <h3 className="result-title">{trip.title}</h3>
-                                            <p className="result-description">{trip.description}</p>
-                                            {trip.createdBy && <p className="result-author">Creado por: {trip.createdBy.username}</p>}
-                                            <a href={`/trips/${trip._id}`} className="result-link">Ver Itinerario</a>
+                                            <div className="result-text">
+                                                <h3 className="result-title">{trip.title}</h3>
+                                                <p className="result-description">{trip.description}</p>
+                                                {trip.createdBy && (
+                                                    <p className="result-author">Creado por: {trip.createdBy.username}</p>
+                                                )}
+                                                <a href={`/trips/${trip._id}`} className="result-link">Ver Itinerario</a>
+                                            </div>
+                                            {(trip.link || trip.imageUrl) && (
+                                                <div className="result-image-container">
+                                                    <img
+                                                        src={trip.link || trip.imageUrl}
+                                                        alt={`Imagen del itinerario ${trip.title}`}
+                                                        className="result-image"
+                                                    />
+                                                </div>
+                                            )}
                                         </li>
                                     ))}
                                 </ul>
