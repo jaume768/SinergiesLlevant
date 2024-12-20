@@ -1,3 +1,4 @@
+import { FaSearch } from 'react-icons/fa';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
@@ -18,6 +19,10 @@ const Navbar = () => {
       <Link to={brandLink} className="navbar-brand">
         TravelDaring
       </Link>
+      <div className="navbar-search">
+        <input type="text" placeholder="Buscar..." />
+        <button type="submit"><FaSearch className="search-icon" /></button>
+      </div>
       <div className="menu-icon" onClick={toggleMenu}>
         <span></span>
         <span></span>

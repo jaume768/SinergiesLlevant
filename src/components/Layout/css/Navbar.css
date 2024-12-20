@@ -10,6 +10,31 @@
     z-index: 1000;
 }
 
+.navbar-search {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.navbar-search input {
+    border: none;
+    background: none;
+    color: white;
+    padding: 5px;
+    outline: none;
+}
+
+.navbar-search button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 5px;
+}
+
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;

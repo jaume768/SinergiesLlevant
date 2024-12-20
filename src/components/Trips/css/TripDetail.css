@@ -466,6 +466,10 @@
 
 @media (max-width: 768px) {
 
+    .recommended-activity {
+        width: calc(50% - 10px);
+    }
+
     .representative-image {
         max-width: 100%;
     }
@@ -594,16 +598,6 @@
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
-}
-
-.recommended-activity {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease, background 0.3s ease;
-    width: calc(30% - 10px);
-    /* Ajustar según el diseño */
 }
 
 .recommended-activity:hover {
