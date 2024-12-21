@@ -74,7 +74,7 @@ const Login = () => {
                             </button>
                             <button
                                 type="button"
-                                onClick={() => window.location.href = 'http://localhost:5000/api/auth/google'}
+                                onClick={() => window.location.href = 'https://api-aiwonderway-production.up.railway.app/api/auth/google'}
                                 className="google-button"
                             >
                                 <FontAwesomeIcon icon={faGoogle} />
