@@ -13,20 +13,38 @@ const TripPage = () => {
     const fetchFriendTrips = async () => {
         try {
             const response = await api.get(`/users/${friendId}/trips`);
-            setTrips(response.data);
+            console.log('API response:', response.data); // Para depuración
+            if (Array.isArray(response.data)) {
+                setTrips(response.data);
+            } else {
+                setTrips([]);
+                setError('Respuesta inesperada del servidor');
+                console.error('Datos de respuesta inesperados:', response.data);
+            }
             setLoading(false);
         } catch (err) {
-            setError('Error al cargar los itinerarios del amigo');
+            console.error('Error al obtener los itinerarios:', err);
+            if (err.response && err.response.data && err.response.data.msg) {
+                setError(err.response.data.msg);
+            } else {
+                setError('Error al cargar los itinerarios del amigo');
+            }
             setLoading(false);
         }
     };
 
     useEffect(() => {
-        fetchFriendTrips();
+        if (friendId) {
+            fetchFriendTrips();
+        } else {
+            setError('ID de amigo no proporcionado');
+            setLoading(false);
+        }
     }, [friendId]);
 
     if (loading) return <p>Cargando itinerarios...</p>;
     if (error) return <div className="error-message">{error}</div>;
+    if (!Array.isArray(trips)) return <div className="error-message">Datos de itinerarios inválidos.</div>;
     if (trips.length === 0) return <p>Este usuario no tiene itinerarios públicos o no eres amigo.</p>;
 
     return (

@@ -34,7 +34,7 @@
 }
 
 .friends-list .btn-secondary {
-    background-color: var(--secondary-color);
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     padding: var(--button-padding);

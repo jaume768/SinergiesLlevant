@@ -3,9 +3,10 @@ import api from '../../utils/api';
 import { Link } from 'react-router-dom';
 import './css/FriendsList.css';
 
-const FriendsList = () => {
+const FriendsList = ({ refreshTrigger }) => {
     const [friends, setFriends] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState('');
 
     const fetchFriends = async () => {
         try {
@@ -13,20 +14,22 @@ const FriendsList = () => {
             setFriends(response.data.friends);
             setLoading(false);
         } catch (err) {
-            console.error('Error al cargar amigos');
+            console.error('Error al cargar amigos', err);
+            setError('Error al cargar amigos');
             setLoading(false);
         }
     };
 
     useEffect(() => {
         fetchFriends();
-    }, []);
+    }, [refreshTrigger]);
 
     if (loading) return <p>Cargando amigos...</p>;
 
     return (
         <div className="friends-list">
             <h3>Mis Amigos</h3>
+            {error && <div className="error-message">{error}</div>}
             {friends.length === 0 ? (
                 <p>No tienes amigos aún.</p>
             ) : (

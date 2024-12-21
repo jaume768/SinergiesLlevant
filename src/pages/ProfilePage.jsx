@@ -12,7 +12,7 @@ import './css/ProfilePage.css';
 const ProfilePage = () => {
     const { authState, logout } = useContext(AuthContext);
     const navigate = useNavigate();
-    const { userId } = useParams(); 
+    const { userId } = useParams();
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
@@ -22,6 +22,7 @@ const ProfilePage = () => {
     const [uploading, setUploading] = useState(false);
     const [uploadError, setUploadError] = useState('');
     const [previewImage, setPreviewImage] = useState(null);
+    const [friendsUpdated, setFriendsUpdated] = useState(false); // Estado para refrescar amigos
 
     const isOwnProfile = !userId || userId === authState.user._id;
 
@@ -75,6 +76,11 @@ const ProfilePage = () => {
             console.error(err);
             alert(err.response?.data?.msg || 'Error al cancelar la solicitud de amistad');
         }
+    };
+
+    // Función para actualizar la lista de amigos
+    const updateFriends = () => {
+        setFriendsUpdated(prev => !prev); // Cambia el estado para desencadenar el refresco
     };
 
     // Funciones para manejar la subida de la foto de perfil
@@ -147,36 +153,36 @@ const ProfilePage = () => {
             <div className="profile-overlay">
                 <div className="profile-content">
                     <div className="profile-header">
-                        <img 
-                            src={profile.profilePicture?.url || 'https://via.placeholder.com/150'} 
-                            alt={`${profile.username} Avatar`} 
-                            className="profile-picture" 
+                        <img
+                            src={profile.profilePicture?.url || 'https://via.placeholder.com/150'}
+                            alt={`${profile.username} Avatar`}
+                            className="profile-picture"
                         />
                         <div className="profile-info">
                             <h2 className="profile-title">{isOwnProfile ? 'Mi Perfil' : profile.username}</h2>
                             {!isOwnProfile && (
                                 <div className="profile-actions">
                                     {!isFriend && !friendRequestSent && (
-                                        <button 
-                                            className="add-friend-button" 
-                                            onClick={sendFriendRequest} 
+                                        <button
+                                            className="add-friend-button"
+                                            onClick={sendFriendRequest}
                                             aria-label="Agregar Amigo"
                                         >
                                             <i className="fas fa-user-plus"></i> Agregar Amigo
                                         </button>
                                     )}
                                     {!isFriend && friendRequestSent && (
-                                        <button 
-                                            className="cancel-friend-request-button" 
-                                            onClick={cancelFriendRequest} 
+                                        <button
+                                            className="cancel-friend-request-button"
+                                            onClick={cancelFriendRequest}
                                             aria-label="Cancelar Solicitud de Amistad"
                                         >
                                             <i className="fas fa-times"></i> Cancelar Solicitud
                                         </button>
                                     )}
                                     {isFriend && (
-                                        <button 
-                                            className="unfriend-button" 
+                                        <button
+                                            className="unfriend-button"
                                             onClick={handleUnfriend}
                                             aria-label="Eliminar Amigo"
                                         >
@@ -192,8 +198,8 @@ const ProfilePage = () => {
                         <>
                             {/* Sección para subir la foto de perfil */}
                             <div className="profile-upload-section">
-                                <button 
-                                    className="dashboard-button btn-upload-photo" 
+                                <button
+                                    className="dashboard-button btn-upload-photo"
                                     onClick={() => document.getElementById('profileImageInput').click()}
                                 >
                                     {profile.profilePicture?.url ? 'Cambiar Foto' : 'Añadir Foto'}
@@ -231,8 +237,8 @@ const ProfilePage = () => {
 
                             {/* Otros componentes del perfil */}
                             <EditProfile profile={profile} refreshProfile={fetchProfile} />
-                            <FriendsList />
-                            <FriendRequests />
+                            <FriendsList refreshTrigger={friendsUpdated} /> {/* Pasar refreshTrigger */}
+                            <FriendRequests onFriendAccepted={updateFriends} /> {/* Pasar onFriendAccepted */}
                             <div className="logout-section">
                                 <button onClick={handleLogout} className="logout-button">
                                     Cerrar Sesión
@@ -251,7 +257,6 @@ const ProfilePage = () => {
             </div>
         </div>
     );
-
 };
 
 export default ProfilePage;
