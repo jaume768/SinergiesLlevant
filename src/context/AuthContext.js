@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
         const loadUser = async () => {
             if (authState.token) {
                 try {
-                    const decoded = jwtDecode(authState.token);
                     const response = await api.get('/users/profile');
                     setAuthState({
                         ...authState,

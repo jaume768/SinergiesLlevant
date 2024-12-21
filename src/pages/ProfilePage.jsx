@@ -4,8 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import api, { uploadProfilePicture } from '../utils/api';
 import FriendsList from '../components/Profile/FriendsList';
 import FriendRequests from '../components/Profile/FriendRequests';
-import Favorites from '../components/Profile/Favorites';
-import CustomLists from '../components/Profile/CustomLists';
 import EditProfile from '../components/Profile/EditProfile';
 import './css/ProfilePage.css';
 

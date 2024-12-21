@@ -13,7 +13,7 @@ const EditProfile = ({ profile, refreshProfile }) => {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
 
-    const { username, email, bio, profilePicture } = formData;
+    const { username, bio } = formData;
 
     const onChange = (e) =>
         setFormData({ ...formData, [e.target.name]: e.target.value });

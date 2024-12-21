@@ -17,7 +17,6 @@ const TripDetail = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [showEdit, setShowEdit] = useState(false);
-    const [showShare, setShowShare] = useState(false);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [imageFile, setImageFile] = useState(null);
     const [uploading, setUploading] = useState(false);
@@ -147,10 +146,6 @@ const TripDetail = () => {
     const handleUpdate = async () => {
         await fetchTrip();
         setShowEdit(false);
-    };
-
-    const handleShare = () => {
-        setShowShare(true);
     };
 
     return (

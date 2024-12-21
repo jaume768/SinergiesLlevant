@@ -122,16 +122,7 @@ const CreateTrip = () => {
         value: code, // Código de país (ISO 3166-1 alpha-2)
         label: name, // Nombre en español
     })).sort((a, b) => a.label.localeCompare(b.label)); // Ordenar alfabéticamente
-
-    const handleSelectChange = (selectedOptions, actionMeta) => {
-        const { name } = actionMeta;
-        const values = selectedOptions ? selectedOptions.map(option => option.value) : [];
-        setFormData({
-            ...formData,
-            [name]: values,
-        });
-    };
-
+    
     const onChange = (e) => {
         const { name, value, type, checked } = e.target;
 

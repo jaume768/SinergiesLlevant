@@ -22,7 +22,6 @@ const Register = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await register(username, email, password);
             setSuccessMsg('Registro exitoso. Por favor, verifica tu correo electrónico antes de iniciar sesión.');
         } catch (errMsg) {
             setError(errMsg);
