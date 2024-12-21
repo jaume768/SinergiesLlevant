@@ -179,8 +179,8 @@ const EditTrip = ({ trip, onClose, onUpdate }) => {
 
         setLoading(true);
         try {
-            const response = await api.put(`/trips/${trip._id}`, formData);
-            onUpdate(response.data.trip);
+            await api.put(`/trips/${trip._id}`, formData);
+            onUpdate();
         } catch (err) {
             console.error(err);
             setError(err.response?.data?.msg || 'Error al actualizar el itinerario');

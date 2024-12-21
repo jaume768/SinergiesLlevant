@@ -144,8 +144,8 @@ const TripDetail = () => {
         }
     };
 
-    const handleUpdate = (updatedTrip) => {
-        setTrip(updatedTrip);
+    const handleUpdate = async () => {
+        await fetchTrip();
         setShowEdit(false);
     };
 
