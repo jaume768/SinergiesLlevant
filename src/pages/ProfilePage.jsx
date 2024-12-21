@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import api, { uploadProfilePicture } from '../utils/api';
@@ -20,11 +20,11 @@ const ProfilePage = () => {
     const [uploading, setUploading] = useState(false);
     const [uploadError, setUploadError] = useState('');
     const [previewImage, setPreviewImage] = useState(null);
-    const [friendsUpdated, setFriendsUpdated] = useState(false); // Estado para refrescar amigos
+    const [friendsUpdated, setFriendsUpdated] = useState(false);
 
     const isOwnProfile = !userId || userId === authState.user._id;
 
-    const fetchProfile = async () => {
+    const fetchProfile = useCallback(async () => {
         setLoading(true);
         try {
             if (isOwnProfile) {
@@ -43,11 +43,11 @@ const ProfilePage = () => {
             setError('Error al cargar el perfil');
             setLoading(false);
         }
-    };
+    }, [isOwnProfile, userId]);
 
     useEffect(() => {
         fetchProfile();
-    }, [userId]);
+    }, [fetchProfile]);
 
     const handleLogout = () => {
         logout();
@@ -76,12 +76,10 @@ const ProfilePage = () => {
         }
     };
 
-    // Función para actualizar la lista de amigos
     const updateFriends = () => {
-        setFriendsUpdated(prev => !prev); // Cambia el estado para desencadenar el refresco
+        setFriendsUpdated((prev) => !prev);
     };
 
-    // Funciones para manejar la subida de la foto de perfil
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -91,7 +89,7 @@ const ProfilePage = () => {
                 return;
             }
 
-            const maxSize = 5 * 1024 * 1024; // 5MB
+            const maxSize = 5 * 1024 * 1024;
             if (file.size > maxSize) {
                 setUploadError('La imagen excede el tamaño máximo de 5MB.');
                 return;
@@ -100,7 +98,6 @@ const ProfilePage = () => {
             setImageFile(file);
             setUploadError('');
 
-            // Crear una URL para la previsualización
             const reader = new FileReader();
             reader.onloadend = () => {
                 setPreviewImage(reader.result);
@@ -119,7 +116,7 @@ const ProfilePage = () => {
         setUploadError('');
 
         try {
-            const token = authState.token; // Asegúrate de que el token esté disponible
+            const token = authState.token;
             const response = await uploadProfilePicture(imageFile, token);
             setProfile((prevProfile) => ({
                 ...prevProfile,
@@ -141,9 +138,7 @@ const ProfilePage = () => {
     };
 
     if (loading) return <p className="loading-text">Cargando perfil...</p>;
-
     if (error) return <div className="error-message">{error}</div>;
-
     if (!profile) return <div className="error-message">Perfil no encontrado.</div>;
 
     return (

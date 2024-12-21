@@ -1,6 +1,5 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
 
 const GoogleCallback = () => {
     const location = useLocation();

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import api from '../../utils/api';
 import './css/CommentList.css';
 
@@ -6,7 +6,7 @@ const CommentList = ({ tripId }) => {
     const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const fetchComments = async () => {
+    const fetchComments = useCallback(async () => {
         try {
             const response = await api.get(`/trips/${tripId}/comments`);
             setComments(response.data);
@@ -15,11 +15,11 @@ const CommentList = ({ tripId }) => {
             console.error('Error al cargar comentarios');
             setLoading(false);
         }
-    };
+    }, [tripId]);
 
     useEffect(() => {
         fetchComments();
-    }, [tripId]);
+    }, [fetchComments]);
 
     if (loading) return <p>Cargando comentarios...</p>;
 

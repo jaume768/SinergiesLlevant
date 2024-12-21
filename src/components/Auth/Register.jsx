@@ -3,7 +3,6 @@ import { AuthContext } from '../../context/AuthContext';
 import './css/Auth.css';
 
 const Register = () => {
-    const { register } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
         username: '',

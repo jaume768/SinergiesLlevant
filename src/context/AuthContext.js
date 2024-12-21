@@ -16,11 +16,11 @@ export const AuthProvider = ({ children }) => {
             if (authState.token) {
                 try {
                     const response = await api.get('/users/profile');
-                    setAuthState({
-                        ...authState,
+                    setAuthState((prevState) => ({
+                        ...prevState,
                         user: response.data.profile,
                         loading: false,
-                    });
+                    }));
                 } catch (error) {
                     console.error(error);
                     localStorage.removeItem('token');
@@ -38,8 +38,9 @@ export const AuthProvider = ({ children }) => {
                 });
             }
         };
+
         loadUser();
-    }, []);
+    }, [authState.token]); // Dependencia ajustada a `authState.token`
 
     const login = async (email, password) => {
         try {

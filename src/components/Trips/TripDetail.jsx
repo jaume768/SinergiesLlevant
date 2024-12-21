@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, useCallback } from 'react';
 import api, { uploadTripImage } from '../../utils/api';
 import { useParams, useNavigate } from 'react-router-dom';
 import CommentList from '../Comments/CommentList';
@@ -23,7 +23,7 @@ const TripDetail = () => {
     const [uploadError, setUploadError] = useState('');
     const [previewImage, setPreviewImage] = useState(null);
 
-    const fetchTrip = async () => {
+    const fetchTrip = useCallback(async () => {
         try {
             const response = await api.get(`/trips/${tripId}`);
             console.log(response.data);
@@ -33,11 +33,11 @@ const TripDetail = () => {
             setError(err.response?.data?.msg || 'Error al cargar el itinerario');
             setLoading(false);
         }
-    };
+    }, [tripId]);
 
     useEffect(() => {
         fetchTrip();
-    }, [tripId]);
+    }, [fetchTrip]);
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
@@ -97,7 +97,6 @@ const TripDetail = () => {
     if (!trip) return <p className="error-message">Itinerario no encontrado.</p>;
 
     const userId = authState.user ? authState.user._id : null;
-    // Convertir IDs a cadenas de texto para evitar problemas de comparación
     const isCreator = userId && trip.createdBy && trip.createdBy._id.toString() === userId;
     const isCollaborator = userId && trip.collaborators && trip.collaborators.some(collab => collab._id.toString() === userId);
 

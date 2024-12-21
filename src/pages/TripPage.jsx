@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import api from '../utils/api';
 import { useParams } from 'react-router-dom';
 import TripList from '../components/Trips/TripList';
@@ -10,7 +10,7 @@ const TripPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
-    const fetchFriendTrips = async () => {
+    const fetchFriendTrips = useCallback(async () => {
         try {
             const response = await api.get(`/users/${friendId}/trips`);
             console.log('API response:', response.data); // Para depuración
@@ -31,7 +31,7 @@ const TripPage = () => {
             }
             setLoading(false);
         }
-    };
+    }, [friendId]);
 
     useEffect(() => {
         if (friendId) {
@@ -40,7 +40,7 @@ const TripPage = () => {
             setError('ID de amigo no proporcionado');
             setLoading(false);
         }
-    }, [friendId]);
+    }, [fetchFriendTrips]);
 
     if (loading) return <p>Cargando itinerarios...</p>;
     if (error) return <div className="error-message">{error}</div>;
