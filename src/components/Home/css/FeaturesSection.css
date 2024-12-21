@@ -65,6 +65,7 @@
     }
 
     .feature-card {
+        padding: 5px;
         max-width: 100%;
     }
 }
