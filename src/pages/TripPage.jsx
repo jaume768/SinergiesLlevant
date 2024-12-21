@@ -40,7 +40,7 @@ const TripPage = () => {
             setError('ID de amigo no proporcionado');
             setLoading(false);
         }
-    }, [fetchFriendTrips]);
+    }, [fetchFriendTrips, friendId]);
 
     if (loading) return <p>Cargando itinerarios...</p>;
     if (error) return <div className="error-message">{error}</div>;
