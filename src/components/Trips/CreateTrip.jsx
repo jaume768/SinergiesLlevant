@@ -227,6 +227,7 @@ const CreateTrip = () => {
 
 
         setErrors(newErrors);
+
         return Object.keys(newErrors).length === 0;
     };
 
@@ -239,7 +240,6 @@ const CreateTrip = () => {
             setLoading(false);
             return;
         }
-
         const dataToSubmit = { ...formData };
 
         if (!dataToSubmit.additionalPreferences.trim()) {
@@ -641,11 +641,7 @@ const CreateTrip = () => {
                 </section>
 
                 <button type="submit" className="btn-primary" disabled={loading}>
-                    {loading ? (
-                        <img src="/gifs/reload.gif" alt="Cargando..." className="spinner-gif" />
-                    ) : (
-                        'Crear Itinerario'
-                    )}
+                Crear Itinerario
                 </button>
             </form>
 

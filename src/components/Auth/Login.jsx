@@ -31,6 +31,8 @@ const Login = () => {
         }
     };
 
+    const googleAuthURL = `${process.env.REACT_APP_API_URL}/auth/google`;
+
     return (
         <div className="auth-container">
             <header className="auth-header">
@@ -74,10 +76,10 @@ const Login = () => {
                             </button>
                             <button
                                 type="button"
-                                onClick={() => window.location.href = 'https://api-aiwonderway-production.up.railway.app/api/auth/google'}
+                                onClick={() => window.location.href = googleAuthURL}
                                 className="google-button"
                             >
-                                <FontAwesomeIcon icon={faGoogle} />
+                                <FontAwesomeIcon icon={faGoogle} /> Iniciar con Google
                             </button>
 
                         </form>
