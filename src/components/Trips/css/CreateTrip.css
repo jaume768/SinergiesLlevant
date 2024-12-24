@@ -167,8 +167,8 @@
 
 /* Spinner de carga */
 .spinner-gif {
-    width: 30px; /* Tamaño adecuado */
-    height: 30px;
+    width: 200px; /* Tamaño adecuado */
+    height: 200px;
 }
 
 /* Superposición de carga */

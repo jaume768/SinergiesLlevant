@@ -225,14 +225,8 @@ const CreateTrip = () => {
             newErrors['activityLevel.pace'] = 'El nivel de actividad es requerido.';
         }
 
-        // Validar preferencias adicionales
-        if (!formData.additionalPreferences.trim()) {
-            newErrors.additionalPreferences = 'Las preferencias adicionales son requeridas.';
-        }
 
         setErrors(newErrors);
-
-        // Retornar si no hay errores
         return Object.keys(newErrors).length === 0;
     };
 
@@ -241,14 +235,19 @@ const CreateTrip = () => {
         setLoading(true);
         setError('');
 
-        // Validar el formulario antes de enviar
         if (!validateForm()) {
             setLoading(false);
             return;
         }
 
+        const dataToSubmit = { ...formData };
+
+        if (!dataToSubmit.additionalPreferences.trim()) {
+            dataToSubmit.additionalPreferences = 'Nada';
+        }
+
         try {
-            const response = await api.post('/trips/create', formData);
+            const response = await api.post('/trips/create', dataToSubmit);
             navigate(`/trips/${response.data._id}`);
         } catch (err) {
             setError(err.response?.data?.msg || 'Error al crear el itinerario');
@@ -635,11 +634,9 @@ const CreateTrip = () => {
                             name="additionalPreferences"
                             value={formData.additionalPreferences}
                             onChange={onChange}
-                            required
                             placeholder="Escribe cualquier preferencia adicional..."
                             className={errors.additionalPreferences ? 'input-error' : ''}
                         ></textarea>
-                        {errors.additionalPreferences && <span className="error-text">{errors.additionalPreferences}</span>}
                     </div>
                 </section>
 
