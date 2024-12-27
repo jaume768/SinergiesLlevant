@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
         };
 
         loadUser();
-    }, [authState.token]); // Dependencia ajustada a `authState.token`
+    }, [authState.token]);
 
     const login = async (email, password) => {
         try {
@@ -58,7 +58,8 @@ export const AuthProvider = ({ children }) => {
                 loading: false,
             });
         } catch (error) {
-            throw error.response.data.msg || 'Error al iniciar sesión';
+            const errorMessage = error.response?.data?.msg || 'Error al iniciar sesión';
+            throw errorMessage;
         }
     };
 
@@ -71,17 +72,22 @@ export const AuthProvider = ({ children }) => {
                 user: jwtDecode(response.data.token),
                 loading: false,
             });
-            const profileResponse = await api.get('/users/profile');
-            setAuthState({
-                token: response.data.token,
-                user: profileResponse.data.profile,
-                loading: false,
-            });
+            try {
+                const profileResponse = await api.get('/users/profile');
+                setAuthState({
+                    token: response.data.token,
+                    user: profileResponse.data.profile,
+                    loading: false,
+                });
+            } catch (profileError) {
+                console.error("Error al obtener el perfil del usuario después del registro:", profileError);
+            }
         } catch (error) {
-            throw error.response.data.msg || 'Error al registrarse';
+            const errorMessage = error.response?.data?.msg || 'Error al registrarse';
+            throw errorMessage;
         }
     };
-
+    
     const logout = () => {
         localStorage.removeItem('token');
         setAuthState({

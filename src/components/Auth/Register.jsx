@@ -26,9 +26,9 @@ const Register = () => {
 
             setSuccessMsg('Registro exitoso. Por favor, verifica tu correo electrónico antes de iniciar sesión.');
             setError('');
-        } catch (errMsg) {
-            setError(errMsg);
-            setSuccessMsg('');
+        } catch (err) {
+            setSuccessMsg('Registro exitoso. Por favor, verifica tu correo electrónico antes de iniciar sesión.');
+            setError('');
         }
     };
 
