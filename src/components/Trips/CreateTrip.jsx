@@ -262,7 +262,7 @@ const CreateTrip = () => {
             {error && <div className="error-message">{error}</div>}
             <form onSubmit={onSubmit}>
                 <section className="form-section">
-                    <h3><FontAwesomeIcon icon={faInfoCircle} /> Información Básica</h3>
+                    <h3><FontAwesomeIcon icon={faInfoCircle} /> Información Básica *</h3>
                     <div className="form-group">
                         <label>
                             Título
@@ -310,7 +310,7 @@ const CreateTrip = () => {
                 </section>
 
                 <section className="form-section">
-                    <h3>Fechas del Viaje</h3>
+                    <h3>Fechas del Viaje *</h3>
                     <div className="form-row">
                         <div className="form-group">
                             <label>
@@ -347,7 +347,7 @@ const CreateTrip = () => {
                 </section>
 
                 <section className="form-section">
-                    <h3> Destino</h3>
+                    <h3> Destino *</h3>
                     <div className="form-row">
                         <div className="form-group">
                             <label>
@@ -410,7 +410,7 @@ const CreateTrip = () => {
                 </section>
 
                 <section className="form-section">
-                    <h3> Presupuesto y Logística</h3>
+                    <h3> Presupuesto y Logística *</h3>
                     <div className="form-row">
                         <div className="form-group">
                             <label>
@@ -451,7 +451,7 @@ const CreateTrip = () => {
                 </section>
 
                 <section className="form-section">
-                    <h3>Preferencias</h3>
+                    <h3>Preferencias *</h3>
                     <div className="form-group">
                         <label>
                             <FontAwesomeIcon icon={faHeart} className="input-icon" />
