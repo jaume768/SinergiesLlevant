@@ -79,7 +79,7 @@ const Login = () => {
                                 onClick={() => window.location.href = googleAuthURL}
                                 className="google-button"
                             >
-                                <FontAwesomeIcon icon={faGoogle} /> Iniciar con Google
+                                <FontAwesomeIcon icon={faGoogle} />
                             </button>
 
                         </form>
