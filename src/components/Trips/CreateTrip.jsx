@@ -1,3 +1,5 @@
+// src/components/CreateTrip.js
+
 import React, { useState } from 'react';
 import api from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
@@ -35,8 +37,11 @@ const CreateTrip = () => {
             endDate: '',
         },
         destinationPreferences: {
-            country: '', // Inicialmente vacío
+            country: '',       // Código del país (ej. 'SE')
+            countryName: '',   // Nombre del país (ej. 'Suecia')
             type: '',
+            region: '',        // Asegúrate de incluir estos campos si tu modelo los requiere
+            climate: '',
         },
         budget: {
             total: '',
@@ -122,7 +127,7 @@ const CreateTrip = () => {
         value: code, // Código de país (ISO 3166-1 alpha-2)
         label: name, // Nombre en español
     })).sort((a, b) => a.label.localeCompare(b.label)); // Ordenar alfabéticamente
-    
+
     const onChange = (e) => {
         const { name, value, type, checked } = e.target;
 
@@ -175,6 +180,9 @@ const CreateTrip = () => {
         if (!formData.destinationPreferences.country) {
             newErrors['destinationPreferences.country'] = 'El país de destino es requerido.';
         }
+        if (!formData.destinationPreferences.countryName) {
+            newErrors['destinationPreferences.countryName'] = 'El nombre del país es requerido.';
+        }
 
         // Validar tipo de destino
         if (!formData.destinationPreferences.type) {
@@ -224,7 +232,6 @@ const CreateTrip = () => {
         if (!formData.activityLevel.pace) {
             newErrors['activityLevel.pace'] = 'El nivel de actividad es requerido.';
         }
-
 
         setErrors(newErrors);
 
@@ -367,6 +374,7 @@ const CreateTrip = () => {
                                         destinationPreferences: {
                                             ...formData.destinationPreferences,
                                             country: selectedOption ? selectedOption.value : '',
+                                            countryName: selectedOption ? selectedOption.label : '',
                                         },
                                     });
                                     setErrors(prevErrors => ({ ...prevErrors, 'destinationPreferences.country': '' }));
@@ -376,6 +384,7 @@ const CreateTrip = () => {
                                 placeholder="Seleccione un país de destino"
                             />
                             {errors['destinationPreferences.country'] && <span className="error-text">{errors['destinationPreferences.country']}</span>}
+                            {errors['destinationPreferences.countryName'] && <span className="error-text">{errors['destinationPreferences.countryName']}</span>}
                         </div>
 
                         <div className="form-group">
