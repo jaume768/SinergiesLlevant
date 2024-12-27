@@ -1,5 +1,13 @@
+/* src/pages/Dashboard/css/Dashboard.css */
+
 @import '../../variables.css';
 
+/* Definir la variable --vh para manejar la altura del viewport */
+:root {
+    --vh: 100vh;
+}
+
+/* Reset de márgenes y paddings */
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +16,7 @@
 
 /* Contenedor principal para Dashboard */
 .dashboard-container {
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     background: url('https://wallpapers.com/images/hd/travel-hd-4zjwrepl0mzn70nd.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
@@ -20,9 +28,9 @@
 
 /* Superposición oscura para mejorar la legibilidad */
 .dashboard-overlay {
-    background: var(--background-overlay);
+    background: var(--background-overlay, rgba(0, 0, 0, 0.6));
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,13 +41,13 @@
 .dashboard-content {
     background: rgba(255, 255, 255, 0.1);
     padding: 40px;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius, 10px);
     max-width: 900px;
     width: 100%;
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow, 0 4px 15px rgba(0,0,0,0.2));
     backdrop-filter: blur(15px);
     text-align: center;
-    color: var(--text-color);
+    color: var(--text-color, #fff);
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -49,21 +57,21 @@
 
 /* Título del Dashboard */
 .dashboard-title {
-    font-size: var(--font-size-title);
+    font-size: var(--font-size-title, 2.5rem);
     font-weight: 700;
     margin-bottom: 10px;
-    color: var(--secondary-color);
+    color: var(--secondary-color, #fff);
 }
 
 /* Botón primario */
 .dashboard-button {
-    background-color: var(--primary-color);
+    background-color: var(--primary-color, #3f51b5);
     color: #fff;
     border: none;
-    padding: var(--button-padding);
-    border-radius: var(--button-radius);
+    padding: var(--button-padding, 12px 30px);
+    border-radius: var(--button-radius, 25px);
     text-decoration: none;
-    font-size: var(--font-size-button);
+    font-size: var(--font-size-button, 1rem);
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -72,25 +80,25 @@
 }
 
 .dashboard-button:hover {
-    background-color: var(--primary-hover);
+    background-color: var(--primary-hover, #2c3e8a);
 }
 
 /* Texto de carga */
 .loading-text {
     font-size: 1.5rem;
     margin-top: 20px;
-    color: var(--text-color);
+    color: var(--text-color, #fff);
 }
 
 .no-trips-text {
     font-size: 1.2rem;
     margin-top: 20px;
-    color: var(--text-color);
+    color: var(--text-color, #ddd);
 }
 
 /* Mensaje de error */
 .error-message {
-    background-color: var(--error-color);
+    background-color: var(--error-color, #ff4d4d);
     color: #fff;
     padding: 10px 15px;
     border-radius: 5px;
@@ -112,10 +120,10 @@
     max-width: 400px;
     padding: 10px 15px;
     border: none;
-    border-radius: var(--border-radius);
+    border-radius: var(--border-radius, 8px);
     font-size: 1rem;
     outline: none;
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--box-shadow, 0 2px 4px rgba(0,0,0,0.1));
 }
 
 .search-input-dashboard::placeholder {
@@ -131,9 +139,22 @@
     .dashboard-title {
         font-size: 2.2rem;
     }
+
+    .dashboard-button {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 768px) {
+    .dashboard-container {
+        background-attachment: scroll; /* Cambiar fixed a scroll */
+    }
+
+    .dashboard-overlay {
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+
     .dashboard-content {
         padding: 25px;
     }
@@ -159,6 +180,14 @@
 }
 
 @media (max-width: 480px) {
+    .dashboard-container {
+        background-attachment: scroll; /* Asegurarse de que sigue scroll */
+    }
+
+    .dashboard-overlay {
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+
     .dashboard-content {
         padding: 20px;
     }

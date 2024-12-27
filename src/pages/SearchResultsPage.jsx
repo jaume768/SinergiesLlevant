@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import api from '../utils/api';
-import './css/SearchResultsPage.css'; // Importa el CSS
+import './css/SearchResultsPage.css';
 
 const SearchResultsPage = () => {
     const location = useLocation();
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [error, setError] = useState('');
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const q = params.get('q') || '';
@@ -24,6 +24,7 @@ const SearchResultsPage = () => {
                     setResults(response.data);
                 } catch (error) {
                     console.error('Error al buscar:', error);
+                    setError('Error al cargar los resultados de búsqueda.');
                 } finally {
                     setLoading(false);
                 }
@@ -35,6 +36,21 @@ const SearchResultsPage = () => {
         }
     }, [query]);
 
+    useEffect(() => {
+        const setVh = () => {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        };
+
+        setVh();
+
+        window.addEventListener('resize', setVh);
+
+        return () => {
+            window.removeEventListener('resize', setVh);
+        };
+    }, []);
+
     return (
         <div className="search-container">
             <div className="search-overlay">
@@ -44,6 +60,7 @@ const SearchResultsPage = () => {
                     ) : (
                         <>
                             <h1 className="search-title">Resultados de búsqueda para: {query}</h1>
+                            {error && <div className="error-message">{error}</div>}
                             {results.length === 0 ? (
                                 <p className="no-results-text">No se encontraron resultados.</p>
                             ) : (

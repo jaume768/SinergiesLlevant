@@ -1,6 +1,11 @@
-/* src/components/SearchResultsPage/css/SearchResultsPage.css */
+/* src/pages/SearchResultsPage/css/SearchResultsPage.css */
 
 @import '../../variables.css';
+
+/* Definir la variable --vh para manejar la altura del viewport */
+:root {
+    --vh: 100vh;
+}
 
 /* Reset de márgenes y paddings */
 * {
@@ -11,7 +16,7 @@
 
 /* Contenedor principal para SearchResultsPage */
 .search-container {
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     background: url('https://wallpapers.com/images/hd/travel-hd-4zjwrepl0mzn70nd.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
@@ -25,7 +30,7 @@
 .search-overlay {
     background: var(--background-overlay, rgba(0, 0, 0, 0.6));
     width: 100%;
-    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,6 +50,7 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    margin-top: 10px;
     overflow-y: auto;
 }
 
@@ -72,6 +78,17 @@
     margin-top: 20px;
 }
 
+/* Mensaje de error */
+.error-message {
+    background-color: var(--error-color, #ff4d4d);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 500;
+}
+
 /* Lista de resultados de búsqueda */
 .search-results-list {
     list-style: none;
@@ -94,14 +111,6 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-}
-
-/* Ajuste para dispositivos móviles */
-@media (max-width: 768px) {
-    .search-result-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
 }
 
 /* Hover efecto */
@@ -172,8 +181,68 @@
     border-radius: 8px;
 }
 
-/* Ajustes para pantallas móviles */
+/* Ajustes para dispositivos móviles */
 @media (max-width: 768px) {
+    .search-result-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .result-image-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .result-image {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+    }
+
+    .search-container {
+        background-attachment: scroll; /* Cambiar fixed a scroll */
+    }
+
+    .search-overlay {
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .search-content {
+        padding: 30px;
+    }
+
+    .search-title {
+        font-size: 2rem;
+    }
+
+    .loading-text,
+    .no-results-text {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-container {
+        background-attachment: scroll; /* Asegurarse de que sigue scroll */
+    }
+
+    .search-overlay {
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .search-content {
+        padding: 20px;
+    }
+
+    .search-title {
+        font-size: 1.8rem;
+    }
+
+    .loading-text,
+    .no-results-text {
+        font-size: 0.9rem;
+    }
+
     .result-image-container {
         width: 100%;
         height: auto;
