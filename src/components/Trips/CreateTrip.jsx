@@ -1,5 +1,3 @@
-// src/components/CreateTrip.js
-
 import React, { useState } from 'react';
 import api from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
@@ -8,22 +6,23 @@ import './css/CreateTrip.css';
 import countries from 'i18n-iso-countries';
 import esLocale from 'i18n-iso-countries/langs/es.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-    faInfoCircle, 
-    faGlobe, 
-    faCalendarAlt, 
-    faDollarSign, 
-    faCity, 
-    faHeart, 
-    faUtensils, 
-    faHotel, 
-    faCar, 
-    faUserFriends, 
-    faRunning, 
-    faPlusCircle 
+import {
+    faInfoCircle,
+    faGlobe,
+    faCalendarAlt,
+    faDollarSign,
+    faCity,
+    faHeart,
+    faUtensils,
+    faHotel,
+    faCar,
+    faUserFriends,
+    faRunning,
+    faPlusCircle
 } from '@fortawesome/free-solid-svg-icons';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
-// Registra el idioma español para obtener los nombres de los países en español
 countries.registerLocale(esLocale);
 
 const CreateTrip = () => {
@@ -33,14 +32,14 @@ const CreateTrip = () => {
         description: '',
         public: true,
         travelDates: {
-            startDate: '',
-            endDate: '',
+            startDate: null,
+            endDate: null,
         },
         destinationPreferences: {
-            country: '',       // Código del país (ej. 'SE')
-            countryName: '',   // Nombre del país (ej. 'Suecia')
+            country: '',
+            countryName: '',
             type: '',
-            region: '',        // Asegúrate de incluir estos campos si tu modelo los requiere
+            region: '',
             climate: '',
         },
         budget: {
@@ -65,10 +64,9 @@ const CreateTrip = () => {
     });
 
     const [errors, setErrors] = useState({});
-    const [error, setError] = useState(''); // Estado para errores generales
+    const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    // Definición de opciones para otros campos
     const interestOptions = [
         { value: 'aventura', label: 'Aventura' },
         { value: 'cultura', label: 'Cultura' },
@@ -122,51 +120,61 @@ const CreateTrip = () => {
         { value: 'Campo', label: 'Campo' },
     ];
 
-    // Genera dinámicamente las opciones de países con etiquetas en español y valores en códigos de país
     const countryOptions = Object.entries(countries.getNames('es')).map(([code, name]) => ({
-        value: code, // Código de país (ISO 3166-1 alpha-2)
-        label: name, // Nombre en español
-    })).sort((a, b) => a.label.localeCompare(b.label)); // Ordenar alfabéticamente
+        value: code,
+        label: name,
+    })).sort((a, b) => a.label.localeCompare(b.label));
+
+    const getTodayDateString = () => {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    };
 
     const onChange = (e) => {
         const { name, value, type, checked } = e.target;
-
         if (name.includes('.')) {
             const [parent, child] = name.split('.');
-            setFormData({
-                ...formData,
-                [parent]: {
-                    ...formData[parent],
+            setFormData(prevState => {
+                const updatedParent = {
+                    ...prevState[parent],
                     [child]: type === 'checkbox' ? checked : value,
-                },
+                };
+                if (parent === 'travelDates' && child === 'startDate') {
+                    const newStartDate = new Date(value);
+                    const currentEndDate = new Date(prevState.travelDates.endDate);
+                    if (prevState.travelDates.endDate && currentEndDate < newStartDate) {
+                        updatedParent.endDate = '';
+                    }
+                }
+                return {
+                    ...prevState,
+                    [parent]: updatedParent,
+                };
             });
         } else if (type === 'checkbox') {
-            setFormData({
-                ...formData,
+            setFormData(prevState => ({
+                ...prevState,
                 [name]: checked,
-            });
+            }));
         } else {
-            setFormData({
-                ...formData,
+            setFormData(prevState => ({
+                ...prevState,
                 [name]: value,
-            });
+            }));
         }
     };
 
     const validateForm = () => {
         const newErrors = {};
-
-        // Validar título
         if (!formData.title.trim()) {
             newErrors.title = 'El título es requerido.';
         }
-
-        // Validar descripción
         if (!formData.description.trim()) {
             newErrors.description = 'La descripción es requerida.';
         }
-
-        // Validar fechas de viaje
         if (!formData.travelDates.startDate) {
             newErrors['travelDates.startDate'] = 'La fecha de inicio es requerida.';
         }
@@ -175,66 +183,44 @@ const CreateTrip = () => {
         } else if (formData.travelDates.startDate && formData.travelDates.endDate < formData.travelDates.startDate) {
             newErrors['travelDates.endDate'] = 'La fecha de fin debe ser posterior a la fecha de inicio.';
         }
-
-        // Validar país de destino
         if (!formData.destinationPreferences.country) {
             newErrors['destinationPreferences.country'] = 'El país de destino es requerido.';
         }
         if (!formData.destinationPreferences.countryName) {
             newErrors['destinationPreferences.countryName'] = 'El nombre del país es requerido.';
         }
-
-        // Validar tipo de destino
         if (!formData.destinationPreferences.type) {
             newErrors['destinationPreferences.type'] = 'El tipo de destino es requerido.';
         }
-
-        // Validar presupuesto total
         if (formData.budget.total === '' || formData.budget.total === null) {
             newErrors['budget.total'] = 'El presupuesto total es requerido.';
         } else if (formData.budget.total < 0) {
             newErrors['budget.total'] = 'El presupuesto total no puede ser negativo.';
         }
-
-        // Validar número de ciudades
         if (!formData.numberOfCities) {
             newErrors.numberOfCities = 'El número de ciudades es requerido.';
         } else if (formData.numberOfCities < 1) {
             newErrors.numberOfCities = 'El número de ciudades debe ser al menos 1.';
         }
-
-        // Validar intereses
         if (formData.interests.length === 0) {
             newErrors.interests = 'Al menos un interés es requerido.';
         }
-
-        // Validar preferencias de comida
         if (formData.foodPreferences.length === 0) {
             newErrors.foodPreferences = 'Al menos una preferencia de comida es requerida.';
         }
-
-        // Validar preferencia de alojamiento
         if (!formData.accommodationPreferences.type) {
             newErrors['accommodationPreferences.type'] = 'La preferencia de alojamiento es requerida.';
         }
-
-        // Validar preferencia de transporte
         if (!formData.transportPreferences.preferredMode) {
             newErrors['transportPreferences.preferredMode'] = 'La preferencia de transporte es requerida.';
         }
-
-        // Validar compañero de viaje
         if (!formData.travelCompanion.type) {
             newErrors['travelCompanion.type'] = 'El compañero de viaje es requerido.';
         }
-
-        // Validar nivel de actividad
         if (!formData.activityLevel.pace) {
             newErrors['activityLevel.pace'] = 'El nivel de actividad es requerido.';
         }
-
         setErrors(newErrors);
-
         return Object.keys(newErrors).length === 0;
     };
 
@@ -242,17 +228,16 @@ const CreateTrip = () => {
         e.preventDefault();
         setLoading(true);
         setError('');
-
         if (!validateForm()) {
             setLoading(false);
             return;
         }
         const dataToSubmit = { ...formData };
-
+        dataToSubmit.travelDates.startDate = formData.travelDates.startDate.toISOString().split('T')[0];
+        dataToSubmit.travelDates.endDate = formData.travelDates.endDate.toISOString().split('T')[0];
         if (!dataToSubmit.additionalPreferences.trim()) {
             dataToSubmit.additionalPreferences = 'Nada';
         }
-
         try {
             const response = await api.post('/trips/create', dataToSubmit);
             navigate(`/trips/${response.data._id}`);
@@ -324,13 +309,28 @@ const CreateTrip = () => {
                                 <FontAwesomeIcon icon={faCalendarAlt} className="input-icon" />
                                 Fecha de Inicio
                             </label>
-                            <input
-                                type="date"
-                                name="travelDates.startDate"
-                                value={formData.travelDates.startDate}
-                                onChange={onChange}
-                                required
+                            <DatePicker
+                                selected={formData.travelDates.startDate}
+                                onChange={(date) => {
+                                    setFormData(prevState => ({
+                                        ...prevState,
+                                        travelDates: {
+                                            ...prevState.travelDates,
+                                            startDate: date,
+                                            endDate: prevState.travelDates.endDate && date && prevState.travelDates.endDate < date
+                                                ? null
+                                                : prevState.travelDates.endDate,
+                                        },
+                                    }));
+                                    setErrors(prevErrors => ({ ...prevErrors, 'travelDates.startDate': '' }));
+                                }}
+                                selectsStart
+                                startDate={formData.travelDates.startDate}
+                                endDate={formData.travelDates.endDate}
+                                minDate={new Date()} // Fecha mínima: hoy
+                                placeholderText="Seleccione la fecha de inicio"
                                 className={errors['travelDates.startDate'] ? 'input-error' : ''}
+                                dateFormat="yyyy-MM-dd"
                             />
                             {errors['travelDates.startDate'] && <span className="error-text">{errors['travelDates.startDate']}</span>}
                         </div>
@@ -340,13 +340,26 @@ const CreateTrip = () => {
                                 <FontAwesomeIcon icon={faCalendarAlt} className="input-icon" />
                                 Fecha de Fin
                             </label>
-                            <input
-                                type="date"
-                                name="travelDates.endDate"
-                                value={formData.travelDates.endDate}
-                                onChange={onChange}
-                                required
+                            <DatePicker
+                                selected={formData.travelDates.endDate}
+                                onChange={(date) => {
+                                    setFormData(prevState => ({
+                                        ...prevState,
+                                        travelDates: {
+                                            ...prevState.travelDates,
+                                            endDate: date,
+                                        },
+                                    }));
+                                    setErrors(prevErrors => ({ ...prevErrors, 'travelDates.endDate': '' }));
+                                }}
+                                selectsEnd
+                                startDate={formData.travelDates.startDate}
+                                endDate={formData.travelDates.endDate}
+                                minDate={formData.travelDates.startDate || new Date()}
+                                placeholderText="Seleccione la fecha de fin"
                                 className={errors['travelDates.endDate'] ? 'input-error' : ''}
+                                dateFormat="yyyy-MM-dd"
+                                disabled={!formData.travelDates.startDate}
                             />
                             {errors['travelDates.endDate'] && <span className="error-text">{errors['travelDates.endDate']}</span>}
                         </div>
@@ -650,7 +663,7 @@ const CreateTrip = () => {
                 </section>
 
                 <button type="submit" className="btn-primary" disabled={loading}>
-                Crear Itinerario
+                    Crear Itinerario
                 </button>
             </form>
 
