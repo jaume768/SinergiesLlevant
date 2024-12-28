@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../utils/api';
 import TripList from '../components/Trips/TripList';
 import Pagination from '../components/Trips/Pagination';
@@ -61,21 +61,6 @@ const Dashboard = () => {
             behavior: 'smooth',
         });
     }, [currentPage]);
-
-    useEffect(() => {
-        const setVh = () => {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        };
-
-        setVh();
-
-        window.addEventListener('resize', setVh);
-
-        return () => {
-            window.removeEventListener('resize', setVh);
-        };
-    }, []);
 
     return (
         <div className="dashboard-container">
