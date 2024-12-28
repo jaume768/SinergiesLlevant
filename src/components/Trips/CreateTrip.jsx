@@ -34,8 +34,9 @@ const CreateTrip = () => {
         description: '',
         public: true,
         travelDates: {
-            startDate: null,
-            endDate: null,
+            // Renombramos a fechaInicio y fechaFin
+            fechaInicio: null,
+            fechaFin: null,
         },
         destinationPreferences: {
             country: '', 
@@ -138,11 +139,14 @@ const CreateTrip = () => {
                     [child]: type === 'checkbox' ? checked : value,
                 };
                 
-                if (parent === 'travelDates' && child === 'startDate') {
+                // Aquí ya no tiene tanta relevancia el "startDate" o "endDate",
+                // porque los renombramos a fechaInicio y fechaFin,
+                // pero dejamos el control condicional por si lo deseas.
+                if (parent === 'travelDates' && child === 'fechaInicio') {
                     const newStartDate = new Date(value);
-                    const currentEndDate = new Date(prevState.travelDates.endDate);
-                    if (prevState.travelDates.endDate && currentEndDate < newStartDate) {
-                        updatedParent.endDate = null;
+                    const currentEndDate = new Date(prevState.travelDates.fechaFin);
+                    if (prevState.travelDates.fechaFin && currentEndDate < newStartDate) {
+                        updatedParent.fechaFin = null;
                     }
                 }
 
@@ -172,13 +176,16 @@ const CreateTrip = () => {
         if (!formData.description.trim()) {
             newErrors.description = 'La descripción es requerida.';
         }
-        if (!formData.travelDates.startDate) {
-            newErrors['travelDates.startDate'] = 'La fecha de inicio es requerida.';
+        if (!formData.travelDates.fechaInicio) {
+            newErrors['travelDates.fechaInicio'] = 'La fecha de inicio es requerida.';
         }
-        if (!formData.travelDates.endDate) {
-            newErrors['travelDates.endDate'] = 'La fecha de fin es requerida.';
-        } else if (formData.travelDates.startDate && formData.travelDates.endDate < formData.travelDates.startDate) {
-            newErrors['travelDates.endDate'] = 'La fecha de fin debe ser posterior a la fecha de inicio.';
+        if (!formData.travelDates.fechaFin) {
+            newErrors['travelDates.fechaFin'] = 'La fecha de fin es requerida.';
+        } else if (
+            formData.travelDates.fechaInicio && 
+            formData.travelDates.fechaFin < formData.travelDates.fechaInicio
+        ) {
+            newErrors['travelDates.fechaFin'] = 'La fecha de fin debe ser posterior a la de inicio.';
         }
         if (!formData.destinationPreferences.country) {
             newErrors['destinationPreferences.country'] = 'El país de destino es requerido.';
@@ -231,8 +238,14 @@ const CreateTrip = () => {
             return;
         }
         const dataToSubmit = { ...formData };
-        dataToSubmit.travelDates.startDate = formData.travelDates.startDate.toISOString().split('T')[0];
-        dataToSubmit.travelDates.endDate = formData.travelDates.endDate.toISOString().split('T')[0];
+
+        // Convertimos las fechas a string
+        dataToSubmit.travelDates.fechaInicio = formData.travelDates.fechaInicio
+            ? formData.travelDates.fechaInicio.toISOString().split('T')[0]
+            : null;
+        dataToSubmit.travelDates.fechaFin = formData.travelDates.fechaFin
+            ? formData.travelDates.fechaFin.toISOString().split('T')[0]
+            : null;
         
         if (!dataToSubmit.additionalPreferences.trim()) {
             dataToSubmit.additionalPreferences = 'Nada';
@@ -252,13 +265,16 @@ const CreateTrip = () => {
         <div className="create-trip-form-container">
             <h2>Crear Nuevo Itinerario</h2>
             {error && <div className="error-message">{error}</div>}
-            <form onSubmit={onSubmit}>
+
+            {/*
+              Agregamos autoComplete="off" al form para reforzar
+              que no se muestre autocompletado de tarjeta
+            */}
+            <form onSubmit={onSubmit} autoComplete="off">
                 <section className="form-section">
                     <h3><FontAwesomeIcon icon={faInfoCircle} /> Información Básica *</h3>
                     <div className="form-group">
-                        <label>
-                            Título
-                        </label>
+                        <label>Título</label>
                         <input
                             type="text"
                             name="title"
@@ -267,6 +283,8 @@ const CreateTrip = () => {
                             required
                             placeholder="Ingrese el título del itinerario"
                             className={errors.title ? 'input-error' : ''}
+                            // autoComplete adicionalmente en off
+                            autoComplete="off"
                         />
                         {errors.title && <span className="error-text">{errors.title}</span>}
                     </div>
@@ -283,6 +301,7 @@ const CreateTrip = () => {
                             required
                             placeholder="Ingrese una descripción detallada"
                             className={errors.description ? 'input-error' : ''}
+                            autoComplete="off"
                         ></textarea>
                         {errors.description && <span className="error-text">{errors.description}</span>}
                     </div>
@@ -310,30 +329,43 @@ const CreateTrip = () => {
                                 Fecha de Inicio
                             </label>
                             <DatePicker
-                                selected={formData.travelDates.startDate}
+                                selected={formData.travelDates.fechaInicio}
                                 onChange={(date) => {
                                     setFormData(prevState => ({
                                         ...prevState,
                                         travelDates: {
                                             ...prevState.travelDates,
-                                            startDate: date,
-                                            endDate: prevState.travelDates.endDate && date && prevState.travelDates.endDate < date
-                                                ? null
-                                                : prevState.travelDates.endDate,
+                                            fechaInicio: date,
+                                            fechaFin:
+                                                // si la fechaFin ya existe y
+                                                // es menor que la nueva fechaInicio => null
+                                                prevState.travelDates.fechaFin &&
+                                                date &&
+                                                prevState.travelDates.fechaFin < date
+                                                    ? null
+                                                    : prevState.travelDates.fechaFin,
                                         },
                                     }));
-                                    setErrors(prevErrors => ({ ...prevErrors, 'travelDates.startDate': '' }));
+                                    setErrors(prevErrors => ({
+                                        ...prevErrors,
+                                        'travelDates.fechaInicio': '',
+                                    }));
                                 }}
                                 selectsStart
-                                startDate={formData.travelDates.startDate}
-                                endDate={formData.travelDates.endDate}
+                                startDate={formData.travelDates.fechaInicio}
+                                endDate={formData.travelDates.fechaFin}
                                 minDate={new Date()} // Fecha mínima: hoy
                                 placeholderText="Seleccione la fecha de inicio"
-                                className={errors['travelDates.startDate'] ? 'input-error' : ''}
+                                className={errors['travelDates.fechaInicio'] ? 'input-error' : ''}
                                 dateFormat="yyyy-MM-dd"
-                                locale="es" // Establece la localización a español
+                                locale="es"
+                                // Importante para que iOS no pida tarjeta:
+                                autoComplete="off"
+                                name="fechaInicio"
                             />
-                            {errors['travelDates.startDate'] && <span className="error-text">{errors['travelDates.startDate']}</span>}
+                            {errors['travelDates.fechaInicio'] && (
+                                <span className="error-text">{errors['travelDates.fechaInicio']}</span>
+                            )}
                         </div>
 
                         <div className="form-group">
@@ -342,34 +374,41 @@ const CreateTrip = () => {
                                 Fecha de Fin
                             </label>
                             <DatePicker
-                                selected={formData.travelDates.endDate}
+                                selected={formData.travelDates.fechaFin}
                                 onChange={(date) => {
                                     setFormData(prevState => ({
                                         ...prevState,
                                         travelDates: {
                                             ...prevState.travelDates,
-                                            endDate: date,
+                                            fechaFin: date,
                                         },
                                     }));
-                                    setErrors(prevErrors => ({ ...prevErrors, 'travelDates.endDate': '' }));
+                                    setErrors(prevErrors => ({
+                                        ...prevErrors,
+                                        'travelDates.fechaFin': '',
+                                    }));
                                 }}
                                 selectsEnd
-                                startDate={formData.travelDates.startDate}
-                                endDate={formData.travelDates.endDate}
-                                minDate={formData.travelDates.startDate || new Date()}
+                                startDate={formData.travelDates.fechaInicio}
+                                endDate={formData.travelDates.fechaFin}
+                                minDate={formData.travelDates.fechaInicio || new Date()}
                                 placeholderText="Seleccione la fecha de fin"
-                                className={errors['travelDates.endDate'] ? 'input-error' : ''}
+                                className={errors['travelDates.fechaFin'] ? 'input-error' : ''}
                                 dateFormat="yyyy-MM-dd"
                                 locale="es"
-                                disabled={!formData.travelDates.startDate}
+                                disabled={!formData.travelDates.fechaInicio}
+                                autoComplete="off"
+                                name="fechaFin"
                             />
-                            {errors['travelDates.endDate'] && <span className="error-text">{errors['travelDates.endDate']}</span>}
+                            {errors['travelDates.fechaFin'] && (
+                                <span className="error-text">{errors['travelDates.fechaFin']}</span>
+                            )}
                         </div>
                     </div>
                 </section>
 
                 <section className="form-section">
-                    <h3> Destino *</h3>
+                    <h3>Destino *</h3>
                     <div className="form-row">
                         <div className="form-group">
                             <label>
@@ -380,9 +419,12 @@ const CreateTrip = () => {
                                 name="destinationPreferences.country"
                                 options={countryOptions}
                                 isClearable
-                                value={countryOptions.find(
-                                    option => option.value === formData.destinationPreferences.country
-                                ) || null}
+                                value={
+                                    countryOptions.find(
+                                        option =>
+                                            option.value === formData.destinationPreferences.country
+                                    ) || null
+                                }
                                 onChange={(selectedOption) => {
                                     setFormData({
                                         ...formData,
@@ -392,14 +434,28 @@ const CreateTrip = () => {
                                             countryName: selectedOption ? selectedOption.label : '',
                                         },
                                     });
-                                    setErrors(prevErrors => ({ ...prevErrors, 'destinationPreferences.country': '' }));
+                                    setErrors(prevErrors => ({
+                                        ...prevErrors,
+                                        'destinationPreferences.country': '',
+                                        'destinationPreferences.countryName': '',
+                                    }));
                                 }}
-                                className={`react-select-container ${errors['destinationPreferences.country'] ? 'select-error' : ''}`}
+                                className={`react-select-container ${
+                                    errors['destinationPreferences.country'] ? 'select-error' : ''
+                                }`}
                                 classNamePrefix="react-select"
                                 placeholder="Seleccione un país de destino"
                             />
-                            {errors['destinationPreferences.country'] && <span className="error-text">{errors['destinationPreferences.country']}</span>}
-                            {errors['destinationPreferences.countryName'] && <span className="error-text">{errors['destinationPreferences.countryName']}</span>}
+                            {errors['destinationPreferences.country'] && (
+                                <span className="error-text">
+                                    {errors['destinationPreferences.country']}
+                                </span>
+                            )}
+                            {errors['destinationPreferences.countryName'] && (
+                                <span className="error-text">
+                                    {errors['destinationPreferences.countryName']}
+                                </span>
+                            )}
                         </div>
 
                         <div className="form-group">
@@ -411,9 +467,12 @@ const CreateTrip = () => {
                                 name="destinationPreferences.type"
                                 options={destinationTypeOptions}
                                 isClearable
-                                value={destinationTypeOptions.find(
-                                    option => option.value === formData.destinationPreferences.type
-                                ) || null}
+                                value={
+                                    destinationTypeOptions.find(
+                                        option =>
+                                            option.value === formData.destinationPreferences.type
+                                    ) || null
+                                }
                                 onChange={(selectedOption) => {
                                     setFormData({
                                         ...formData,
@@ -422,19 +481,28 @@ const CreateTrip = () => {
                                             type: selectedOption ? selectedOption.value : '',
                                         },
                                     });
-                                    setErrors(prevErrors => ({ ...prevErrors, 'destinationPreferences.type': '' }));
+                                    setErrors(prevErrors => ({
+                                        ...prevErrors,
+                                        'destinationPreferences.type': '',
+                                    }));
                                 }}
-                                className={`react-select-container ${errors['destinationPreferences.type'] ? 'select-error' : ''}`}
+                                className={`react-select-container ${
+                                    errors['destinationPreferences.type'] ? 'select-error' : ''
+                                }`}
                                 classNamePrefix="react-select"
                                 placeholder="Seleccione un tipo de destino"
                             />
-                            {errors['destinationPreferences.type'] && <span className="error-text">{errors['destinationPreferences.type']}</span>}
+                            {errors['destinationPreferences.type'] && (
+                                <span className="error-text">
+                                    {errors['destinationPreferences.type']}
+                                </span>
+                            )}
                         </div>
                     </div>
                 </section>
 
                 <section className="form-section">
-                    <h3> Presupuesto y Logística *</h3>
+                    <h3>Presupuesto y Logística *</h3>
                     <div className="form-row">
                         <div className="form-group">
                             <label>
@@ -450,8 +518,11 @@ const CreateTrip = () => {
                                 min="0"
                                 placeholder="Ingrese el presupuesto total"
                                 className={errors['budget.total'] ? 'input-error' : ''}
+                                autoComplete="off"
                             />
-                            {errors['budget.total'] && <span className="error-text">{errors['budget.total']}</span>}
+                            {errors['budget.total'] && (
+                                <span className="error-text">{errors['budget.total']}</span>
+                            )}
                         </div>
 
                         <div className="form-group">
@@ -468,8 +539,11 @@ const CreateTrip = () => {
                                 min="1"
                                 placeholder="Ingrese el número de ciudades"
                                 className={errors.numberOfCities ? 'input-error' : ''}
+                                autoComplete="off"
                             />
-                            {errors.numberOfCities && <span className="error-text">{errors.numberOfCities}</span>}
+                            {errors.numberOfCities && (
+                                <span className="error-text">{errors.numberOfCities}</span>
+                            )}
                         </div>
                     </div>
                 </section>
@@ -489,18 +563,24 @@ const CreateTrip = () => {
                                 formData.interests.includes(option.value)
                             )}
                             onChange={(selectedOptions) => {
-                                const values = selectedOptions ? selectedOptions.map(option => option.value) : [];
+                                const values = selectedOptions
+                                    ? selectedOptions.map(option => option.value)
+                                    : [];
                                 setFormData({
                                     ...formData,
                                     interests: values,
                                 });
                                 setErrors(prevErrors => ({ ...prevErrors, interests: '' }));
                             }}
-                            className={`react-select-container ${errors.interests ? 'select-error' : ''}`}
+                            className={`react-select-container ${
+                                errors.interests ? 'select-error' : ''
+                            }`}
                             classNamePrefix="react-select"
                             placeholder="Seleccione sus intereses"
                         />
-                        {errors.interests && <span className="error-text">{errors.interests}</span>}
+                        {errors.interests && (
+                            <span className="error-text">{errors.interests}</span>
+                        )}
                     </div>
 
                     <div className="form-group">
@@ -516,18 +596,24 @@ const CreateTrip = () => {
                                 formData.foodPreferences.includes(option.value)
                             )}
                             onChange={(selectedOptions) => {
-                                const values = selectedOptions ? selectedOptions.map(option => option.value) : [];
+                                const values = selectedOptions
+                                    ? selectedOptions.map(option => option.value)
+                                    : [];
                                 setFormData({
                                     ...formData,
                                     foodPreferences: values,
                                 });
                                 setErrors(prevErrors => ({ ...prevErrors, foodPreferences: '' }));
                             }}
-                            className={`react-select-container ${errors.foodPreferences ? 'select-error' : ''}`}
+                            className={`react-select-container ${
+                                errors.foodPreferences ? 'select-error' : ''
+                            }`}
                             classNamePrefix="react-select"
                             placeholder="Seleccione sus preferencias de comida"
                         />
-                        {errors.foodPreferences && <span className="error-text">{errors.foodPreferences}</span>}
+                        {errors.foodPreferences && (
+                            <span className="error-text">{errors.foodPreferences}</span>
+                        )}
                     </div>
 
                     <div className="form-group">
@@ -539,9 +625,13 @@ const CreateTrip = () => {
                             name="accommodationPreferences.type"
                             options={accommodationOptions}
                             isClearable
-                            value={accommodationOptions.find(
-                                option => option.value === formData.accommodationPreferences.type
-                            ) || null}
+                            value={
+                                accommodationOptions.find(
+                                    option =>
+                                        option.value ===
+                                        formData.accommodationPreferences.type
+                                ) || null
+                            }
                             onChange={(selectedOption) => {
                                 setFormData({
                                     ...formData,
@@ -550,13 +640,22 @@ const CreateTrip = () => {
                                         type: selectedOption ? selectedOption.value : '',
                                     },
                                 });
-                                setErrors(prevErrors => ({ ...prevErrors, 'accommodationPreferences.type': '' }));
+                                setErrors(prevErrors => ({
+                                    ...prevErrors,
+                                    'accommodationPreferences.type': '',
+                                }));
                             }}
-                            className={`react-select-container ${errors['accommodationPreferences.type'] ? 'select-error' : ''}`}
+                            className={`react-select-container ${
+                                errors['accommodationPreferences.type'] ? 'select-error' : ''
+                            }`}
                             classNamePrefix="react-select"
                             placeholder="Seleccione una opción"
                         />
-                        {errors['accommodationPreferences.type'] && <span className="error-text">{errors['accommodationPreferences.type']}</span>}
+                        {errors['accommodationPreferences.type'] && (
+                            <span className="error-text">
+                                {errors['accommodationPreferences.type']}
+                            </span>
+                        )}
                     </div>
 
                     <div className="form-group">
@@ -568,9 +667,13 @@ const CreateTrip = () => {
                             name="transportPreferences.preferredMode"
                             options={transportOptions}
                             isClearable
-                            value={transportOptions.find(
-                                option => option.value === formData.transportPreferences.preferredMode
-                            ) || null}
+                            value={
+                                transportOptions.find(
+                                    option =>
+                                        option.value ===
+                                        formData.transportPreferences.preferredMode
+                                ) || null
+                            }
                             onChange={(selectedOption) => {
                                 setFormData({
                                     ...formData,
@@ -579,13 +682,22 @@ const CreateTrip = () => {
                                         preferredMode: selectedOption ? selectedOption.value : '',
                                     },
                                 });
-                                setErrors(prevErrors => ({ ...prevErrors, 'transportPreferences.preferredMode': '' }));
+                                setErrors(prevErrors => ({
+                                    ...prevErrors,
+                                    'transportPreferences.preferredMode': '',
+                                }));
                             }}
-                            className={`react-select-container ${errors['transportPreferences.preferredMode'] ? 'select-error' : ''}`}
+                            className={`react-select-container ${
+                                errors['transportPreferences.preferredMode'] ? 'select-error' : ''
+                            }`}
                             classNamePrefix="react-select"
                             placeholder="Seleccione una opción"
                         />
-                        {errors['transportPreferences.preferredMode'] && <span className="error-text">{errors['transportPreferences.preferredMode']}</span>}
+                        {errors['transportPreferences.preferredMode'] && (
+                            <span className="error-text">
+                                {errors['transportPreferences.preferredMode']}
+                            </span>
+                        )}
                     </div>
 
                     <div className="form-group">
@@ -597,9 +709,11 @@ const CreateTrip = () => {
                             name="travelCompanion.type"
                             options={travelCompanionOptions}
                             isClearable
-                            value={travelCompanionOptions.find(
-                                option => option.value === formData.travelCompanion.type
-                            ) || null}
+                            value={
+                                travelCompanionOptions.find(
+                                    option => option.value === formData.travelCompanion.type
+                                ) || null
+                            }
                             onChange={(selectedOption) => {
                                 setFormData({
                                     ...formData,
@@ -608,13 +722,20 @@ const CreateTrip = () => {
                                         type: selectedOption ? selectedOption.value : '',
                                     },
                                 });
-                                setErrors(prevErrors => ({ ...prevErrors, 'travelCompanion.type': '' }));
+                                setErrors(prevErrors => ({
+                                    ...prevErrors,
+                                    'travelCompanion.type': '',
+                                }));
                             }}
-                            className={`react-select-container ${errors['travelCompanion.type'] ? 'select-error' : ''}`}
+                            className={`react-select-container ${
+                                errors['travelCompanion.type'] ? 'select-error' : ''
+                            }`}
                             classNamePrefix="react-select"
                             placeholder="Seleccione una opción"
                         />
-                        {errors['travelCompanion.type'] && <span className="error-text">{errors['travelCompanion.type']}</span>}
+                        {errors['travelCompanion.type'] && (
+                            <span className="error-text">{errors['travelCompanion.type']}</span>
+                        )}
                     </div>
 
                     <div className="form-group">
@@ -626,9 +747,11 @@ const CreateTrip = () => {
                             name="activityLevel.pace"
                             options={activityLevelOptions}
                             isClearable
-                            value={activityLevelOptions.find(
-                                option => option.value === formData.activityLevel.pace
-                            ) || null}
+                            value={
+                                activityLevelOptions.find(
+                                    option => option.value === formData.activityLevel.pace
+                                ) || null
+                            }
                             onChange={(selectedOption) => {
                                 setFormData({
                                     ...formData,
@@ -637,18 +760,27 @@ const CreateTrip = () => {
                                         pace: selectedOption ? selectedOption.value : '',
                                     },
                                 });
-                                setErrors(prevErrors => ({ ...prevErrors, 'activityLevel.pace': '' }));
+                                setErrors(prevErrors => ({
+                                    ...prevErrors,
+                                    'activityLevel.pace': '',
+                                }));
                             }}
-                            className={`react-select-container ${errors['activityLevel.pace'] ? 'select-error' : ''}`}
+                            className={`react-select-container ${
+                                errors['activityLevel.pace'] ? 'select-error' : ''
+                            }`}
                             classNamePrefix="react-select"
                             placeholder="Seleccione una opción"
                         />
-                        {errors['activityLevel.pace'] && <span className="error-text">{errors['activityLevel.pace']}</span>}
+                        {errors['activityLevel.pace'] && (
+                            <span className="error-text">{errors['activityLevel.pace']}</span>
+                        )}
                     </div>
                 </section>
 
                 <section className="form-section">
-                    <h3><FontAwesomeIcon icon={faPlusCircle} /> Preferencias Adicionales</h3>
+                    <h3>
+                        <FontAwesomeIcon icon={faPlusCircle} /> Preferencias Adicionales
+                    </h3>
                     <div className="form-group">
                         <label>
                             <FontAwesomeIcon icon={faInfoCircle} className="input-icon" />
@@ -660,6 +792,7 @@ const CreateTrip = () => {
                             onChange={onChange}
                             placeholder="Escribe cualquier preferencia adicional..."
                             className={errors.additionalPreferences ? 'input-error' : ''}
+                            autoComplete="off"
                         ></textarea>
                     </div>
                 </section>
