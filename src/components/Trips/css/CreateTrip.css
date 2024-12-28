@@ -19,7 +19,7 @@
 }
 
 h2.react-datepicker__current-month {
-    color: black;
+    color: black !important;
     padding: 0;
     margin-top: 10px;
 }

@@ -2,28 +2,30 @@ import React, { useState } from 'react';
 import api from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
+import './css/CreateTrip.css';
 import countries from 'i18n-iso-countries';
 import esLocale from 'i18n-iso-countries/langs/es.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faInfoCircle,
-    faGlobe,
-    faCalendarAlt,
-    faDollarSign,
-    faCity,
-    faHeart,
-    faUtensils,
-    faHotel,
-    faCar,
-    faUserFriends,
-    faRunning,
-    faPlusCircle
+import { 
+    faInfoCircle, 
+    faGlobe, 
+    faCalendarAlt, 
+    faDollarSign, 
+    faCity, 
+    faHeart, 
+    faUtensils, 
+    faHotel, 
+    faCar, 
+    faUserFriends, 
+    faRunning, 
+    faPlusCircle 
 } from '@fortawesome/free-solid-svg-icons';
-import DatePicker from 'react-datepicker';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import './css/CreateTrip.css';
+import es from 'date-fns/locale/es';
 
 countries.registerLocale(esLocale);
+registerLocale('es', es);
 
 const CreateTrip = () => {
     const navigate = useNavigate();
@@ -36,7 +38,7 @@ const CreateTrip = () => {
             endDate: null,
         },
         destinationPreferences: {
-            country: '',
+            country: '', 
             countryName: '',
             type: '',
             region: '',
@@ -127,6 +129,7 @@ const CreateTrip = () => {
 
     const onChange = (e) => {
         const { name, value, type, checked } = e.target;
+
         if (name.includes('.')) {
             const [parent, child] = name.split('.');
             setFormData(prevState => {
@@ -134,13 +137,15 @@ const CreateTrip = () => {
                     ...prevState[parent],
                     [child]: type === 'checkbox' ? checked : value,
                 };
+                
                 if (parent === 'travelDates' && child === 'startDate') {
                     const newStartDate = new Date(value);
                     const currentEndDate = new Date(prevState.travelDates.endDate);
                     if (prevState.travelDates.endDate && currentEndDate < newStartDate) {
-                        updatedParent.endDate = '';
+                        updatedParent.endDate = null;
                     }
                 }
+
                 return {
                     ...prevState,
                     [parent]: updatedParent,
@@ -220,6 +225,7 @@ const CreateTrip = () => {
         e.preventDefault();
         setLoading(true);
         setError('');
+
         if (!validateForm()) {
             setLoading(false);
             return;
@@ -227,9 +233,11 @@ const CreateTrip = () => {
         const dataToSubmit = { ...formData };
         dataToSubmit.travelDates.startDate = formData.travelDates.startDate.toISOString().split('T')[0];
         dataToSubmit.travelDates.endDate = formData.travelDates.endDate.toISOString().split('T')[0];
+        
         if (!dataToSubmit.additionalPreferences.trim()) {
             dataToSubmit.additionalPreferences = 'Nada';
         }
+
         try {
             const response = await api.post('/trips/create', dataToSubmit);
             navigate(`/trips/${response.data._id}`);
@@ -323,6 +331,7 @@ const CreateTrip = () => {
                                 placeholderText="Seleccione la fecha de inicio"
                                 className={errors['travelDates.startDate'] ? 'input-error' : ''}
                                 dateFormat="yyyy-MM-dd"
+                                locale="es" // Establece la localización a español
                             />
                             {errors['travelDates.startDate'] && <span className="error-text">{errors['travelDates.startDate']}</span>}
                         </div>
@@ -351,6 +360,7 @@ const CreateTrip = () => {
                                 placeholderText="Seleccione la fecha de fin"
                                 className={errors['travelDates.endDate'] ? 'input-error' : ''}
                                 dateFormat="yyyy-MM-dd"
+                                locale="es"
                                 disabled={!formData.travelDates.startDate}
                             />
                             {errors['travelDates.endDate'] && <span className="error-text">{errors['travelDates.endDate']}</span>}
