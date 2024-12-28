@@ -21,7 +21,7 @@
 h2.react-datepicker__current-month {
     color: black !important;
     padding: 0;
-    margin-top: 10px;
+    margin-top: 15px !important;
 }
 
 /* Título del formulario */
