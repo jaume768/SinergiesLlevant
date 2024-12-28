@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import api from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import './css/CreateTrip.css';
 import countries from 'i18n-iso-countries';
 import esLocale from 'i18n-iso-countries/langs/es.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,6 +21,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './css/CreateTrip.css';
 
 countries.registerLocale(esLocale);
 
