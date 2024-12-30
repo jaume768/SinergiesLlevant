@@ -34,9 +34,9 @@ const CreateTrip = () => {
         description: '',
         public: true,
         travelDates: {
-            // Renombramos a fechaInicio y fechaFin
-            fechaInicio: null,
-            fechaFin: null,
+            // Renombrados a startDate y endDate
+            startDate: null,
+            endDate: null,
         },
         destinationPreferences: {
             country: '', 
@@ -139,14 +139,12 @@ const CreateTrip = () => {
                     [child]: type === 'checkbox' ? checked : value,
                 };
                 
-                // Aquí ya no tiene tanta relevancia el "startDate" o "endDate",
-                // porque los renombramos a fechaInicio y fechaFin,
-                // pero dejamos el control condicional por si lo deseas.
-                if (parent === 'travelDates' && child === 'fechaInicio') {
+                // Control condicional si es necesario
+                if (parent === 'travelDates' && child === 'startDate') {
                     const newStartDate = new Date(value);
-                    const currentEndDate = new Date(prevState.travelDates.fechaFin);
-                    if (prevState.travelDates.fechaFin && currentEndDate < newStartDate) {
-                        updatedParent.fechaFin = null;
+                    const currentEndDate = new Date(prevState.travelDates.endDate);
+                    if (prevState.travelDates.endDate && currentEndDate < newStartDate) {
+                        updatedParent.endDate = null;
                     }
                 }
 
@@ -176,16 +174,16 @@ const CreateTrip = () => {
         if (!formData.description.trim()) {
             newErrors.description = 'La descripción es requerida.';
         }
-        if (!formData.travelDates.fechaInicio) {
-            newErrors['travelDates.fechaInicio'] = 'La fecha de inicio es requerida.';
+        if (!formData.travelDates.startDate) {
+            newErrors['travelDates.startDate'] = 'La fecha de inicio es requerida.';
         }
-        if (!formData.travelDates.fechaFin) {
-            newErrors['travelDates.fechaFin'] = 'La fecha de fin es requerida.';
+        if (!formData.travelDates.endDate) {
+            newErrors['travelDates.endDate'] = 'La fecha de fin es requerida.';
         } else if (
-            formData.travelDates.fechaInicio && 
-            formData.travelDates.fechaFin < formData.travelDates.fechaInicio
+            formData.travelDates.startDate && 
+            formData.travelDates.endDate < formData.travelDates.startDate
         ) {
-            newErrors['travelDates.fechaFin'] = 'La fecha de fin debe ser posterior a la de inicio.';
+            newErrors['travelDates.endDate'] = 'La fecha de fin debe ser posterior a la de inicio.';
         }
         if (!formData.destinationPreferences.country) {
             newErrors['destinationPreferences.country'] = 'El país de destino es requerido.';
@@ -239,12 +237,12 @@ const CreateTrip = () => {
         }
         const dataToSubmit = { ...formData };
 
-        // Convertimos las fechas a string
-        dataToSubmit.travelDates.fechaInicio = formData.travelDates.fechaInicio
-            ? formData.travelDates.fechaInicio.toISOString().split('T')[0]
+        // Convertir las fechas a string en formato ISO
+        dataToSubmit.travelDates.startDate = formData.travelDates.startDate
+            ? formData.travelDates.startDate.toISOString().split('T')[0]
             : null;
-        dataToSubmit.travelDates.fechaFin = formData.travelDates.fechaFin
-            ? formData.travelDates.fechaFin.toISOString().split('T')[0]
+        dataToSubmit.travelDates.endDate = formData.travelDates.endDate
+            ? formData.travelDates.endDate.toISOString().split('T')[0]
             : null;
         
         if (!dataToSubmit.additionalPreferences.trim()) {
@@ -329,42 +327,38 @@ const CreateTrip = () => {
                                 Fecha de Inicio
                             </label>
                             <DatePicker
-                                selected={formData.travelDates.fechaInicio}
+                                selected={formData.travelDates.startDate}
                                 onChange={(date) => {
                                     setFormData(prevState => ({
                                         ...prevState,
                                         travelDates: {
                                             ...prevState.travelDates,
-                                            fechaInicio: date,
-                                            fechaFin:
-                                                // si la fechaFin ya existe y
-                                                // es menor que la nueva fechaInicio => null
-                                                prevState.travelDates.fechaFin &&
-                                                date &&
-                                                prevState.travelDates.fechaFin < date
+                                            startDate: date,
+                                            endDate:
+                                                prevState.travelDates.endDate && date && prevState.travelDates.endDate < date
                                                     ? null
-                                                    : prevState.travelDates.fechaFin,
+                                                    : prevState.travelDates.endDate,
                                         },
                                     }));
                                     setErrors(prevErrors => ({
                                         ...prevErrors,
-                                        'travelDates.fechaInicio': '',
+                                        'travelDates.startDate': '',
                                     }));
                                 }}
                                 selectsStart
-                                startDate={formData.travelDates.fechaInicio}
-                                endDate={formData.travelDates.fechaFin}
+                                startDate={formData.travelDates.startDate}
+                                endDate={formData.travelDates.endDate}
                                 minDate={new Date()} // Fecha mínima: hoy
                                 placeholderText="Seleccione la fecha de inicio"
-                                className={errors['travelDates.fechaInicio'] ? 'input-error' : ''}
+                                className={errors['travelDates.startDate'] ? 'input-error' : ''}
                                 dateFormat="yyyy-MM-dd"
                                 locale="es"
                                 // Importante para que iOS no pida tarjeta:
                                 autoComplete="off"
-                                name="fechaInicio"
+                                name="startDate"
                             />
-                            {errors['travelDates.fechaInicio'] && (
-                                <span className="error-text">{errors['travelDates.fechaInicio']}</span>
+                            {errors['travelDates.startDate'] && (
+                                <span className="error-text">{errors['travelDates.startDate']}</span>
                             )}
                         </div>
 
@@ -374,34 +368,34 @@ const CreateTrip = () => {
                                 Fecha de Fin
                             </label>
                             <DatePicker
-                                selected={formData.travelDates.fechaFin}
+                                selected={formData.travelDates.endDate}
                                 onChange={(date) => {
                                     setFormData(prevState => ({
                                         ...prevState,
                                         travelDates: {
                                             ...prevState.travelDates,
-                                            fechaFin: date,
+                                            endDate: date,
                                         },
                                     }));
                                     setErrors(prevErrors => ({
                                         ...prevErrors,
-                                        'travelDates.fechaFin': '',
+                                        'travelDates.endDate': '',
                                     }));
                                 }}
                                 selectsEnd
-                                startDate={formData.travelDates.fechaInicio}
-                                endDate={formData.travelDates.fechaFin}
-                                minDate={formData.travelDates.fechaInicio || new Date()}
+                                startDate={formData.travelDates.startDate}
+                                endDate={formData.travelDates.endDate}
+                                minDate={formData.travelDates.startDate || new Date()}
                                 placeholderText="Seleccione la fecha de fin"
-                                className={errors['travelDates.fechaFin'] ? 'input-error' : ''}
+                                className={errors['travelDates.endDate'] ? 'input-error' : ''}
                                 dateFormat="yyyy-MM-dd"
                                 locale="es"
-                                disabled={!formData.travelDates.fechaInicio}
+                                disabled={!formData.travelDates.startDate}
                                 autoComplete="off"
-                                name="fechaFin"
+                                name="endDate"
                             />
-                            {errors['travelDates.fechaFin'] && (
-                                <span className="error-text">{errors['travelDates.fechaFin']}</span>
+                            {errors['travelDates.endDate'] && (
+                                <span className="error-text">{errors['travelDates.endDate']}</span>
                             )}
                         </div>
                     </div>
