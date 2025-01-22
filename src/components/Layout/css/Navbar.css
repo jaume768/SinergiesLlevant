@@ -10,6 +10,12 @@
     z-index: 1000;
 }
 
+.navbar-logo {
+    height: auto;
+    width: 140px;
+    display: block;
+}
+
 .navbar-search {
     display: flex;
     align-items: center;
@@ -63,11 +69,12 @@
 }
 
 @media screen and (max-width: 768px) {
-    
+
     .menu-icon {
         display: flex;
     }
 
+    
     .navbar-links {
         display: none;
         position: absolute;
@@ -81,6 +88,7 @@
 
     .navbar-links.active {
         display: flex;
+        margin-top: 30px;
     }
 
     .navbar-links a,

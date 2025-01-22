@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <Link to={brandLink} className="navbar-brand">
-        TravelDaring
+      <img src="/images/TD.png" alt="Logo TravelDaring" className="navbar-logo" />
       </Link>
       <form onSubmit={handleSearch} className="navbar-search">
         <input
