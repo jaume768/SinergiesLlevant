@@ -3,6 +3,7 @@ import Hero from '../components/Hero/Hero';
 import About from '../components/About/About';
 import Objectius from '../components/Objectius/Objectius';
 import Services from '../components/Services/Services';
+import MisionVision from '../components/MisionYVision/MisionVision';
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <Hero />
             <About />
             <Services />
+            <MisionVision />
             <Objectius />
         </>
     );

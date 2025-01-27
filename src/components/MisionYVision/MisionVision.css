@@ -1,0 +1,79 @@
+.mision-vision-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 130px auto;
+    padding: 2rem 1rem;
+}
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mision-block {
+    background-color: #000;
+    color: #fff;
+    padding: 3.2rem;
+    margin: 5%;
+    width: 500px;
+    height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.titulo-misiovisio{
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.vision-block {
+    position: absolute;
+    background-color: #0d4a7a;
+    color: #fff;
+    padding: 3rem;
+    width: 500px;
+    height: 400px;
+    bottom: -4rem;
+    right: 11rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mision-block h2,
+.vision-block h2 {
+    margin-bottom: 1rem;
+    font-size: 2.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mision-block p,
+.vision-block p {
+    margin-top: 50px;
+    line-height: 1.5;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .mision-vision-container {
+        padding: 1rem;
+    }
+
+    .mision-block {
+        width: 100%;
+        margin: 0;
+    }
+
+    .vision-block {
+        position: static;
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
