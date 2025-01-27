@@ -1,0 +1,112 @@
+/* Variables de colores actualizadas */
+:root {
+    --primary-color: #f0f4f8;
+    --secondary-color: #ffffff;
+    --accent-color: #33acff;
+    --card-color-1: #ffafbd;
+    --card-color-2: #ffc3a0;
+    --card-color-3: #ffecd2;
+    --text-color: #333333;
+    --font-family: 'Montserrat', sans-serif;
+}
+
+.objectius-section {
+    background-color: var(--primary-color);
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--text-color);
+    position: relative;
+    font-family: var(--font-family);
+}
+
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.objectius-title {
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
+    color: white;
+}
+
+.objectius-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.objectiu-card {
+    background: var(--secondary-color);
+    border-radius: 15px;
+    padding: 2.5rem 1.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.objectiu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.objectiu-icon {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+.objectiu-title-card {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+
+.objectiu-text {
+    font-size: 1rem;
+    color: #555555;
+    line-height: 1.6;
+}
+
+/* Asignación de colores diferentes a cada tarjeta */
+.objectiu-card:nth-child(1) {
+    border-top: 5px solid var(--card-color-1);
+}
+
+.objectiu-card:nth-child(2) {
+    border-top: 5px solid var(--card-color-2);
+}
+
+.objectiu-card:nth-child(3) {
+    border-top: 5px solid var(--card-color-3);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .objectius-title {
+        font-size: 2.5rem;
+    }
+
+    .objectiu-card {
+        padding: 2rem 1rem;
+    }
+
+    .objectiu-icon {
+        font-size: 2.5rem;
+    }
+
+    .objectiu-title-card {
+        font-size: 1.3rem;
+    }
+}

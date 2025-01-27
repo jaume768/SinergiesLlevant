@@ -105,11 +105,12 @@
 
 @media (max-width: 480px) {
     .services-cards {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 1rem;
     }
 
     .service-card {
         padding: 1rem;
+        width: 100%;
     }
 }
