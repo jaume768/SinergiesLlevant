@@ -12,7 +12,7 @@ const TopBar = () => {
                     <FontAwesomeIcon icon={faPhone} className="icon-black" /> +34 613 32 21 82
                 </span>
                 <span>
-                    <FontAwesomeIcon icon={faEnvelope} className="icon-black" /> contact@sinergiesllevant.com
+                    <FontAwesomeIcon icon={faEnvelope} className="icon-black" /> gerencia@sinergiesllevant.com
                 </span>
             </div>
             <div className="top-bar-social">

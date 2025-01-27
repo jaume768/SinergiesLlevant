@@ -31,13 +31,13 @@ const Navbar = () => {
                 <span className="separator">•</span>
                 <NavLink to="/about" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Qui Som?</NavLink>
                 <span className="separator">•</span>
+                <NavLink to="/serveis" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Serveis</NavLink>
+                <span className="separator">•</span>
                 <NavLink to="/objectius" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Objectius</NavLink>
                 <span className="separator">•</span>
                 <NavLink to="/misio-visio" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Misió i Visió</NavLink>
                 <span className="separator">•</span>
                 <NavLink to="/adventatges" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Avantatges</NavLink>
-                <span className="separator">•</span>
-                <NavLink to="/serveis" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Serveis</NavLink>
                 <span className="separator">•</span>
                 <NavLink to="/serveis" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Contacte</NavLink>
             </nav>
