@@ -1,12 +1,14 @@
 import React from 'react';
 import './Hero.css';
+import fondo from '../../assets/images/fondo2.png';
 
 const Hero = () => {
     return (
-        <section className="hero">
+        <section className="hero" style={{ backgroundImage: `url(${fondo})` }}>
             <div className="hero-overlay">
-                <h1>Bringing Arts And Culture To Life</h1>
-                <button>Know More</button>
+                <h1>COMPARTINT RECURSOS</h1>
+                <h2>GARANTITZEM EL NOSTRE FUTUR EMPRESARIAL</h2>
+                <button>Comença ara!</button>
             </div>
         </section>
     );
