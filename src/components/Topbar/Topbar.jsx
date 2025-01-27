@@ -9,10 +9,10 @@ const TopBar = () => {
         <div className="top-bar">
             <div className="top-bar-content">
                 <span>
-                    <FontAwesomeIcon icon={faPhone} className="icon-black" /> +34 613 32 21 82
+                    <FontAwesomeIcon icon={faPhone} className="icon-white icono" /> +34 613 32 21 82
                 </span>
                 <span>
-                    <FontAwesomeIcon icon={faEnvelope} className="icon-black" /> gerencia@sinergiesllevant.com
+                    <FontAwesomeIcon icon={faEnvelope} className="icon-white icono" /> gerencia@sinergiesllevant.com
                 </span>
             </div>
             <div className="top-bar-social">
