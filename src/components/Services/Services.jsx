@@ -1,11 +1,17 @@
 import React from 'react';
 import './Services.css';
+import { useIntersection } from '../../hooks/useIntersection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faChartLine, faCogs, faTruck } from '@fortawesome/free-solid-svg-icons';
 
 const Services = () => {
+    const [servicesRef, isServicesVisible] = useIntersection({
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2,
+    });
     return (
-        <section className="services-section">
+        <section ref={servicesRef} className={`services-section fade-in-section ${isServicesVisible ? 'fade-in-active' : ''}`}>
             <h2>Els Nostres Serveis</h2>
             <div className="services-cards">
 
@@ -37,7 +43,7 @@ const Services = () => {
                     <button>Coneix més</button>
                 </div>
             </div>
-            <button className="view-more-button">Ver més serveis</button>
+            <button className="view-more-button">Veure més serveis</button>
         </section>
     );
 };
