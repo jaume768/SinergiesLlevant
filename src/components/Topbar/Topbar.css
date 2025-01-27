@@ -1,0 +1,44 @@
+.top-bar {
+    background-color: var(--primary-color);
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2rem;
+    font-size: 0.9rem;
+}
+
+.top-bar-content span {
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.icon-black {
+    color: black;
+    margin-right: 0.5rem;
+}
+
+.top-bar-social {
+    display: flex;
+    align-items: center;
+}
+
+.social-icon {
+    background-color: black;
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.social-icon:hover {
+    background-color: #333;
+    color: #fff;
+}
