@@ -1,7 +1,7 @@
 import React from 'react';
 import './Avantatges.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBoxOpen, faHandshake, faGavel, faUserGraduate, faNetworkWired } from '@fortawesome/free-solid-svg-icons';
+import { faBoxOpen, faHandshake, faGavel, faUserGraduate, faNetworkWired, faEye  } from '@fortawesome/free-solid-svg-icons';
 import { useInView } from 'react-intersection-observer';
 
 const avantatgesData = [
@@ -9,36 +9,37 @@ const avantatgesData = [
         id: 1,
         icon: faBoxOpen,
         title: 'Accés a recursos compartits',
-        description:
-            'Formar part d’una xarxa d’empreses afiliades permet accedir a una àmplia gamma de recursos sense la necessitat d’invertir-hi de manera individual, incloent-hi assessorament laboral, formació i gestió de projectes.'
+        description: 'Accedeix a recursos com assessorament laboral, formació i gestió de projectes sense inversions individuals.'
     },
     {
         id: 2,
         icon: faHandshake,
         title: 'Millor poder de negociació',
-        description:
-            'Aconsegueix preus més competitius en comprar conjuntament un volum més gran d’estoc, millorant les condicions i la competitivitat al mercat.'
+        description: 'Obtingues millors preus comprant en grup i millora la competitivitat al mercat.'
     },
     {
         id: 3,
         icon: faGavel,
         title: 'Suport en compliment normatiu',
-        description:
-            'Rep assessorament especialitzat en àrees com la qualitat, la sostenibilitat i les exigències laborals, i assegura el compliment de la legislació vigent.'
+        description: 'Rep suport per garantir el compliment de la legislació en qualitat i sostenibilitat.'
     },
     {
         id: 4,
         icon: faUserGraduate,
         title: 'Oportunitats de formació i desenvolupament',
-        description:
-            'Accedeix a formacions en cultura empresarial i desenvolupament de competències clau, millorant la motivació i la preparació del teu equip.'
+        description: 'Participa en formacions per millorar les competències i motivació del teu equip.'
     },
     {
         id: 5,
         icon: faNetworkWired,
         title: 'Networking i col·laboració',
-        description:
-            'Comparteix experiències i contactes amb altres empreses, generant aliances estratègiques i projectes conjunts que beneficiïn a tots els implicats.'
+        description: 'Crea aliances estratègiques i projectes amb altres empreses.'
+    },
+    {
+        id: 6,
+        icon: faEye,
+        title: 'Visibilitat i reputació',
+        description: 'Millora la reputació i posiciona la teva empresa com un agent responsable i compromès.'
     }
 ];
 
