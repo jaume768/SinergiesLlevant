@@ -4,6 +4,7 @@ import About from '../components/About/About';
 import Objectius from '../components/Objectius/Objectius';
 import Services from '../components/Services/Services';
 import MisionVision from '../components/MisionYVision/MisionVision';
+import Avantatges from '../components/Avantatges/Avantatges';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <Services />
             <MisionVision />
             <Objectius />
+            <Avantatges />
         </>
     );
 };
