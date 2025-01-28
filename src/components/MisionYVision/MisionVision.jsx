@@ -10,7 +10,6 @@ const MisionVision = () => {
             ref={sectionRef}
             className={`mision-vision-container fade-in-section ${isVisible ? 'fade-in-active' : ''}`}
         >
-            <h2 className="titulo-misiovisio">Misió i visió</h2>
             <div className="mision-block">
                 <h2>MISIÓ</h2>
                 <p>

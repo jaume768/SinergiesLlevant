@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -9,13 +8,17 @@ const Navbar = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const handleLinkClick = () => {
+        setIsMenuOpen(false);
+    };
+
     return (
         <header className="navbar">
             <div className="navbar-header">
                 <div className="navbar-logo">
-                    <NavLink to="/">
+                    <a href="#home">
                         <img src="/images/logo.png" alt="JP Koler Logo" />
-                    </NavLink>
+                    </a>
                 </div>
                 <button
                     className={`navbar-toggle ${isMenuOpen ? 'active' : ''}`}
@@ -24,22 +27,21 @@ const Navbar = () => {
                 >
                     <span className={`hamburger ${isMenuOpen ? 'active' : ''}`}></span>
                 </button>
-
             </div>
             <nav className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
-                <NavLink exact to="/" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Inici</NavLink>
+                <a href="#home" onClick={handleLinkClick}>Inici</a>
                 <span className="separator">•</span>
-                <NavLink to="/about" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Qui Som?</NavLink>
+                <a href="#about" onClick={handleLinkClick}>Qui Som?</a>
                 <span className="separator">•</span>
-                <NavLink to="/serveis" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Serveis</NavLink>
+                <a href="#services" onClick={handleLinkClick}>Serveis</a>
                 <span className="separator">•</span>
-                <NavLink to="/misio-visio" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Misió i Visió</NavLink>
+                <a href="#mision-vision" onClick={handleLinkClick}>Misió i Visió</a>
                 <span className="separator">•</span>
-                <NavLink to="/objectius" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Objectius</NavLink>
+                <a href="#objectius" onClick={handleLinkClick}>Objectius</a>
                 <span className="separator">•</span>
-                <NavLink to="/adventatges" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Avantatges</NavLink>
+                <a href="#avantatges" onClick={handleLinkClick}>Avantatges</a>
                 <span className="separator">•</span>
-                <NavLink to="/serveis" activeClassName="active" onClick={() => setIsMenuOpen(false)}>Contacte</NavLink>
+                <a href="#contact" onClick={handleLinkClick}>Contacte</a>
             </nav>
         </header>
     );

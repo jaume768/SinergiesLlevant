@@ -12,7 +12,7 @@ const Services = () => {
     });
     return (
         <section ref={servicesRef} className={`services-section fade-in-section ${isServicesVisible ? 'fade-in-active' : ''}`}>
-            <h2>Els Nostres Serveis</h2>
+            <h2>ELS NOSTRES SERVEIS</h2>
             <div className="services-cards">
 
                 <div className="service-card">

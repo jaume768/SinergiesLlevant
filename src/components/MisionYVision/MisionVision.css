@@ -3,7 +3,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto 130px auto;
-    padding: 2rem 1rem;
+    padding: 1rem 1rem;
 }
 
 .fade-in-section {
@@ -36,7 +36,7 @@
 
 .vision-block {
     position: absolute;
-    background-color: #0d4a7a;
+    background-color: var(--primary-color);
     color: #fff;
     padding: 3rem;
     width: 500px;

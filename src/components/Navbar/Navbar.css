@@ -115,6 +115,10 @@
     top: 8px;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .navbar-toggle.active .hamburger {
     background-color: transparent;
 }

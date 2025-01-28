@@ -6,7 +6,7 @@
 }
 
 .avantatges-progress-steps h2 {
-    color: var(--primary-color);
+    color: black;
     margin-bottom: 40px;
     font-size: 2rem;
 }
@@ -15,7 +15,7 @@
     position: relative;
     max-width: 800px;
     margin: 0 auto;
-    padding-left: 40px;
+    padding-left: 24px;
 }
 
 /* Línea vertical */

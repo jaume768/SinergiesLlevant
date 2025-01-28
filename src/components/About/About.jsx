@@ -16,7 +16,7 @@ const About = () => {
                     <img src="/images/personas.jpg" alt="Personas" />
                 </div>
                 <div className="about-text">
-                    <h2>Qui som?</h2>
+                    <h2>QUI SOM?</h2>
                     <p>
                         Som una empresa dedicada a promoure la col·laboració la col·laboració entre <b>PIMES</b>,
                         mitjançant un model d’afiliació que proporciona accés a serveis i recursos compartits.

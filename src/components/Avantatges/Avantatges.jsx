@@ -46,7 +46,7 @@ const avantatgesData = [
 const Avantatges = () => {
     return (
         <section className="avantatges-progress-steps">
-            <h2>Avantatges</h2>
+            <h2>AVANTATGES</h2>
             <div className="steps-container">
                 {avantatgesData.map((avantatge, index) => (
                     <ProgressStep key={avantatge.id} step={avantatge} index={index + 1} />

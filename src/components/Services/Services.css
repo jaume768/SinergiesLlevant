@@ -1,7 +1,7 @@
 .services-section {
     padding: 3rem 16rem;
     background-color: var(--secondary-color);
-    color: var(--text-color);
+    color: black;
     text-align: center;
 }
 
@@ -20,7 +20,7 @@
 .services-section h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
-    color: var(--primary-color);
+    color: black;
 }
 
 .services-cards {
