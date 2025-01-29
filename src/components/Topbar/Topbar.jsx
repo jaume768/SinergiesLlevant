@@ -22,7 +22,7 @@ const TopBar = () => {
                 <a href="https://www.instagram.com" aria-label="Instagram" className="social-icon" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faInstagram} />
                 </a>
-                <a href="https://www.linkedin.com" aria-label="LinkedIn" className="social-icon" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/company/sinergies-llevant-sl/" aria-label="LinkedIn" className="social-icon" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
             </div>

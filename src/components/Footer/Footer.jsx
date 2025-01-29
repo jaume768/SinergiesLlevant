@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="social-icons">
                 <a href="https://facebook.com" target="_blank" rel="noreferrer">FB</a>
                 <a href="https://instagram.com" target="_blank" rel="noreferrer">IG</a>
-                <a href="https://twitter.com" target="_blank" rel="noreferrer">IN</a>
+                <a href="https://www.linkedin.com/company/sinergies-llevant-sl/" target="_blank" rel="noreferrer">IN</a>
             </div>
         </footer>
     );
