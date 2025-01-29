@@ -32,7 +32,7 @@ const Navbar = () => {
             <div className="navbar-header">
                 <div className="navbar-logo">
                     <a href="#home">
-                        <img src="/images/logo.png" alt="JP Koler Logo" />
+                        <img src="/images/logo.webp" alt="JP Koler Logo" />
                     </a>
                 </div>
                 <button

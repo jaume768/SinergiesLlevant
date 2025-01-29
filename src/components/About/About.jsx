@@ -13,7 +13,7 @@ const About = () => {
         <section ref={sectionRef} className={`about-section fade-in-section ${isVisible ? 'fade-in-active' : ''}`}>
             <div className="about-container">
                 <div className="about-image">
-                    <img src="/images/personas.jpg" alt="Personas" />
+                    <img src="/images/personas.webp" alt="Personas" />
                 </div>
                 <div className="about-text">
                     <h2>QUI SOM?</h2>
