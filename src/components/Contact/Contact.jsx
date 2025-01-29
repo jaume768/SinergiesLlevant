@@ -66,7 +66,7 @@ const Contact = () => {
             ref={sectionRef}
             className={`contact-section fade-in-section ${isVisible ? 'fade-in-active' : ''}`}
         >
-            <h2 className="contact-title">Contacta amb nosaltres</h2>
+            <h2 className="contact-title">CONTACTA AMB NOSALTRES</h2>
 
             {/* Reemplaza 'ref' con formRef y onSubmit con handleSubmit */}
             <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>

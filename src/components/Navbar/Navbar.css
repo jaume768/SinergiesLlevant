@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 .navbar {
     background-color: var(--secondary-color);
     color: var(--text-color);
@@ -115,10 +119,6 @@
     top: 8px;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 .navbar-toggle.active .hamburger {
     background-color: transparent;
 }
@@ -132,7 +132,6 @@ html {
     transform: rotate(-45deg);
     top: 0;
 }
-
 
 @media (max-width: 768px) {
     .navbar {

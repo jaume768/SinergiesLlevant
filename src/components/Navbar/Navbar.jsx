@@ -1,15 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleToggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     const handleLinkClick = () => {
-        setIsMenuOpen(false);
+        if (!isMobile) {
+            setIsMenuOpen(false);
+        }
     };
 
     return (
