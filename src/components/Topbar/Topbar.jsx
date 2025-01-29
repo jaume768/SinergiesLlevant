@@ -16,13 +16,13 @@ const TopBar = () => {
                 </span>
             </div>
             <div className="top-bar-social">
-                <a href="#" aria-label="Facebook" className="social-icon">
+                <a href="https://www.facebook.com" aria-label="Facebook" className="social-icon" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faFacebookF} />
                 </a>
-                <a href="#" aria-label="Instagram" className="social-icon">
+                <a href="https://www.instagram.com" aria-label="Instagram" className="social-icon" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faInstagram} />
                 </a>
-                <a href="#" aria-label="LinkedIn" className="social-icon">
+                <a href="https://www.linkedin.com" aria-label="LinkedIn" className="social-icon" target="_blank" rel="noopener noreferrer">
                     <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
             </div>
