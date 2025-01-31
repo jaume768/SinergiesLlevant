@@ -3,6 +3,7 @@ import './Services.css';
 import { useIntersection } from '../../hooks/useIntersection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faChartLine, faCogs, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
     const [servicesRef, isServicesVisible] = useIntersection({
@@ -21,11 +22,15 @@ const Services = () => {
                     <p>Analitzem l'economia i creem sinergies estratègiques amb reunions periòdiques.</p>
                 </div>
 
-                <div className="service-card">
+                <Link
+                    to="/transformacio-cultural"
+                    style={{ textDecoration: 'none' }}
+                    className="service-card link-card"
+                >
                     <FontAwesomeIcon icon={faChartLine} className="service-icon" />
                     <h3>TRANSFORMACIÓ CULTURAL I SUCCESSIÓ</h3>
                     <p>Fomentem lideratge humanista i continuïtat amb assessorament i borsa de treball.</p>
-                </div>
+                </Link>
 
                 <div className="service-card">
                     <FontAwesomeIcon icon={faCogs} className="service-icon" />

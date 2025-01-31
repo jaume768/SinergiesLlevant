@@ -5,18 +5,21 @@ import './App.css';
 import TopBar from './components/Topbar/Topbar';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
-
+import TransformacioCultural from './pages/TransformacioCultural';
 import Home from './pages/Home';
+import ScrollToTop from './ScrollToTop';
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop /> 
       <div className="App">
         <TopBar />
         <Navbar />
 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/transformacio-cultural" element={<TransformacioCultural />} />
         </Routes>
 
         <Footer />

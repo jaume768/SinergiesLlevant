@@ -16,6 +16,15 @@
     transform: translateY(0);
 }
 
+.link-card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .services-section h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;

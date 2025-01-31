@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
+import { HashLink } from 'react-router-hash-link';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,11 +10,8 @@ const Navbar = () => {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
         };
-
         handleResize();
-
         window.addEventListener('resize', handleResize);
-
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
@@ -31,9 +29,9 @@ const Navbar = () => {
         <header className="navbar">
             <div className="navbar-header">
                 <div className="navbar-logo">
-                    <a href="#home">
+                    <HashLink smooth to="/#home">
                         <img src="/images/logo.webp" alt="JP Koler Logo" />
-                    </a>
+                    </HashLink>
                 </div>
                 <button
                     className={`navbar-toggle ${isMenuOpen ? 'active' : ''}`}
@@ -44,19 +42,19 @@ const Navbar = () => {
                 </button>
             </div>
             <nav className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
-                <a href="#home" onClick={handleLinkClick}>Inici</a>
+                <HashLink smooth to="/#home" onClick={handleLinkClick}>Inici</HashLink>
                 <span className="separator">•</span>
-                <a href="#about" onClick={handleLinkClick}>Qui Som?</a>
+                <HashLink smooth to="/#about" onClick={handleLinkClick}>Qui Som?</HashLink>
                 <span className="separator">•</span>
-                <a href="#services" onClick={handleLinkClick}>Serveis</a>
+                <HashLink smooth to="/#services" onClick={handleLinkClick}>Serveis</HashLink>
                 <span className="separator">•</span>
-                <a href="#mision-vision" onClick={handleLinkClick}>Misió i Visió</a>
+                <HashLink smooth to="/#mision-vision" onClick={handleLinkClick}>Misió i Visió</HashLink>
                 <span className="separator">•</span>
-                <a href="#objectius" onClick={handleLinkClick}>Objectius</a>
+                <HashLink smooth to="/#objectius" onClick={handleLinkClick}>Objectius</HashLink>
                 <span className="separator">•</span>
-                <a href="#avantatges" onClick={handleLinkClick}>Avantatges</a>
+                <HashLink smooth to="/#avantatges" onClick={handleLinkClick}>Avantatges</HashLink>
                 <span className="separator">•</span>
-                <a href="#contact" onClick={handleLinkClick}>Contacte</a>
+                <HashLink smooth to="/#contact" onClick={handleLinkClick}>Contacte</HashLink>
             </nav>
         </header>
     );
