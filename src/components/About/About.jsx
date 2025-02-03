@@ -18,7 +18,7 @@ const About = () => {
                 <div className="about-text">
                     <h2>QUI SOM?</h2>
                     <p>
-                        Som una empresa dedicada a promoure la col·laboració la col·laboració entre <b>PIMES</b>,
+                        Som una empresa dedicada a promoure la col·laboració entre <b>PYMES</b>,
                         mitjançant un model d’afiliació que proporciona accés a serveis i recursos compartits.
                         L’objectiu del projecte és extrapolar la cultura d’empresa de <b>CÀRNIQUES SUNYER</b>,
                         basada en la cooperació i en un sistema horitzontal i flexible, que assigna responsabilitats

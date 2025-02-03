@@ -11,19 +11,28 @@ const Services = () => {
         rootMargin: '0px',
         threshold: 0.2,
     });
+
     return (
-        <section ref={servicesRef} className={`services-section fade-in-section ${isServicesVisible ? 'fade-in-active' : ''}`}>
+        <section
+            ref={servicesRef}
+            className={`services-section fade-in-section ${isServicesVisible ? 'fade-in-active' : ''}`}
+        >
             <h2>ELS NOSTRES SERVEIS</h2>
+
             <div className="services-cards">
 
-                <div className="service-card">
+                <Link
+                    to="/Serveis-empresarials"
+                    style={{ textDecoration: 'none' }}
+                    className="service-card link-card"
+                >
                     <FontAwesomeIcon icon={faUsers} className="service-icon" />
                     <h3>COMITÈ EMPRESARIAL</h3>
                     <p>Analitzem l'economia i creem sinergies estratègiques amb reunions periòdiques.</p>
-                </div>
+                </Link>
 
                 <Link
-                    to="/transformacio-cultural"
+                    to="/Serveis-empresarials"
                     style={{ textDecoration: 'none' }}
                     className="service-card link-card"
                 >
@@ -32,19 +41,32 @@ const Services = () => {
                     <p>Fomentem lideratge humanista i continuïtat amb assessorament i borsa de treball.</p>
                 </Link>
 
-                <div className="service-card">
+                <Link
+                    to="/Serveis-empresarials"
+                    style={{ textDecoration: 'none' }}
+                    className="service-card link-card"
+                >
                     <FontAwesomeIcon icon={faCogs} className="service-icon" />
                     <h3>EFICIÈNCIA EN PROCESSOS</h3>
                     <p>Optimitzem processos industrials per millorar competitivitat i eficàcia.</p>
-                </div>
+                </Link>
 
-                <div className="service-card">
+                <Link
+                    to="/Serveis-empresarials"
+                    style={{ textDecoration: 'none' }}
+                    className="service-card link-card"
+                >
                     <FontAwesomeIcon icon={faTruck} className="service-icon" />
                     <h3>SERVEI LOGÍSTIC</h3>
                     <p>Coordina distribució de mercaderies i gestió de repartidors amb CAP.</p>
-                </div>
+                </Link>
+
             </div>
-            <button className="view-more-button">Veure més serveis</button>
+
+            <Link to="/Serveis-empresarials" style={{ textDecoration: 'none' }}>
+                <button className="view-more-button">Veure més serveis</button>
+            </Link>
+
         </section>
     );
 };

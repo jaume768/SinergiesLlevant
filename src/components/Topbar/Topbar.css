@@ -1,6 +1,6 @@
 .top-bar {
     background-color: var(--primary-color);
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -19,7 +19,7 @@
 }
 
 .icon-black {
-    color: black;
+    color: rgb(255, 255, 255);
     margin-right: 0.5rem;
 }
 
