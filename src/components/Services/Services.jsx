@@ -27,16 +27,6 @@ const Services = () => {
                     className="service-card link-card"
                 >
                     <FontAwesomeIcon icon={faUsers} className="service-icon" />
-                    <h3>COMITÈ EMPRESARIAL</h3>
-                    <p>Analitzem l'economia i creem sinergies estratègiques amb reunions periòdiques.</p>
-                </Link>
-
-                <Link
-                    to="/Serveis-empresarials"
-                    style={{ textDecoration: 'none' }}
-                    className="service-card link-card"
-                >
-                    <FontAwesomeIcon icon={faChartLine} className="service-icon" />
                     <h3>TRANSFORMACIÓ CULTURAL I SUCCESSIÓ</h3>
                     <p>Fomentem lideratge humanista i continuïtat amb assessorament i borsa de treball.</p>
                 </Link>
@@ -46,9 +36,19 @@ const Services = () => {
                     style={{ textDecoration: 'none' }}
                     className="service-card link-card"
                 >
+                    <FontAwesomeIcon icon={faChartLine} className="service-icon" />
+                    <h3>FORMACIÓ</h3>
+                    <p>Facilitam la formació interna i l’adaptació empresarial als canvis compartint recursos.</p>
+                </Link>
+
+                <Link
+                    to="/Serveis-empresarials"
+                    style={{ textDecoration: 'none' }}
+                    className="service-card link-card"
+                >
                     <FontAwesomeIcon icon={faCogs} className="service-icon" />
-                    <h3>EFICIÈNCIA EN PROCESSOS</h3>
-                    <p>Optimitzem processos industrials per millorar competitivitat i eficàcia.</p>
+                    <h3>PLURIEMPLEO</h3>
+                    <p>Facilitam el pluriempleo i la coordinació horària per optimitzar l’ocupació laboral.</p>
                 </Link>
 
                 <Link
@@ -57,8 +57,8 @@ const Services = () => {
                     className="service-card link-card"
                 >
                     <FontAwesomeIcon icon={faTruck} className="service-icon" />
-                    <h3>SERVEI LOGÍSTIC</h3>
-                    <p>Coordina distribució de mercaderies i gestió de repartidors amb CAP.</p>
+                    <h3>GESTIÓ DUAL</h3>
+                    <p>L’afiliació impulsarà projectes de formació dual amb l’Acadèmia Algar per a contractes subvencionats.</p>
                 </Link>
 
             </div>

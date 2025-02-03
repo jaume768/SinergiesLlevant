@@ -6,188 +6,188 @@ const TransformacioCultural = () => {
     return (
         <section className="transformacio-cultural-section">
             <div className="transformacio-container">
-                <h2 className="transformacio-title">SERVICIOS DE AFILIACIÓN</h2>
+                <h2 className="transformacio-title">SERVEIS D'AFILIACIÓ</h2>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaUsers className="icon" /> Comité Empresarial
+                        <FaUsers className="icon" /> Comitè Empresarial
                     </h3>
                     <p>
-                        El objetivo de este servicio es contextualizar la situación económica y evaluar posibles alianzas estratégicas en ámbitos como inversión y posibilidad de compartir maquinaria, infraestructuras, etc.
+                        S’objectiu d’aquest servei és contextualitzar sa situació econòmica i avaluar possibles aliances estratègiques en àmbits com inversió i sa possibilitat de compartir maquinària, infraestructures, etc.
                     </p>
                     <p>
-                        Posibilidad, a título voluntario, de que cada empresa comparta su casuística empresarial y necesidades/limitaciones para que otros/as empresarios/as puedan aportar su experiencia en diversos ámbitos de Dirección empresarial y trazar un plan de acción con seguimiento semestral.
+                        Hi ha sa possibilitat, a títol voluntari, que cada empresa comparteixi sa seva casuística empresarial i ses seves necessitats/limitacions perquè altres empresaris/àries puguin aportar sa seva experiència en diversos àmbits de Direcció empresarial i traçar un pla d’acció amb seguiment semestral.
                     </p>
                     <p>
-                        Se establece un cronograma anual a principios de año con las fechas de las reuniones mensuales cerradas y temáticas de interés general (innovación, subvenciones, análisis sectorial, etc), con la posibilidad de analizar cada mes las distintas necesidades de alguna de las empresas (mínimo 2 veces al año).
+                        S’estableix un cronograma anual a principis d’any amb ses dates de ses reunions mensuals tancades i temàtiques d’interès general (innovació, subvencions, anàlisi sectorial, etc.), amb sa possibilitat d’analitzar cada mes ses diferents necessitats d’alguna de ses empreses (mínim 2 pics a l’any).
                     </p>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaChartLine className="icon" /> Acceso a Bolsa de Trabajadores
+                        <FaChartLine className="icon" /> Accés a Borsa de Treballadors
                     </h3>
                     <p>
-                        Se habilitará una plataforma donde las empresas afiliadas podrán contratar trabajadores/as de otras empresas que se encuentren en situación de desempleo, en período de vacaciones o interesados en el pluriempleo.
+                        S’habilitarà una plataforma on ses empreses afiliades podran contractar treballadors/ores d’altres empreses que es trobin en situació d’atur, en període de vacances o interessats en es pluriempleu.
                     </p>
                     <p>
-                        La afiliación centralizará este proceso. Es necesario incluir empresas con temporada alta en invierno para garantizar continuidad.
+                        S’afiliació centralitzarà aquest procés. És necessari incloure empreses amb temporada alta a s’hivern per garantir continuïtat.
                     </p>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaHandsHelping className="icon" /> Pluriempleo
+                        <FaHandsHelping className="icon" /> Pluriempleu
                     </h3>
                     <p>
-                        <strong>Ejemplo 1:</strong> Trabajador/a que labora en una nave por las mañanas (de lunes a viernes) y que, al ver una oferta de trabajo en un restaurante los viernes por la noche y sábados, puede optar a dicha plaza vacante al ser compatibles sus horarios.
+                        <strong>Exemple 1:</strong> Un/a treballador/a que fa feina a un magatzem dematins (de dilluns a divendres) i que, en veure una oferta de feina a un restaurant els divendres vespre i dissabtes, pot optar a aquell lloc vacant per ser compatibles es seus horaris.
                     </p>
                     <p>
-                        <strong>Ejemplo 2:</strong> Trabajador/a que tenía un contrato fijo discontinuo trabajando 7-8 meses de temporada y, coordinando horarios, se le ofrece trabajar 20 horas en dos empresas (con contrato fijo a tiempo parcial), pasando a trabajar 12 meses en lugar de 7-8 y el resto en paro.
+                        <strong>Exemple 2:</strong> Un/a treballador/a que tenia un contracte fix discontinu fent feina 7-8 mesos de temporada i, coordinant horaris, se li ofereix fer 20 hores a dues empreses (amb contracte fix a temps parcial), passant a fer feina 12 mesos en lloc de 7-8 i sa resta en atur.
                     </p>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaClipboardCheck className="icon" /> Gestión Integral del Proyecto de Formación Dual (Sector Agroalimentario)
+                        <FaClipboardCheck className="icon" /> Gestió Integral des Projecte de Formació Dual (Sector Agroalimentari)
                     </h3>
                     <p>
-                        La afiliación gestionará proyectos de <strong>FORMACIÓN DUAL</strong> en colaboración con la Academia Algar para facilitar el acceso a contratos subvencionados.
+                        S’afiliació gestionarà projectes de <strong>FORMACIÓ DUAL</strong> en col·laboració amb s’Acadèmia Algar per facilitar s’accés a contractes subvencionats.
                     </p>
                     <p>
-                        <strong>PROYECTO NOVIEMBRE 2025:</strong> Se dará inicio al primer proyecto gestionado íntegramente por Sinergies Llevant SL. Se prevé la incorporación de docentes de reconocido prestigio que impartirán una formación teórica adaptada a la casuística de las empresas inscritas.
+                        <strong>PROJECTE NOVEMBRE 2025:</strong> Se donarà inici al primer projecte gestionat íntegrament per Sinergies Llevant SL. Se preveu s’incorporació de docents de reconegut prestigi que impartiran una formació teòrica adaptada a sa casuística de ses empreses inscrites.
                     </p>
                     <p>
-                        Periodo máximo de incorporación: mayo 2025. Se establecerán 3 meses de clases teóricas con visitas a las empresas, seguidos de 9 meses de trabajo práctico.
+                        Període màxim d’incorporació: maig 2025. S’establiran 3 mesos de classes teòriques amb visites a ses empreses, seguits de 9 mesos de feina pràctica.
                     </p>
                     <p>
-                        Dichos contratos están subvencionados (más de 12.000€ por contrato). Al finalizar el contrato (1 año), existe la posibilidad de renovar o liquidar. Si se renueva y se transforma a fijo/fijo-discontinuo, se accede a una bonificación de más de 100€ mensuales durante los próximos 3 años.
+                        Aquests contractes estan subvencionats (més de 12.000€ per contracte). En acabar es contracte (1 any), hi ha sa possibilitat de renovar o liquidar. Si se renova i se transforma a fix/fix-discontinu, s’accedeix a una bonificació de més de 100€ mensuals durant es propers 3 anys.
                     </p>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaLightbulb className="icon" /> Servicio Comercial
+                        <FaLightbulb className="icon" /> Servei Comercial
                     </h3>
                     <p>
-                        Se ofrece la posibilidad de servicios de ventas en sectores similares y complementarios. Por ejemplo, el/la comercial de una industria cárnica, al visitar cocinas de restaurantes y hoteles, puede aprovechar para vender carne, pescado, productos elaborados o fruta y verduras.
+                        S’ofereix sa possibilitat de serveis de vendes a sectors similars i complementaris. Per exemple, es/la comercial d’una indústria càrnia, en visitar cuines de restaurants i hotels, pot aprofitar per vendre carn, peix, productes elaborats o fruita i verdura.
                     </p>
                     <p>
-                        Se plantea costear el salario del/la comercial de una empresa, compartido entre las diversas empresas que opten por este servicio.
+                        Se planteja assumir es salari des/la comercial d’una empresa, compartit entre ses diferents empreses que optin per aquest servei.
                     </p>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaLightbulb className="icon" /> Servicio Formación
+                        <FaLightbulb className="icon" /> Servei de Formació
                     </h3>
                     <p>
-                        Este servicio es fundamental, ya que las empresas deben potenciar el talento interno y adaptar los procesos a los nuevos tiempos. Permite una rápida adaptación a los cambios y la capacitación del personal hacia nuevos roles y funciones en el complejo mercado laboral.
+                        Aquest servei és fonamental, ja que ses empreses han de potenciar es talent intern i adaptar es processos als nous temps. Permet una ràpida adaptació als canvis i sa capacitació des personal cap a nous rols i funcions en es complex mercat laboral.
                     </p>
                     <p>
-                        Se ofrece la opción de costear, entre todas las empresas afiliadas, un/a formador/a interno (ya presente en la plantilla). Este servicio facilitará la asistencia a cursos internos y la coordinación de formaciones en función del perfil y competencia que se desee potenciar.
+                        Se proposa s’opció d’assumir, entre totes ses empreses afiliades, un/a formador/a intern (ja present a sa plantilla). Aquest servei facilitarà s’assistència a cursos interns i sa coordinació de formacions en funció des perfil i competència que es vulgui potenciar.
                     </p>
                     <p>
-                        Por ejemplo, si varias empresas requieren potenciar el <strong>liderazgo</strong> de sus mandos intermedios, se impartirá una formación común, compartiendo experiencias entre perfiles similares. Otros temas pueden incluir: cultura empresarial, gestión de equipos, visión estratégica, gestión del tiempo, entre otros.
+                        Per exemple, si diverses empreses necessiten potenciar es <strong>lideratge</strong> des seus comandaments intermedis, s’impartirà una formació comuna, compartint experiències entre perfils similars. Altres temes poden incloure: cultura empresarial, gestió d’equips, visió estratègica, gestió des temps, entre d’altres.
                     </p>
                     <p>
-                        Las formaciones internas propias de cada empresa se facturarán aparte, dada la adaptación del temario general a cada organización.
+                        Ses formacions internes pròpies de cada empresa se facturaran a part, donada s’adaptació des temari general a cada organització.
                     </p>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaClipboardCheck className="icon" /> Plan de Responsabilidad Social Corporativa (RSC)
+                        <FaClipboardCheck className="icon" /> Pla de Responsabilitat Social Corporativa (RSC)
                     </h3>
                     <p>
-                        Se colaborará con el SOIB, asociaciones y fundaciones para impulsar proyectos sociales, diseñando un plan de acción específico para cada empresa afiliada. El objetivo es fomentar la inserción laboral y otras iniciativas de impacto social.
+                        Se col·laborarà amb es SOIB, associacions i fundacions per impulsar projectes socials, dissenyant un pla d’acció específic per a cada empresa afiliada. S’objectiu és fomentar s’ocupació laboral i altres iniciatives d’impacte social.
                     </p>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaUsers className="icon" /> Transformación Cultural y Plan de Sucesión
+                        <FaUsers className="icon" /> Transformació Cultural i Pla de Successió
                     </h3>
-                    <p>Este servicio, proporcionado por Cárnicas Sunyer, abarcará:</p>
+                    <p>Aquest servei, proporcionat per Càrnicas Sunyer, abarcarà:</p>
                     <ul>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Estructuración de plantillas
+                            <FaClipboardCheck className="list-icon" /> Estructuració de plantilles
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Detección de perfiles gestores
+                            <FaClipboardCheck className="list-icon" /> Detecció de perfils gestors
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Formación en cultura empresarial y delegación de tareas
+                            <FaClipboardCheck className="list-icon" /> Formació en cultura empresarial i delegació de tasques
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Implicación en decisiones estratégicas (ascensos, despidos, reubicaciones, etc.)
+                            <FaClipboardCheck className="list-icon" /> Implicació en decisions estratègiques (ascensos, acomiadaments, reubicacions, etc.)
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Diseño de un plan de compensación adaptado a cada empresa
+                            <FaClipboardCheck className="list-icon" /> Disseny d’un pla de compensació adaptat a cada empresa
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Revisión normativa según el número de trabajadores
+                            <FaClipboardCheck className="list-icon" /> Revisió normativa segons es nombre de treballadors
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Otros servicios complementarios
+                            <FaClipboardCheck className="list-icon" /> Altres serveis complementaris
                         </li>
                     </ul>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaChartLine className="icon" /> Fases del Proyecto
+                        <FaChartLine className="icon" /> Fases des Projecte
                     </h3>
                     <ol>
                         <li>
-                            <strong>Fase 1 (Auditoría):</strong> Evaluación de la situación actual del empresario, identificación y aceptación de la cultura y valores de la afiliación, revisión de la estructura organizativa y protocolos internos, y análisis de la plantilla y procesos para detectar perfiles clave.
+                            <strong>Fase 1 (Auditoria):</strong> Avaluació de sa situació actual de s’empresari, identificació i acceptació de sa cultura i valors de s’afiliació, revisió de s’estructura organitzativa i protocols interns, i anàlisi de sa plantilla i processos per detectar perfils clau.
                         </li>
                         <li>
-                            <strong>Fase 2 (Intervención):</strong> Definición de un presupuesto revisable mensualmente, priorización de la eficiencia en los procesos y delegación de responsabilidades, y establecimiento de protocolos y formaciones ágiles para la base de la plantilla.
+                            <strong>Fase 2 (Intervenció):</strong> Definició d’un pressupost revisable mensualment, priorització de s’eficiència en es processos i delegació de responsabilitats, i establiment de protocols i formacions àgils per a sa base de sa plantilla.
                         </li>
                         <li>
-                            <strong>Fase 3 (Seguimiento):</strong> Pactar horas de intervención periódica para garantizar la autogestión de la plantilla, con reuniones trimestrales o semestrales según las necesidades detectadas.
+                            <strong>Fase 3 (Seguiment):</strong> Pactar hores d’intervenció periòdica per garantir s’autogestió de sa plantilla, amb reunions trimestrals o semestrals segons ses necessitats detectades.
                         </li>
                     </ol>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaHandsHelping className="icon" /> Otros Servicios
+                        <FaHandsHelping className="icon" /> Altres Serveis
                     </h3>
                     <ul>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Servicio de Fisioterapia: Implementación de un protocolo de prevención de bajas laborales con sesiones gratuitas y descuentos en citas adicionales.
+                            <FaClipboardCheck className="list-icon" /> Servei de Fisioteràpia: Implementació d’un protocol de prevenció de baixes laborals amb sessions gratuïtes i descomptes en cites addicionals.
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Servicio Logístico: Proyecto en fase inicial para ofrecer una empresa proveedora de servicios de reparto.
+                            <FaClipboardCheck className="list-icon" /> Servei Logístic: Projecte en fase inicial per oferir una empresa proveïdora de serveis de repartiment.
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Asesoramiento Laboral: Orientado a mejorar la gestión de permisos y prevenir conflictos laborales.
+                            <FaClipboardCheck className="list-icon" /> Assessorament Laboral: Orientat a millorar sa gestió de permisos i prevenir conflictes laborals.
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Asesoramiento en Eficiencia Energética: Identificación de oportunidades de ahorro y sostenibilidad.
+                            <FaClipboardCheck className="list-icon" /> Assessorament en Eficiència Energètica: Identificació d’oportunitats d’estalvi i sostenibilitat.
                         </li>
                         <li>
-                            <FaClipboardCheck className="list-icon" /> Asesoramiento en Innovación Tecnológica: Evaluación del nivel tecnológico de la empresa y recomendaciones para mejorar su competitividad.
+                            <FaClipboardCheck className="list-icon" /> Assessorament en Innovació Tecnològica: Avaluació des nivell tecnològic de s’empresa i recomanacions per millorar sa seva competitivitat.
                         </li>
                     </ul>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaLightbulb className="icon" /> Servicios a Largo Plazo
+                        <FaLightbulb className="icon" /> Serveis a Llarg Termini
                     </h3>
                     <p>
-                        A medida que la afiliación crezca, se incorporarán nuevos servicios con planes de acción anuales. Algunos de los futuros proveedores podrían incluir:
+                        A mesura que s’afiliació creixi, s’hi aniran incorporant nous serveis amb plans d’acció anuals. Alguns des futurs proveïdors podrien incloure:
                     </p>
                     <ul>
-                        <li>Técnico/a de prevención de riesgos</li>
-                        <li>Técnico/a de marketing</li>
-                        <li>Técnico/a de sostenibilidad</li>
-                        <li>Técnico/a de innovación/IA</li>
-                        <li>Técnico/a de protección de datos (LOPD)</li>
-                        <li>Técnico/a de calidad</li>
+                        <li>Tècnic/a de prevenció de riscos</li>
+                        <li>Tècnic/a de màrqueting</li>
+                        <li>Tècnic/a de sostenibilitat</li>
+                        <li>Tècnic/a d’innovació/IA</li>
+                        <li>Tècnic/a de protecció de dades (LOPD)</li>
+                        <li>Tècnic/a de qualitat</li>
                     </ul>
                 </div>
 
