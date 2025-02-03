@@ -9,7 +9,7 @@ const TEMPLATE_ID = 'TU_TEMPLATE_ID';   // <- reemplaza
 const PUBLIC_KEY = 'TU_PUBLIC_KEY';     // <- reemplaza (EmailJS)
 
 // Clave pública de reCAPTCHA
-const RECAPTCHA_SITE_KEY = 'TU_RECAPTCHA_SITE_KEY'; // <- reemplaza con tu site key
+const RECAPTCHA_SITE_KEY = '6Ld3xMsqAAAAAIw7nI2i40A-slizK_zsejc0AnHR';
 
 const Contact = () => {
     const [sectionRef, isVisible] = useIntersection({ threshold: 0.2 });
