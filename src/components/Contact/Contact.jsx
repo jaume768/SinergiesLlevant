@@ -4,9 +4,9 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { useIntersection } from '../../hooks/useIntersection';
 import './Contact.css';
 
-const SERVICE_ID = 'TU_SERVICE_ID';
-const TEMPLATE_ID = 'TU_TEMPLATE_ID';
-const PUBLIC_KEY = 'TU_PUBLIC_KEY';
+const SERVICE_ID = 'service_hp5t6vj';
+const TEMPLATE_ID = 'template_u2gbd7f';
+const PUBLIC_KEY = '9cgVf8auM-uTGrWOI';
 
 const RECAPTCHA_SITE_KEY = '6LctQs4qAAAAAEz02LPCCzQgVR4v5bQEYTnfy45_';
 
