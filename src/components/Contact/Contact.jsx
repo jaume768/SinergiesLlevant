@@ -4,25 +4,23 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import { useIntersection } from '../../hooks/useIntersection';
 import './Contact.css';
 
-const SERVICE_ID = 'TU_SERVICE_ID';     // <- reemplaza
-const TEMPLATE_ID = 'TU_TEMPLATE_ID';   // <- reemplaza
-const PUBLIC_KEY = 'TU_PUBLIC_KEY';     // <- reemplaza (EmailJS)
+const SERVICE_ID = 'TU_SERVICE_ID';
+const TEMPLATE_ID = 'TU_TEMPLATE_ID';
+const PUBLIC_KEY = 'TU_PUBLIC_KEY';
 
-// Clave pública de reCAPTCHA
-const RECAPTCHA_SITE_KEY = '6Ld3xMsqAAAAAIw7nI2i40A-slizK_zsejc0AnHR';
+const RECAPTCHA_SITE_KEY = '6LctQs4qAAAAAEz02LPCCzQgVR4v5bQEYTnfy45_';
 
 const Contact = () => {
     const [sectionRef, isVisible] = useIntersection({ threshold: 0.2 });
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         message: '',
     });
 
-    // Para almacenar el token del reCAPTCHA
     const [recaptchaToken, setRecaptchaToken] = useState(null);
 
-    // Usaremos una ref al formulario para pasársela directamente a emailjs
     const formRef = useRef();
 
     const handleChange = (e) => {
@@ -30,7 +28,6 @@ const Contact = () => {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    // Al completar el captcha, Google reCAPTCHA envía el token
     const handleRecaptcha = (token) => {
         setRecaptchaToken(token);
     };
@@ -38,25 +35,22 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Verificar si el captcha está resuelto
         if (!recaptchaToken) {
-            alert('Per favor, verifica que no ets un robot.');
+            alert('Por favor, completa el reCAPTCHA antes de enviar.');
             return;
         }
 
-        // Llamada a EmailJS
-        emailjs
-            .sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
+        emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
             .then(
                 (result) => {
                     console.log('Correo enviado:', result.text);
-                    alert('Missatge enviat correctament!');
+                    alert('¡Mensaje enviado correctamente!');
                     setFormData({ name: '', email: '', message: '' });
                     setRecaptchaToken(null);
                 },
                 (error) => {
                     console.error('Error al enviar correo:', error.text);
-                    alert('Error en enviar el missatge, intenta-ho més tard.');
+                    alert('Error al enviar el mensaje. Inténtalo más tarde.');
                 }
             );
     };
@@ -66,17 +60,16 @@ const Contact = () => {
             ref={sectionRef}
             className={`contact-section fade-in-section ${isVisible ? 'fade-in-active' : ''}`}
         >
-            <h2 className="contact-title">CONTACTA AMB NOSALTRES</h2>
+            <h2 className="contact-title">CONTACTA CON NOSOTROS</h2>
 
-            {/* Reemplaza 'ref' con formRef y onSubmit con handleSubmit */}
             <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="name">Nom</label>
+                    <label htmlFor="name">Nombre</label>
                     <input
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="El teu nom"
+                        placeholder="Tu nombre"
                         value={formData.name}
                         onChange={handleChange}
                         required
@@ -84,12 +77,12 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="email">Correu electrònic</label>
+                    <label htmlFor="email">Correo electrónico</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="correu@example.com"
+                        placeholder="tucorreo@example.com"
                         value={formData.email}
                         onChange={handleChange}
                         required
@@ -97,11 +90,11 @@ const Contact = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="message">Missatge</label>
+                    <label htmlFor="message">Mensaje</label>
                     <textarea
                         id="message"
                         name="message"
-                        placeholder="Explica el teu dubte o consulta..."
+                        placeholder="Tu duda o consulta..."
                         rows="5"
                         value={formData.message}
                         onChange={handleChange}
@@ -109,7 +102,6 @@ const Contact = () => {
                     />
                 </div>
 
-                {/* Google reCAPTCHA */}
                 <div className="form-group recaptcha-group">
                     <ReCAPTCHA
                         sitekey={RECAPTCHA_SITE_KEY}
