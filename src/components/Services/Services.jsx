@@ -20,7 +20,6 @@ const Services = () => {
             <h2>ELS NOSTRES SERVEIS</h2>
 
             <div className="services-cards">
-
                 <Link
                     to="/Serveis-empresarials"
                     style={{ textDecoration: 'none' }}
@@ -28,7 +27,7 @@ const Services = () => {
                 >
                     <FontAwesomeIcon icon={faUsers} className="service-icon" />
                     <h3>TRANSFORMACIÓ CULTURAL I SUCCESSIÓ</h3>
-                    <p>Fomentem lideratge humanista i continuïtat amb assessorament i borsa de treball.</p>
+                    <p>Fomentem el lideratge humanista i la continuïtat amb assessorament i borsa de treball.</p>
                 </Link>
 
                 <Link
@@ -47,8 +46,8 @@ const Services = () => {
                     className="service-card link-card"
                 >
                     <FontAwesomeIcon icon={faCogs} className="service-icon" />
-                    <h3>PLURIEMPLEO</h3>
-                    <p>Facilitam el pluriempleo i la coordinació horària per optimitzar l’ocupació laboral.</p>
+                    <h3>PLURI-OCUPACIÓ</h3>
+                    <p>Facilitam la pluri-ocupació i la coordinació horària per optimitzar l’ocupació laboral.</p>
                 </Link>
 
                 <Link
@@ -60,13 +59,11 @@ const Services = () => {
                     <h3>GESTIÓ DUAL</h3>
                     <p>L’afiliació impulsarà projectes de formació dual amb l’Acadèmia Algar per a contractes subvencionats.</p>
                 </Link>
-
             </div>
 
             <Link to="/Serveis-empresarials" style={{ textDecoration: 'none' }}>
                 <button className="view-more-button">Veure més serveis</button>
             </Link>
-
         </section>
     );
 };

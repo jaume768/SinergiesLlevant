@@ -1,8 +1,8 @@
 import React from 'react';
-import { useIntersection } from '../../hooks/useIntersection';
 import './Objectius.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandshake, faChartLine, faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { useIntersection } from '../../hooks/useIntersection';
 
 const objectiusData = [
     {
@@ -15,13 +15,13 @@ const objectiusData = [
         id: 2,
         icon: faChartLine,
         title: 'MILLORAR LA COMPETITIVITAT',
-        text: 'Dotar a les PYMES de serveis integrats per afrontar els reptes del mercat, assegurant així el compliment de les exigències legals i assegurar un futur amb millors garanties.'
+        text: 'Dotar les PIMES de serveis integrats per afrontar els reptes del mercat, assegurant així el compliment de les exigències legals i garantint un futur amb millors garanties.'
     },
     {
         id: 3,
         icon: faLeaf,
         title: 'PROMOURE LA SOSTENIBILITAT',
-        text: 'Impulsar pràctiques empresarials que fomentin la Responsabilitat Social Corporativa (RSC), sostenibilitat, contribuint així, al benestar integral dels treballadors i la comunitat en general.'
+        text: 'Impulsar pràctiques empresarials que fomentin la Responsabilitat Social Corporativa (RSC) i la sostenibilitat, contribuint així al benestar integral dels treballadors i de la comunitat en general.'
     }
 ];
 

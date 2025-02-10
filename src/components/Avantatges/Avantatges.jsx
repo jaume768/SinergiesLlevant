@@ -1,7 +1,7 @@
 import React from 'react';
 import './Avantatges.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBoxOpen, faHandshake, faGavel, faUserGraduate, faNetworkWired, faEye  } from '@fortawesome/free-solid-svg-icons';
+import { faBoxOpen, faHandshake, faGavel, faUserGraduate, faNetworkWired, faEye } from '@fortawesome/free-solid-svg-icons';
 import { useInView } from 'react-intersection-observer';
 
 const avantatgesData = [
@@ -27,7 +27,7 @@ const avantatgesData = [
         id: 4,
         icon: faUserGraduate,
         title: 'Oportunitats de formació i desenvolupament',
-        description: 'Participa en formacions per millorar les competències i motivació del teu equip.'
+        description: 'Participa en formacions per millorar les competències i la motivació del teu equip.'
     },
     {
         id: 5,
