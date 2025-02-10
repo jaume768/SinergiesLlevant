@@ -2,30 +2,28 @@ import React, { useState, useRef } from 'react';
 import emailjs from 'emailjs-com';
 import ReCAPTCHA from 'react-google-recaptcha';
 import { useIntersection } from '../../hooks/useIntersection';
+import { useTranslation } from 'react-i18next';
 import './Contact.css';
 
 const SERVICE_ID = 'service_hp5t6vj';
 const TEMPLATE_ID = 'template_u2gbd7f';
 const PUBLIC_KEY = '9cgVf8auM-uTGrWOI';
-
 const RECAPTCHA_SITE_KEY = '6LctQs4qAAAAAEz02LPCCzQgVR4v5bQEYTnfy45_';
 
 const Contact = () => {
+    const { t } = useTranslation();
     const [sectionRef, isVisible] = useIntersection({ threshold: 0.2 });
-
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         message: '',
     });
-
     const [recaptchaToken, setRecaptchaToken] = useState(null);
-
     const formRef = useRef();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData(prev => ({ ...prev, [name]: value }));
     };
 
     const handleRecaptcha = (token) => {
@@ -36,7 +34,7 @@ const Contact = () => {
         e.preventDefault();
 
         if (!recaptchaToken) {
-            alert('Por favor, completa el reCAPTCHA antes de enviar.');
+            alert(t('contact.recaptchaAlert'));
             return;
         }
 
@@ -44,73 +42,62 @@ const Contact = () => {
             .then(
                 (result) => {
                     console.log('Correo enviado:', result.text);
-                    alert('¡Mensaje enviado correctamente!');
+                    alert(t('contact.successAlert'));
                     setFormData({ name: '', email: '', message: '' });
                     setRecaptchaToken(null);
                 },
                 (error) => {
                     console.error('Error al enviar correo:', error.text);
-                    alert('Error al enviar el mensaje. Inténtalo más tarde.');
+                    alert(t('contact.errorAlert'));
                 }
             );
     };
 
     return (
-        <section
-            ref={sectionRef}
-            className={`contact-section fade-in-section ${isVisible ? 'fade-in-active' : ''}`}
-        >
-            <h2 className="contact-title">CONTACTA CON NOSOTROS</h2>
-
+        <section ref={sectionRef} className={`contact-section fade-in-section ${isVisible ? 'fade-in-active' : ''}`}>
+            <h2 className="contact-title">{t('contact.title')}</h2>
             <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="name">Nombre</label>
+                    <label htmlFor="name">{t('contact.labels.name')}</label>
                     <input
                         type="text"
                         id="name"
                         name="name"
-                        placeholder="Tu nombre"
+                        placeholder={t('contact.placeholders.name')}
                         value={formData.name}
                         onChange={handleChange}
                         required
                     />
                 </div>
-
                 <div className="form-group">
-                    <label htmlFor="email">Correo electrónico</label>
+                    <label htmlFor="email">{t('contact.labels.email')}</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="tucorreo@example.com"
+                        placeholder={t('contact.placeholders.email')}
                         value={formData.email}
                         onChange={handleChange}
                         required
                     />
                 </div>
-
                 <div className="form-group">
-                    <label htmlFor="message">Mensaje</label>
+                    <label htmlFor="message">{t('contact.labels.message')}</label>
                     <textarea
                         id="message"
                         name="message"
-                        placeholder="Tu duda o consulta..."
+                        placeholder={t('contact.placeholders.message')}
                         rows="5"
                         value={formData.message}
                         onChange={handleChange}
                         required
                     />
                 </div>
-
                 <div className="form-group recaptcha-group">
-                    <ReCAPTCHA
-                        sitekey={RECAPTCHA_SITE_KEY}
-                        onChange={handleRecaptcha}
-                    />
+                    <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={handleRecaptcha} />
                 </div>
-
                 <button type="submit" className="send-button">
-                    Enviar
+                    {t('contact.sendButton')}
                 </button>
             </form>
         </section>

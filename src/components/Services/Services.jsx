@@ -4,65 +4,50 @@ import { useIntersection } from '../../hooks/useIntersection';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUsers, faChartLine, faCogs, faTruck } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Services = () => {
+    const { t } = useTranslation();
     const [servicesRef, isServicesVisible] = useIntersection({
         root: null,
         rootMargin: '0px',
         threshold: 0.2,
     });
+    const cards = t('services.cards', { returnObjects: true });
 
     return (
-        <section
-            ref={servicesRef}
-            className={`services-section fade-in-section ${isServicesVisible ? 'fade-in-active' : ''}`}
-        >
-            <h2>ELS NOSTRES SERVEIS</h2>
-
+        <section ref={servicesRef} className={`services-section fade-in-section ${isServicesVisible ? 'fade-in-active' : ''}`}>
+            <h2>{t('services.title')}</h2>
             <div className="services-cards">
-                <Link
-                    to="/Serveis-empresarials"
-                    style={{ textDecoration: 'none' }}
-                    className="service-card link-card"
-                >
-                    <FontAwesomeIcon icon={faUsers} className="service-icon" />
-                    <h3>TRANSFORMACIÓ CULTURAL I SUCCESSIÓ</h3>
-                    <p>Fomentem el lideratge humanista i la continuïtat amb assessorament i borsa de treball.</p>
-                </Link>
-
-                <Link
-                    to="/Serveis-empresarials"
-                    style={{ textDecoration: 'none' }}
-                    className="service-card link-card"
-                >
-                    <FontAwesomeIcon icon={faChartLine} className="service-icon" />
-                    <h3>FORMACIÓ</h3>
-                    <p>Impartir formacions internes adaptades a les  necessitats de cada l'empresa a través d'un/una formador/a intern</p>
-                </Link>
-
-                <Link
-                    to="/Serveis-empresarials"
-                    style={{ textDecoration: 'none' }}
-                    className="service-card link-card"
-                >
-                    <FontAwesomeIcon icon={faCogs} className="service-icon" />
-                    <h3>PLURI-OCUPACIÓ</h3>
-                    <p>Facilitam la gestió horaria per optimitzar l'ocupació laboral i optar a fer feina tot l'any</p>
-                </Link>
-
-                <Link
-                    to="/Serveis-empresarials"
-                    style={{ textDecoration: 'none' }}
-                    className="service-card link-card"
-                >
-                    <FontAwesomeIcon icon={faTruck} className="service-icon" />
-                    <h3>GESTIÓ DUAL</h3>
-                    <p>L’afiliació impulsarà projectes de formació dual amb l’Acadèmia Algar per a contractes subvencionats.</p>
-                </Link>
+                {cards.map((card, index) => {
+                    let icon;
+                    switch (index) {
+                        case 0:
+                            icon = faUsers;
+                            break;
+                        case 1:
+                            icon = faChartLine;
+                            break;
+                        case 2:
+                            icon = faCogs;
+                            break;
+                        case 3:
+                            icon = faTruck;
+                            break;
+                        default:
+                            icon = faUsers;
+                    }
+                    return (
+                        <Link key={index} to="/Serveis-empresarials" style={{ textDecoration: 'none' }} className="service-card link-card">
+                            <FontAwesomeIcon icon={icon} className="service-icon" />
+                            <h3>{card.title}</h3>
+                            <p>{card.description}</p>
+                        </Link>
+                    );
+                })}
             </div>
-
             <Link to="/Serveis-empresarials" style={{ textDecoration: 'none' }}>
-                <button className="view-more-button">Veure més serveis</button>
+                <button className="view-more-button">{t('services.viewMore')}</button>
             </Link>
         </section>
     );

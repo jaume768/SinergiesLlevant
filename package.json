@@ -19,6 +19,8 @@
     "date-fns": "^4.1.0",
     "emailjs-com": "^3.2.0",
     "i18n-iso-countries": "^7.13.0",
+    "i18next": "^24.2.2",
+    "i18next-browser-languagedetector": "^8.0.2",
     "jwt-decode": "^4.0.0",
     "lodash.debounce": "^4.0.8",
     "react": "^18.3.1",
@@ -27,6 +29,7 @@
     "react-dom": "^18.3.1",
     "react-force-graph": "^1.46.0",
     "react-google-recaptcha": "^3.1.0",
+    "react-i18next": "^15.4.0",
     "react-icons": "^5.3.0",
     "react-intersection-observer": "^9.15.1",
     "react-responsive-carousel": "^3.2.23",
@@ -38,6 +41,7 @@
     "react-swipeable": "^7.0.2",
     "slick-carousel": "^1.8.1",
     "switch": "^0.0.0",
+    "typescript": "^5.7.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
