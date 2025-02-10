@@ -22,7 +22,7 @@ i18n
                     },
                     about: {
                         title: "QUI SOM?",
-                        description: "Som una empresa dedicada a promoure la col·laboració entre PIMES, mitjançant un model d'afiliació que proporciona accés a serveis i recursos compartits. L'objectiu del projecte és extrapolar la cultura d'empresa de CÀRNIQUES SUNYER, basada en la cooperació i en un sistema horitzontal i flexible, que assigna responsabilitats i rols de manera àgil, destacant la importància de la cultura empresarial."
+                        description: "Som una empresa dedicada a promoure la col·laboració entre <strong>PIMES</strong>, mitjançant un model d'afiliació que proporciona accés a serveis i recursos compartits. L'objectiu del projecte és extrapolar la cultura d'empresa de <strong>CÀRNIQUES SUNYER</strong>, basada en la cooperació i en un sistema horitzontal i flexible, que assigna responsabilitats i rols de manera àgil, destacant la importància de la cultura empresarial."
                     },
                     avantatges: {
                         title: "AVANTATGES",
@@ -139,7 +139,7 @@ i18n
                             {
                                 title: "Servei de Formació",
                                 description: "Aquest servei és fonamental, ja que les empreses han de potenciar el talent intern i adaptar els processos als nous temps. Permet una ràpida adaptació als canvis i la capacitació del personal cap a nous rols i funcions en el complex mercat laboral.",
-                                extra: "Es proposa l'opció d'assumir, entre totes les empreses afiliades, un/a formador/a intern (ja present a la plantilla). Aquest servei facilitarà l'assistència a cursos interns i la coordinació de formacions en funció del perfil i la competència que es vulgui potenciar. Per exemple, si diverses empreses necessiten potenciar el <strong>lideratge</strong> dels seus comandaments intermedis, s'impartirà una formació comuna, compartint experiències entre perfils similars. Altres temes poden incloure: cultura empresarial, gestió d’equips, visió estratègica, gestió del temps, entre altres. Les formacions internes pròpies de cada empresa es facturaran a part, donada l'adaptació del temari general a cada organització."
+                                extra: "Es proposa l'opció d'assumir, entre totes les empreses afiliades, un/a formador/a intern (ja present a la plantilla). Aquest servei facilitarà l'assistència a cursos interns i la coordinació de formacions en funció del perfil i la competència que es vulgui potenciar. Per exemple, si diverses empreses necessiten potenciar el lideratge dels seus comandaments intermedis, s'impartirà una formació comuna, compartint experiències entre perfils similars. Altres temes poden incloure: cultura empresarial, gestió d’equips, visió estratègica, gestió del temps, entre altres. Les formacions internes pròpies de cada empresa es facturaran a part, donada l'adaptació del temari general a cada organització."
                             },
                             {
                                 title: "Pluri-ocupació",
@@ -150,7 +150,7 @@ i18n
                             },
                             {
                                 title: "Gestió Integral del Projecte de Formació Dual (Sector Agroalimentari)",
-                                description: "L'afiliació gestionarà projectes de <strong>FORMACIÓ DUAL</strong> en col·laboració amb l'Acadèmia Algar per facilitar l'accés a contractes subvencionats.",
+                                description: "L'afiliació gestionarà projectes de FORMACIÓ DUAL en col·laboració amb l'Acadèmia Algar per facilitar l'accés a contractes subvencionats.",
                                 extra: "PROJECTE NOVEMBRE 2025: Es donarà inici al primer projecte gestionat íntegrament per Sinergies Llevant SL. Es preveu l'incorporació de docents de reconegut prestigi que impartiran una formació teòrica adaptada a la casuística de les empreses inscrites. Període màxim d'incorporació: maig 2025. S'establiran 3 mesos de classes teòriques amb visites a les empreses, seguits de 9 mesos de feina pràctica. Aquests contractes estan subvencionats (més de 12.000€ per contracte). En acabar el contracte (1 any), hi ha la possibilitat de renovar o liquidar. Si es renova i es transforma a fix/fix-discontinu, s'accedeix a una bonificació de més de 100€ mensuals durant els propers 3 anys."
                             },
                             {
@@ -344,7 +344,7 @@ i18n
                             },
                             {
                                 title: "Gestión Integral del Proyecto de Formación Dual (Sector Agroalimentario)",
-                                description: "La afiliación gestionará proyectos de <strong>FORMACIÓN DUAL</strong> en colaboración con la Acadèmia Algar para facilitar el acceso a contratos subvencionados.",
+                                description: "La afiliación gestionará proyectos de FORMACIÓN DUAL en colaboración con la Acadèmia Algar para facilitar el acceso a contratos subvencionados.",
                                 extra: "PROYECTO NOVIEMBRE 2025: Se dará inicio al primer proyecto gestionado íntegramente por Sinergies Llevant SL. Se prevé la incorporación de docentes de reconocido prestigio que impartirán una formación teórica adaptada a la casuística de las empresas inscritas. Período máximo de incorporación: mayo 2025. Se establecerán 3 meses de clases teóricas con visitas a las empresas, seguidos de 9 meses de trabajo práctico. Estos contratos están subvencionados (más de 12.000€ por contrato). Al finalizar el contrato (1 año), existe la posibilidad de renovar o liquidar. Si se renueva y se transforma a fijo/fijo-discontinuo, se accede a una bonificación de más de 100€ mensuales durante los próximos 3 años."
                             },
                             {

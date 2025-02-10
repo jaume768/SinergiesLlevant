@@ -1,7 +1,7 @@
 import React from 'react';
 import './TransformacioCultural.css';
 import { FaUsers, FaClipboardCheck, FaChartLine, FaHandsHelping, FaLightbulb } from 'react-icons/fa';
-import { useTranslation } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 
 const TransformacioCultural = () => {
     const { t } = useTranslation();
@@ -26,7 +26,14 @@ const TransformacioCultural = () => {
                             {" "}{block.title}
                         </h3>
                         {block.description && <p>{block.description}</p>}
-                        {block.extra && <p dangerouslySetInnerHTML={{ __html: block.extra }} />}
+                        {block.extra && (
+                            <p>
+                                <Trans
+                                    i18nKey={`transformacioCultural.blocks.${index}.extra`}
+                                    components={{ strong: <strong /> }}
+                                />
+                            </p>
+                        )}
                         {block.list && (
                             <ul>
                                 {block.list.map((item, i) => (
@@ -46,7 +53,9 @@ const TransformacioCultural = () => {
                         {block.examples && (
                             <>
                                 {block.examples.map((ex, i) => (
-                                    <p key={i}><strong>{i === 0 ? 'Exemple 1:' : 'Exemple 2:'}</strong> {ex}</p>
+                                    <p key={i}>
+                                        <strong>{i === 0 ? 'Exemple 1:' : 'Exemple 2:'}</strong> {ex}
+                                    </p>
                                 ))}
                             </>
                         )}

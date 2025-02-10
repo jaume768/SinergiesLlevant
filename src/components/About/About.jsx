@@ -1,7 +1,7 @@
 import React from 'react';
 import './About.css';
 import { useIntersection } from '../../hooks/useIntersection';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 const About = () => {
     const [sectionRef, isVisible] = useIntersection({
@@ -12,14 +12,19 @@ const About = () => {
     const { t } = useTranslation();
 
     return (
-        <section ref={sectionRef} className={`about-section fade-in-section ${isVisible ? 'fade-in-active' : ''}`}>
+        <section
+            ref={sectionRef}
+            className={`about-section fade-in-section ${isVisible ? 'fade-in-active' : ''}`}
+        >
             <div className="about-container">
                 <div className="about-image">
                     <img src="/images/personas.webp" alt="Persones" />
                 </div>
                 <div className="about-text">
                     <h2>{t('about.title')}</h2>
-                    <p>{t('about.description')}</p>
+                    <p>
+                        <Trans i18nKey="about.description" />
+                    </p>
                 </div>
             </div>
         </section>
