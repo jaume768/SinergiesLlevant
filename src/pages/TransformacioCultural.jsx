@@ -10,28 +10,49 @@ const TransformacioCultural = () => {
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaUsers className="icon" /> Comitè Empresarial
+                        <FaUsers className="icon" /> Transformació Cultural i Pla de Successió
                     </h3>
-                    <p>
-                        L'objectiu d'aquest servei és contextualitzar la situació econòmica i avaluar possibles aliances estratègiques en àmbits com la inversió i la possibilitat de compartir maquinària, infraestructures, etc.
-                    </p>
-                    <p>
-                        Hi ha la possibilitat, a títol voluntari, que cada empresa comparteixi la seva casuística empresarial i les seves necessitats/limitacions perquè altres empresaris/àries puguin aportar la seva experiència en diversos àmbits de direcció empresarial i traçar un pla d'acció amb seguiment semestral.
-                    </p>
-                    <p>
-                        S'estableix un cronograma anual a principis d'any amb les dates de les reunions mensuals tancades i temàtiques d'interès general (innovació, subvencions, anàlisi sectorial, etc.), amb la possibilitat d'analitzar cada mes les diferents necessitats d'alguna de les empreses (mínim 2 pics a l'any).
-                    </p>
+                    <p>Aquest servei, proporcionat per Càrnicas Sunyer, abarcarà:</p>
+                    <ul>
+                        <li>
+                            <FaClipboardCheck className="list-icon" /> Estructuració de plantilles
+                        </li>
+                        <li>
+                            <FaClipboardCheck className="list-icon" /> Detecció de perfils gestors
+                        </li>
+                        <li>
+                            <FaClipboardCheck className="list-icon" /> Formació en cultura empresarial i delegació de tasques
+                        </li>
+                        <li>
+                            <FaClipboardCheck className="list-icon" /> Implicació en decisions estratègiques (ascensos, acomiadaments, reubicacions, etc.)
+                        </li>
+                        <li>
+                            <FaClipboardCheck className="list-icon" /> Disseny d’un pla de compensació adaptat a cada empresa
+                        </li>
+                        <li>
+                            <FaClipboardCheck className="list-icon" /> Revisió normativa segons el nombre de treballadors
+                        </li>
+                        <li>
+                            <FaClipboardCheck className="list-icon" /> Altres serveis complementaris
+                        </li>
+                    </ul>
                 </div>
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaChartLine className="icon" /> Accés a Borsa de Treballadors
+                        <FaLightbulb className="icon" /> Servei de Formació
                     </h3>
                     <p>
-                        S'habilitarà una plataforma on les empreses afiliades podran contractar treballadors/ores d'altres empreses que es trobin en situació d'atur, en període de vacances o interessats en la pluri-ocupació.
+                        Aquest servei és fonamental, ja que les empreses han de potenciar el talent intern i adaptar els processos als nous temps. Permet una ràpida adaptació als canvis i la capacitació del personal cap a nous rols i funcions en el complex mercat laboral.
                     </p>
                     <p>
-                        L'afiliació centralitzarà aquest procés. És necessari incloure empreses amb temporada alta a l'hivern per garantir continuïtat.
+                        Es proposa l'opció d'assumir, entre totes les empreses afiliades, un/a formador/a intern (ja present a la plantilla). Aquest servei facilitarà l'assistència a cursos interns i la coordinació de formacions en funció del perfil i la competència que es vulgui potenciar.
+                    </p>
+                    <p>
+                        Per exemple, si diverses empreses necessiten potenciar el <strong>lideratge</strong> dels seus comandaments intermedis, s'impartirà una formació comuna, compartint experiències entre perfils similars. Altres temes poden incloure: cultura empresarial, gestió d’equips, visió estratègica, gestió del temps, entre altres.
+                    </p>
+                    <p>
+                        Les formacions internes pròpies de cada empresa es facturaran a part, donada l'adaptació del temari general a cada organització.
                     </p>
                 </div>
 
@@ -67,6 +88,33 @@ const TransformacioCultural = () => {
 
                 <div className="transformacio-block">
                     <h3>
+                        <FaUsers className="icon" /> Comitè Empresarial
+                    </h3>
+                    <p>
+                        L'objectiu d'aquest servei és contextualitzar la situació econòmica i avaluar possibles aliances estratègiques en àmbits com la inversió i la possibilitat de compartir maquinària, infraestructures, etc.
+                    </p>
+                    <p>
+                        Hi ha la possibilitat, a títol voluntari, que cada empresa comparteixi la seva casuística empresarial i les seves necessitats/limitacions perquè altres empresaris/àries puguin aportar la seva experiència en diversos àmbits de direcció empresarial i traçar un pla d'acció amb seguiment semestral.
+                    </p>
+                    <p>
+                        S'estableix un cronograma anual a principis d'any amb les dates de les reunions mensuals tancades i temàtiques d'interès general (innovació, subvencions, anàlisi sectorial, etc.), amb la possibilitat d'analitzar cada mes les diferents necessitats d'alguna de les empreses (mínim 2 pics a l'any).
+                    </p>
+                </div>
+
+                <div className="transformacio-block">
+                    <h3>
+                        <FaChartLine className="icon" /> Accés a Borsa de Treballadors
+                    </h3>
+                    <p>
+                        S'habilitarà una plataforma on les empreses afiliades podran contractar treballadors/ores d'altres empreses que es trobin en situació d'atur, en període de vacances o interessats en la pluri-ocupació.
+                    </p>
+                    <p>
+                        L'afiliació centralitzarà aquest procés. És necessari incloure empreses amb temporada alta a l'hivern per garantir continuïtat.
+                    </p>
+                </div>
+
+                <div className="transformacio-block">
+                    <h3>
                         <FaLightbulb className="icon" /> Servei Comercial
                     </h3>
                     <p>
@@ -79,59 +127,11 @@ const TransformacioCultural = () => {
 
                 <div className="transformacio-block">
                     <h3>
-                        <FaLightbulb className="icon" /> Servei de Formació
-                    </h3>
-                    <p>
-                        Aquest servei és fonamental, ja que les empreses han de potenciar el talent intern i adaptar els processos als nous temps. Permet una ràpida adaptació als canvis i la capacitació del personal cap a nous rols i funcions en el complex mercat laboral.
-                    </p>
-                    <p>
-                        Es proposa l'opció d'assumir, entre totes les empreses afiliades, un/a formador/a intern (ja present a la plantilla). Aquest servei facilitarà l'assistència a cursos interns i la coordinació de formacions en funció del perfil i la competència que es vulgui potenciar.
-                    </p>
-                    <p>
-                        Per exemple, si diverses empreses necessiten potenciar el <strong>lideratge</strong> dels seus comandaments intermedis, s'impartirà una formació comuna, compartint experiències entre perfils similars. Altres temes poden incloure: cultura empresarial, gestió d’equips, visió estratègica, gestió del temps, entre altres.
-                    </p>
-                    <p>
-                        Les formacions internes pròpies de cada empresa es facturaran a part, donada l'adaptació del temari general a cada organització.
-                    </p>
-                </div>
-
-                <div className="transformacio-block">
-                    <h3>
                         <FaClipboardCheck className="icon" /> Pla de Responsabilitat Social Corporativa (RSC)
                     </h3>
                     <p>
                         Es col·laborarà amb el SOIB, associacions i fundacions per impulsar projectes socials, dissenyant un pla d'acció específic per a cada empresa afiliada. L'objectiu és fomentar l'ocupació laboral i altres iniciatives d'impacte social.
                     </p>
-                </div>
-
-                <div className="transformacio-block">
-                    <h3>
-                        <FaUsers className="icon" /> Transformació Cultural i Pla de Successió
-                    </h3>
-                    <p>Aquest servei, proporcionat per Càrnicas Sunyer, abarcarà:</p>
-                    <ul>
-                        <li>
-                            <FaClipboardCheck className="list-icon" /> Estructuració de plantilles
-                        </li>
-                        <li>
-                            <FaClipboardCheck className="list-icon" /> Detecció de perfils gestors
-                        </li>
-                        <li>
-                            <FaClipboardCheck className="list-icon" /> Formació en cultura empresarial i delegació de tasques
-                        </li>
-                        <li>
-                            <FaClipboardCheck className="list-icon" /> Implicació en decisions estratègiques (ascensos, acomiadaments, reubicacions, etc.)
-                        </li>
-                        <li>
-                            <FaClipboardCheck className="list-icon" /> Disseny d’un pla de compensació adaptat a cada empresa
-                        </li>
-                        <li>
-                            <FaClipboardCheck className="list-icon" /> Revisió normativa segons el nombre de treballadors
-                        </li>
-                        <li>
-                            <FaClipboardCheck className="list-icon" /> Altres serveis complementaris
-                        </li>
-                    </ul>
                 </div>
 
                 <div className="transformacio-block">

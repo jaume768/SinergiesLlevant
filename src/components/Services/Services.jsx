@@ -37,7 +37,7 @@ const Services = () => {
                 >
                     <FontAwesomeIcon icon={faChartLine} className="service-icon" />
                     <h3>FORMACIÓ</h3>
-                    <p>Facilitam la formació interna i l’adaptació empresarial als canvis compartint recursos.</p>
+                    <p>Impartir formacions internes adaptades a les  necessitats de cada l'empresa a través d'un/una formador/a intern</p>
                 </Link>
 
                 <Link
@@ -47,7 +47,7 @@ const Services = () => {
                 >
                     <FontAwesomeIcon icon={faCogs} className="service-icon" />
                     <h3>PLURI-OCUPACIÓ</h3>
-                    <p>Facilitam la pluri-ocupació i la coordinació horària per optimitzar l’ocupació laboral.</p>
+                    <p>Facilitam la gestió horaria per optimitzar l'ocupació laboral i optar a fer feina tot l'any</p>
                 </Link>
 
                 <Link
