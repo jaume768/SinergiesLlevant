@@ -41,7 +41,7 @@ const Navbar = () => {
                 </div>
                 <div className="language-selector">
                     <img
-                        src="/images/bandera-catalana.png"
+                        src="/images/bandera-catalana.jpg"
                         alt="Català"
                         onClick={() => changeLanguage('ca')}
                         className={`language-icon ${i18n.language === 'ca' ? 'active' : ''}`}
