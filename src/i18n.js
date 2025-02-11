@@ -302,7 +302,7 @@ i18n
                                 description: "Impartir formaciones internas adaptadas a las necesidades de cada empresa a través de un/a formador/a interno."
                             },
                             {
-                                title: "PLURIEMPLEO",
+                                title: "PLURI-EMPLEO",
                                 description: "Facilitamos la gestión horaria para optimizar el empleo y optar a trabajar durante todo el año."
                             },
                             {
@@ -340,7 +340,7 @@ i18n
                                 extra: "Se propone la opción de asumir, entre todas las empresas afiliadas, un/a formador/a interno (ya presente en la plantilla). Este servicio facilitará la asistencia a cursos internos y la coordinación de formaciones en función del perfil y la competencia que se quiera potenciar. Por ejemplo, si varias empresas necesitan potenciar el <strong>liderazgo</strong> de sus mandos intermedios, se impartirá una formación común, compartiendo experiencias entre perfiles similares. Otros temas pueden incluir: cultura empresarial, gestión de equipos, visión estratégica, gestión del tiempo, entre otros. Las formaciones internas propias de cada empresa se facturarán por separado, dada la adaptación del temario general a cada organización."
                             },
                             {
-                                title: "Pluriempleo",
+                                title: "Pluri-empleo",
                                 examples: [
                                     "Ejemplo 1: Un/a trabajador/a que realiza labores en un almacén por la mañana (de lunes a viernes) y que, al ver una oferta de trabajo en un restaurante los viernes por la tarde y sábados, puede optar a ese puesto si los horarios son compatibles.",
                                     "Ejemplo 2: Un/a trabajador/a que tenía un contrato fijo discontinuo, trabajando 7-8 meses de temporada y, coordinando horarios, se le ofrece trabajar 20 horas en dos empresas (con contrato fijo a tiempo parcial), pasando a trabajar 12 meses en lugar de 7-8 y el resto en paro."
@@ -357,7 +357,7 @@ i18n
                             },
                             {
                                 title: "Acceso a Bolsa de Trabajadores",
-                                description: "Se habilitará una plataforma en la que las empresas afiliadas podrán contratar trabajadores/as de otras empresas que se encuentren en situación de paro, en período de vacaciones o interesados en el pluriempleo. La afiliación centralizará este proceso. Es necesario incluir empresas con temporada alta en invierno para garantizar continuidad."
+                                description: "Se habilitará una plataforma en la que las empresas afiliadas podrán contratar trabajadores/as de otras empresas que se encuentren en situación de paro, en período de vacaciones o interesados en el pluri-empleo. La afiliación centralizará este proceso. Es necesario incluir empresas con temporada alta en invierno para garantizar continuidad."
                             },
                             {
                                 title: "Servicio Comercial",
