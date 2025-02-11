@@ -44,11 +44,14 @@ const TransformacioCultural = () => {
                             </ul>
                         )}
                         {block.phases && (
-                            <ol>
-                                {block.phases.map((phase, i) => (
-                                    <li key={i}><strong>{phase}</strong></li>
-                                ))}
-                            </ol>
+                            <>
+                                {block.fasesTitle && <h3>{block.fasesTitle}</h3>}
+                                <ol>
+                                    {block.phases.map((phase, i) => (
+                                        <li key={i}><strong>{phase}</strong></li>
+                                    ))}
+                                </ol>
+                            </>
                         )}
                         {block.examples && (
                             <>

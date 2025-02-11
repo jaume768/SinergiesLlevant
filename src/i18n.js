@@ -134,6 +134,12 @@ i18n
                                     "Disseny d’un pla de compensació adaptat a cada empresa",
                                     "Revisió normativa segons el nombre de treballadors",
                                     "Altres serveis complementaris"
+                                ],
+                                fasesTitle: "Fases del Projecte",
+                                phases: [
+                                    "Fase 1 (Auditoria): Avaluació de la situació actual de l'empresari, identificació i acceptació de la cultura i els valors de l'afiliació, revisió de l'estructura organitzativa i dels protocols interns, i anàlisi de la plantilla i dels processos per detectar perfils clau.",
+                                    "Fase 2 (Intervenció): Definició d'un pressupost revisable mensualment, priorització de l'eficiència en els processos i delegació de responsabilitats, i establiment de protocols i formacions àgils per a la base de la plantilla.",
+                                    "Fase 3 (Seguiment): Pactar hores d'intervenció periòdica per garantir l'autogestió de la plantilla, amb reunions trimestrals o semestrals segons les necessitats detectades."
                                 ]
                             },
                             {
@@ -168,14 +174,6 @@ i18n
                             {
                                 title: "Pla de Responsabilitat Social Corporativa (RSC)",
                                 description: "Es col·laborarà amb el SOIB, associacions i fundacions per impulsar projectes socials, dissenyant un pla d'acció específic per a cada empresa afiliada. L'objectiu és fomentar l'ocupació laboral i altres iniciatives d'impacte social."
-                            },
-                            {
-                                title: "Fases del Projecte",
-                                phases: [
-                                    "Fase 1 (Auditoria): Avaluació de la situació actual de l'empresari, identificació i acceptació de la cultura i els valors de l'afiliació, revisió de l'estructura organitzativa i dels protocols interns, i anàlisi de la plantilla i dels processos per detectar perfils clau.",
-                                    "Fase 2 (Intervenció): Definició d'un pressupost revisable mensualment, priorització de l'eficiència en els processos i delegació de responsabilitats, i establiment de protocols i formacions àgils per a la base de la plantilla.",
-                                    "Fase 3 (Seguiment): Pactar hores d'intervenció periòdica per garantir l'autogestió de la plantilla, amb reunions trimestrals o semestrals segons les necessitats detectades."
-                                ]
                             },
                             {
                                 title: "Altres Serveis",
@@ -304,7 +302,7 @@ i18n
                                 description: "Impartir formaciones internas adaptadas a las necesidades de cada empresa a través de un/a formador/a interno."
                             },
                             {
-                                title: "PLURI-OCUPACIÓN",
+                                title: "PLURIEMPLEO",
                                 description: "Facilitamos la gestión horaria para optimizar el empleo y optar a trabajar durante todo el año."
                             },
                             {
@@ -328,6 +326,12 @@ i18n
                                     "Diseño de un plan de compensación adaptado a cada empresa",
                                     "Revisión normativa según el número de trabajadores",
                                     "Otros servicios complementarios"
+                                ],
+                                fasesTitle: "Fases del Proyecto",
+                                phases: [
+                                    "Fase 1 (Auditoría): Evaluación de la situación actual del empresario, identificación y aceptación de la cultura y los valores de la afiliación, revisión de la estructura organizativa y de los protocolos internos, y análisis de la plantilla y de los procesos para detectar perfiles clave.",
+                                    "Fase 2 (Intervención): Definición de un presupuesto revisable mensualmente, priorización de la eficiencia en los procesos y delegación de responsabilidades, y establecimiento de protocolos y formaciones ágiles para la base de la plantilla.",
+                                    "Fase 3 (Seguimiento): Pactar horas de intervención periódica para garantizar la autogestión de la plantilla, con reuniones trimestrales o semestrales según las necesidades detectadas."
                                 ]
                             },
                             {
@@ -336,7 +340,7 @@ i18n
                                 extra: "Se propone la opción de asumir, entre todas las empresas afiliadas, un/a formador/a interno (ya presente en la plantilla). Este servicio facilitará la asistencia a cursos internos y la coordinación de formaciones en función del perfil y la competencia que se quiera potenciar. Por ejemplo, si varias empresas necesitan potenciar el <strong>liderazgo</strong> de sus mandos intermedios, se impartirá una formación común, compartiendo experiencias entre perfiles similares. Otros temas pueden incluir: cultura empresarial, gestión de equipos, visión estratégica, gestión del tiempo, entre otros. Las formaciones internas propias de cada empresa se facturarán por separado, dada la adaptación del temario general a cada organización."
                             },
                             {
-                                title: "Pluri-ocupación",
+                                title: "Pluriempleo",
                                 examples: [
                                     "Ejemplo 1: Un/a trabajador/a que realiza labores en un almacén por la mañana (de lunes a viernes) y que, al ver una oferta de trabajo en un restaurante los viernes por la tarde y sábados, puede optar a ese puesto si los horarios son compatibles.",
                                     "Ejemplo 2: Un/a trabajador/a que tenía un contrato fijo discontinuo, trabajando 7-8 meses de temporada y, coordinando horarios, se le ofrece trabajar 20 horas en dos empresas (con contrato fijo a tiempo parcial), pasando a trabajar 12 meses en lugar de 7-8 y el resto en paro."
@@ -353,7 +357,7 @@ i18n
                             },
                             {
                                 title: "Acceso a Bolsa de Trabajadores",
-                                description: "Se habilitará una plataforma en la que las empresas afiliadas podrán contratar trabajadores/as de otras empresas que se encuentren en situación de paro, en período de vacaciones o interesados en la pluri-ocupación. La afiliación centralizará este proceso. Es necesario incluir empresas con temporada alta en invierno para garantizar continuidad."
+                                description: "Se habilitará una plataforma en la que las empresas afiliadas podrán contratar trabajadores/as de otras empresas que se encuentren en situación de paro, en período de vacaciones o interesados en el pluriempleo. La afiliación centralizará este proceso. Es necesario incluir empresas con temporada alta en invierno para garantizar continuidad."
                             },
                             {
                                 title: "Servicio Comercial",
@@ -362,14 +366,6 @@ i18n
                             {
                                 title: "Plan de Responsabilidad Social Corporativa (RSC)",
                                 description: "Se colaborará con el SOIB, asociaciones y fundaciones para impulsar proyectos sociales, diseñando un plan de acción específico para cada empresa afiliada. El objetivo es fomentar el empleo y otras iniciativas de impacto social."
-                            },
-                            {
-                                title: "Fases del Proyecto",
-                                phases: [
-                                    "Fase 1 (Auditoría): Evaluación de la situación actual del empresario, identificación y aceptación de la cultura y los valores de la afiliación, revisión de la estructura organizativa y de los protocolos internos, y análisis de la plantilla y de los procesos para detectar perfiles clave.",
-                                    "Fase 2 (Intervención): Definición de un presupuesto revisable mensualmente, priorización de la eficiencia en los procesos y delegación de responsabilidades, y establecimiento de protocolos y formaciones ágiles para la base de la plantilla.",
-                                    "Fase 3 (Seguimiento): Pactar horas de intervención periódica para garantizar la autogestión de la plantilla, con reuniones trimestrales o semestrales según las necesidades detectadas."
-                                ]
                             },
                             {
                                 title: "Otros Servicios",
