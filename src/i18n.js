@@ -15,7 +15,7 @@ i18n
                         home: "Inici",
                         about: "Qui Som?",
                         services: "Serveis",
-                        mision: "Misió i Visió",
+                        mision: "Missió i Visió",
                         objectius: "Objectius",
                         avantatges: "Avantatges",
                         contact: "Contacte"
@@ -76,7 +76,7 @@ i18n
                         button: "Comença ara!"
                     },
                     misionVision: {
-                        misionTitle: "MISIÓ",
+                        misionTitle: "MISSIÓ",
                         misionText: "Ser un referent en la creació de SINERGIES entre empreses, compartint recursos, coneixements i serveis. En un ambient de confiança, transparència i responsabilitat, garantint així el creixement conjunt i sostenible en un entorn empresarial dinàmic i exigent.",
                         visionTitle: "VISIÓ",
                         visionText: "Facilitar l'accés a una xarxa de serveis i recursos per a empreses afiliades, promovent un model de col·laboració que impulsi la innovació i faciliti el canvi cultural i generacional (successió)."
