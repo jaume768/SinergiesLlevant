@@ -99,6 +99,12 @@
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
+@media (max-width: 1500px) {
+    .services-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 1200px) {
     .services-section {
         padding: 3rem 8rem;
