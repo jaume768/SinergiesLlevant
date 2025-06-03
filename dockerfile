@@ -1,4 +1,4 @@
-# Dockerfile
+# Dockerfile optimizado para Vite
 
 # Etapa de construcción
 FROM node:18-alpine AS build
@@ -10,8 +10,8 @@ WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 
-# Instalar dependencias
-RUN npm install --legacy-peer-deps
+# Instalar dependencias (solo producción para optimizar)
+RUN npm ci --legacy-peer-deps
 
 # Copiar el resto del código
 COPY . ./
