@@ -15,6 +15,9 @@ RUN npm install --legacy-peer-deps
 # Copiar el resto del código
 COPY . ./
 
+# Eliminar archivos JS que tienen equivalentes JSX para evitar conflictos
+RUN find src -name "*.js" -type f -exec sh -c 'test -f "${0%.js}.jsx" && rm "$0"' {} \;
+
 # Construir la aplicación para producción
 RUN npm run build
 
